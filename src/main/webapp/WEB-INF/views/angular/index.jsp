@@ -15,7 +15,7 @@
 	<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
 </head>
-<body>
+<body ng-app="demoApp">
 	<div class="navbar navbar-fixed-top">
 		<div class="navbar-inner">
 			<div class="container-fluid">
@@ -24,17 +24,18 @@
 		</div>
 	</div>
 
-	<div class="container-fluid">
-	<h2>Angular <small>todo</small></h2>
+	<div class="container-fluid" ng-view>
 	
 	
 	</div>
 	
 	<script src="<c:url value="/resources/js/jquery.min.js"/>"></script>
+    <script src="<c:url value="/resources/js/angular.js"/>"></script>
+    <script src="<c:url value="/resources/js/angular-resource.js"/>"></script>
 	<script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
 	<script src="<c:url value="/resources/js/underscore.min.js"/>"></script>
-	<script type="text/javascript">
-	
-	</script>
+
+    <script src="<c:url value="/resources/angular/scripts/app.js"/>"></script>
+    <script src="<c:url value="/resources/angular/scripts/controller.js"/>"></script>
 </body>
 </html>
