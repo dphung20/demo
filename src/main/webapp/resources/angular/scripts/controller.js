@@ -1,6 +1,7 @@
 'use strict';
 
 angular.module('demoApp').controller('IndexCtrl', function ($scope, Campus, College, Department) {
+	
 	$scope.template = {treeView: '/demo/resources/angular/templates/treeView.html'};
 	$scope.campus = Campus.get({id: '1'});
 
@@ -27,6 +28,14 @@ angular.module('demoApp').controller('IndexCtrl', function ($scope, Campus, Coll
 				});
 			}
 			$scope.editData = data;
+		} else if (data.clazz === '.Department') {
+			$scope.template.editView = '/demo/resources/angular/templates/editDepartment.html';
+			if (typeof data.childOrganization === 'undefined') {
+				Department.get({id: data.id}, function (response) {
+					data.childOrganization = response.childOrganization;
+				});
+			}
+			$scope.editData = data;
 		}
 	};
 });
@@ -47,5 +56,16 @@ angular.module('demoApp').controller('CollegeEditCtrl', function ($scope, Depart
 			$scope.add.show = false;
 			$scope.new.department = '';
 		});
+	};
+});
+
+angular.module('demoApp').controller('DepartmentEditCtrl', function ($scope, Department) {
+
+	$scope.remove = function (data) {
+		console.log(data);
+	};
+
+	$scope.save = function () {
+		console.log('save');
 	};
 });
