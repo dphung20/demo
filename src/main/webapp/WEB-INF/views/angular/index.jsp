@@ -37,5 +37,6 @@
 
     <script src="<c:url value="/resources/angular/scripts/app.js"/>"></script>
     <script src="<c:url value="/resources/angular/scripts/controller.js"/>"></script>
+    <script src="<c:url value="/resources/angular/scripts/service.js"/>"></script>
 </body>
 </html>
