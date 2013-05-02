@@ -1,53 +1,51 @@
 'use strict';
 
-angular.module('demoApp')
-	.controller('IndexCtrl', function ($scope, Campus, College, Department) {
-		$scope.template = {treeView: '/demo/resources/angular/templates/treeView.html'};
-		$scope.campus = Campus.get({id: '1'});
+angular.module('demoApp').controller('IndexCtrl', function ($scope, Campus, College, Department) {
+	$scope.template = {treeView: '/demo/resources/angular/templates/treeView.html'};
+	$scope.campus = Campus.get({id: '1'});
 
-		$scope.expand = function (data) {
-			if (typeof data.childOrganization === 'undefined') {
-				if (data.clazz === '.College') {
-					College.get({id: data.id}, function (response) {
-						data.childOrganization = response.childOrganization;
-					});
-				} else if (data.clazz === '.Department') {
-					Department.get({id: data.id}, function (response) {
-						data.childOrganization = response.childOrganization;
-					});
-				}
-			}
-		};
-
-		$scope.edit = function (data) {
+	$scope.expand = function (data) {
+		if (typeof data.childOrganization === 'undefined') {
 			if (data.clazz === '.College') {
-				$scope.template.editView = '/demo/resources/angular/templates/editCollege.html';
-				if (typeof data.childOrganization === 'undefined') {
-					College.get({id: data.id}, function (response) {
-						data.childOrganization = response.childOrganization;
-					});
-				}
-				$scope.editData = data;
+				College.get({id: data.id}, function (response) {
+					data.childOrganization = response.childOrganization;
+				});
+			} else if (data.clazz === '.Department') {
+				Department.get({id: data.id}, function (response) {
+					data.childOrganization = response.childOrganization;
+				});
 			}
-		};
-	});
+		}
+	};
 
-angular.module('demoApp')
-	.controller('CollegeEditCtrl', function ($scope, Department) {
+	$scope.edit = function (data) {
+		if (data.clazz === '.College') {
+			$scope.template.editView = '/demo/resources/angular/templates/editCollege.html';
+			if (typeof data.childOrganization === 'undefined') {
+				College.get({id: data.id}, function (response) {
+					data.childOrganization = response.childOrganization;
+				});
+			}
+			$scope.editData = data;
+		}
+	};
+});
 
-		$scope.remove = function (data) {
-			Department.delete({id: data.id}, function (response) {
-				var index = $scope.editData.childOrganization.indexOf(data);
-				$scope.editData.childOrganization.splice(index, 1);
-			});
-		};
+angular.module('demoApp').controller('CollegeEditCtrl', function ($scope, Department) {
 
-		$scope.save = function () {
-			var postData = {name: $scope.new.department, clazz: '.Department'};
-			Department.post({id: $scope.editData.id}, postData, function (response) {
-				$scope.editData.childOrganization.push(response);
-				$scope.add.show = false;
-				$scope.new.department = '';
-			});
-		};
-	});
+	$scope.remove = function (data) {
+		Department.delete({id: data.id}, function (response) {
+			var index = $scope.editData.childOrganization.indexOf(data);
+			$scope.editData.childOrganization.splice(index, 1);
+		});
+	};
+
+	$scope.save = function () {
+		var postData = {name: $scope.new.department, clazz: '.Department'};
+		Department.post({id: $scope.editData.id}, postData, function (response) {
+			$scope.editData.childOrganization.push(response);
+			$scope.add.show = false;
+			$scope.new.department = '';
+		});
+	};
+});
