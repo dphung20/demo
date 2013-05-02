@@ -5,7 +5,7 @@
 			<input id="filter" type="text" placeholder="Filter Organization" style="width: 300px;" /><br /><br />
 			<div id="tree-container" class="treeview">
 				<ul>
-					<li ng-repeat="data in campus.childOrganization" ng-include src="template.treeView"></li>
+					<li ng-repeat="data in campus.childOrganization | orderBy: 'name'" ng-include src="template.treeView"></li>
 				</ul>
 			</div>
 		</div>

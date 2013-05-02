@@ -2,5 +2,5 @@
 <label for="{{data.id}}"></label>
 <a href ng-click="edit(data)"><i class="icon-tags"></i><div>{{data.name}}</div></a>
 <ul>
-    <li ng-repeat="data in data.childOrganization" ng-include src="template.treeView"></li>
+    <li ng-repeat="data in data.childOrganization | orderBy: 'name': false" ng-include src="template.treeView"></li>
 </ul>

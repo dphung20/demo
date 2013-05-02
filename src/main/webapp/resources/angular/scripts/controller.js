@@ -33,20 +33,21 @@ angular.module('demoApp')
 	});
 
 angular.module('demoApp')
-	.controller('EditCtrl', function ($scope, Campus, College, Department) {
-		// information from parent controller saved in $scope.editData
-		// add directive
-		// trash directive
+	.controller('CollegeEditCtrl', function ($scope, Department) {
 
-		$scope.remove = function (data, index) {
-			if (data.clazz === '.Department') {
-				Department.delete({id: data.id}, function (response) {
-					$scope.editData.childOrganization.splice(index, 1);
-				});
-			}
+		$scope.remove = function (data) {
+			Department.delete({id: data.id}, function (response) {
+				var index = $scope.editData.childOrganization.indexOf(data);
+				$scope.editData.childOrganization.splice(index, 1);
+			});
 		};
 
-		$scope.save = function (data) {
-			
+		$scope.save = function () {
+			var postData = {name: $scope.new.department, clazz: '.Department'};
+			Department.post({id: $scope.editData.id}, postData, function (response) {
+				$scope.editData.childOrganization.push(response);
+				$scope.add.show = false;
+				$scope.new.department = '';
+			});
 		};
 	});

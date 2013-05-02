@@ -1,4 +1,4 @@
-<div ng-controller="EditCtrl">
+<div ng-controller="CollegeEditCtrl">
 <h3>{{editData.name}}</h3>
 <table class="table table-condensed">
 	<thead>
@@ -9,15 +9,18 @@
 	</thead>
 	<tbody class="table-container">
 		<tr ng-show="add.show">
-			<td><input type="text" placeholder="Name" style="width: 98%;"/></td>
 			<td>
-				<a href class="pull-right cancel" title="Cancel Add" ng-click="add.show = false"><i class="icon-remove"></i></a>
-				<a href class="pull-right save margin-right5" title="Save Department Assignment"><i class="icon-ok"></i></a>
+				<input type="text" placeholder="Name" style="width: 98%;" ng-model="new.department"/>
+				<input type="hidden" ng-model="new.clazz"
+			</td>
+			<td>
+				<a href class="pull-right cancel" title="Cancel Add" ng-click="add.show = false; new.department = ''"><i class="icon-remove"></i></a>
+				<a href class="pull-right save margin-right5" title="Save Department Assignment" ng-click="save()"><i class="icon-ok"></i></a>
 			</td>
 		</tr>
-		<tr ng-repeat="item in editData.childOrganization">
+		<tr ng-repeat="item in editData.childOrganization | orderBy: 'name'">
 			<td><a href="#">{{item.name}}</a></td>
-			<td><a href class="pull-right remove" title="Remove Item" ng-click="remove(item, $index)"><i class="icon-remove"></i></a></td>
+			<td><a href class="pull-right remove" title="Remove Item" ng-click="remove(item)"><i class="icon-remove"></i></a></td>
 		</tr>
 	</tbody>
 </table>
