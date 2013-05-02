@@ -38,8 +38,12 @@ angular.module('demoApp')
 		// add directive
 		// trash directive
 
-		$scope.remove = function (data) {
-			// remove item
+		$scope.remove = function (data, index) {
+			if (data.clazz === '.Department') {
+				Department.delete({id: data.id}, function (response) {
+					$scope.editData.childOrganization.splice(index, 1);
+				});
+			}
 		};
 
 		$scope.save = function (data) {

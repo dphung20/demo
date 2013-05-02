@@ -10,7 +10,7 @@
 	<tbody class="table-container">
 		<tr ng-repeat="item in editData.childOrganization">
 			<td><a href="#">{{item.name}}</a></td>
-			<td><a href="#"  class="pull-right remove" title="Remove Item"><i class="icon-remove"></i></a></td>
+			<td><a href class="pull-right remove" title="Remove Item" ng-click="remove(item, $index)"><i class="icon-remove"></i></a></td>
 		</tr>
 	</tbody>
 </table>
