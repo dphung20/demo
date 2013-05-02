@@ -24,19 +24,18 @@
 		</div>
 	</div>
 
-	<div class="container-fluid" ng-view>
-	
-	
-	</div>
+	<div class="container-fluid" ng-view></div>
 	
 	<script src="<c:url value="/resources/js/jquery.min.js"/>"></script>
     <script src="<c:url value="/resources/js/angular.js"/>"></script>
     <script src="<c:url value="/resources/js/angular-resource.js"/>"></script>
 	<script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
 	<script src="<c:url value="/resources/js/underscore.min.js"/>"></script>
+	<script src="<c:url value="/resources/js/typeahead.min.js"/>"></script>
 
     <script src="<c:url value="/resources/angular/scripts/app.js"/>"></script>
     <script src="<c:url value="/resources/angular/scripts/controller.js"/>"></script>
     <script src="<c:url value="/resources/angular/scripts/service.js"/>"></script>
+    <script src="<c:url value="/resources/angular/scripts/directive.js"/>"></script>
 </body>
 </html>

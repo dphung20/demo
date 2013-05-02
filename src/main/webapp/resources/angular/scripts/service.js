@@ -13,9 +13,11 @@ angular.module('demoApp').factory('College', function ($resource) {
 });
 
 angular.module('demoApp').factory('Department', function ($resource) {
-    return $resource('/demo/api/department/:id/:employee', {id: '@id'}, {
+    return $resource('/demo/api/department/:id/:employee/:personId/:remove', {id: '@id', personId: '@personId'}, {
         get: {method: 'GET', params: {employee: 'employee'}},
         post: {method: 'POST'},
-        delete: {method: 'DELETE'}
+        delete: {method: 'DELETE'},
+        addEmployee: {method: 'PUT', params: {employee: 'employee'}},
+        removeEmployee: {method: 'PUT', params: {employee: 'employee', remove: 'remove'}}
     });
 });

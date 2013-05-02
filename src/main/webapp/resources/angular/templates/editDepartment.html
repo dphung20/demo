@@ -10,7 +10,7 @@
 	<tbody class="table-container">
 		<tr ng-show="add.show">
 			<td>
-				<input type="text" placeholder="Last Name, First Name" class="typeahead input-xlarge" style="width: 300px;"/>
+				<input type="text" placeholder="Last Name, First Name" class="typeahead input-xlarge" style="width: 300px;" ng-model="new.person" demo-typeahead/>
 			</td>
 			<td>
 				<a href class="pull-right cancel" title="Cancel Add" ng-click="add.show = false; new.person = ''"><i class="icon-remove"></i></a>

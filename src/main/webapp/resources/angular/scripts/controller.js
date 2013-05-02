@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('demoApp').controller('IndexCtrl', function ($scope, Campus, College, Department) {
-	
+
 	$scope.template = {treeView: '/demo/resources/angular/templates/treeView.html'};
 	$scope.campus = Campus.get({id: '1'});
 
@@ -62,10 +62,15 @@ angular.module('demoApp').controller('CollegeEditCtrl', function ($scope, Depart
 angular.module('demoApp').controller('DepartmentEditCtrl', function ($scope, Department) {
 
 	$scope.remove = function (data) {
-		console.log(data);
+		Department.removeEmployee({id: $scope.editData.id, personId: data.id}, {}, function (repsonse) {
+			var index = $scope.editData.childOrganization.indexOf(data);
+			$scope.editData.childOrganization.splice(index, 1);
+		});
 	};
 
-	$scope.save = function () {
-		console.log('save');
+	$scope.save = function (data) {
+		$scope.editData.childOrganization = data.childOrganization;
+		$scope.add.show = false;
+		$scope.new.person = '';
 	};
 });
