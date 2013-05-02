@@ -6,6 +6,7 @@ import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -13,7 +14,7 @@ import javax.persistence.Table;
 @Table(schema = "Core")
 public class Department extends Organization {
 
-	@OneToMany
+	@ManyToMany
 	@JoinTable(schema = "Core", name = "DepartmentToPerson", inverseJoinColumns=@JoinColumn(name="Person"))
 	private Set<Person> employees = new HashSet<Person>();
 

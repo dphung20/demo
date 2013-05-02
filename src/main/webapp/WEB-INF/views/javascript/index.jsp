@@ -29,77 +29,57 @@
 			<div class="span12">
 				<div class="treeview-side">
 					<h3>Manage My Organization</h3>
-					<label for="filter" class="hidden">Search Department or Principal Investigator</label>
-					<input id="filter" type="text" placeholder="Search Department or Principal Investigator" style="width: 300px;" /><br /><br />
 					<div id="tree-container" class="treeview" ></div>
 				</div>
 
 				<form>
 				<div id="edit-container" style="margin-left: 350px;">
 				
+				<!-- college -->
 				<section class="panel college hidden">
-					<!-- college -->
 					<h3 class="panel-header"></h3>
 					<table class="table table-condensed">
 						<thead>
 		              		<tr>
 								<th>Departments</th>
-		              			<th><a href="#" class="pull-right add" title="Add Department"><i class="icon-plus"></i></a></th>
+		              			<th><a href="#" class="pull-right add-department" title="Add Department"><i class="icon-plus"></i></a></th>
 		              		</tr>
 		              	</thead>
-						<tbody class="table-container" data-parent="{{id}}">
-<!-- 							{{#each childOrganization}}
-							
-							{{/each}} -->
-						</tbody>
+						<tbody class="table-container"></tbody>
 					</table>				
 				</section>
 				
+				<!-- department -->
 				<section class="panel department hidden">
-					<!-- department -->
-					<h3>{{name}}</h3>
+					<h3 class="panel-header"></h3>
 					<table class="table table-condensed">
 						<thead>
 							<tr>
 								<th>Principal Investigators</th>
-								<th><a href="#" class="pull-right add" title="Add Principal Investigators"><i class="icon-plus"></i></a></th>
+								<th><a href="#" class="pull-right add-person" title="Add Principal Investigators"><i class="icon-plus"></i></a></th>
 							</tr>
 						</thead>
-						<tbody class="table-container" data-parent="{{id}}">
-							<!-- {{#each childOrganization}}
-							<tr data-id="{{this.id}}" data-type="{{this.clazz}}">
-								<td><a href="#">{{this.firstName}} {{this.lastName}}</a></td>
-								<td><a href="#" class="pull-right remove"  title="Remove Item"><i class="icon-remove"></i></a></td>
-							</tr>
-							{{/each}} -->
-						</tbody>
+						<tbody class="table-container"></tbody>
 					</table>				
 				</section>
 				
+				<!-- person -->
 				<section class="panel person hidden">
-					<!-- person -->
-					<h3>{{person.firstName}} {{person.lastName}}</h3>
+					<h3 class="panel-header"></h3>
 					
 					<div><strong>Personnel Information</strong></div>
 					<address>
-						<a href="mailto:#">{{person.email}}</a><br />
+						<a href="mailto:#" class="person-email"></a><br />
 					</address>
 					
 					<table class="table table-condensed">
 						<thead>
 							<tr>
 								<th>Assigned Rooms</th>
-								<th><a href="#" class="pull-right add" title="Add Room"><i class="icon-plus"></i></a></th>
+								<th><a href="#" class="pull-right add-room" title="Add Room"><i class="icon-plus"></i></a></th>
 							</tr>
 						</thead>
-						<tbody class="table-container" data-parent="{{id}}">
-							{{#each rooms}}
-							<tr data-id="{{id}}" data-building="{{building.id}}" data-type="{{this.clazz}}">
-								<td>{{building.name}} - {{name}}</td>
-								<td><a href="#" class="pull-right remove" title="Remove Item"><i class="icon-remove"></i></a></td>
-							</tr>
-							{{/each}}
-						</tbody>
+						<tbody class="table-container"></tbody>
 					</table>				
 				</section>				
 				
@@ -112,6 +92,7 @@
 	<script src="<c:url value="/resources/js/jquery.min.js"/>"></script>
 	<script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
 	<script src="<c:url value="/resources/js/underscore.min.js"/>"></script>
+	<script src="<c:url value="/resources/js/typeahead.min.js"/>"></script>
 	<script src="<c:url value="/resources/views/javascript/index.js"/>"></script>
 </body>
 </html>

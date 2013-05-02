@@ -19,6 +19,42 @@ $(function() {
 		el.append(html);
 	}
 
+	// load department for college
+	function loadDepartmentTreeData(collegeId){
+		var li = $('li[data-id=' + collegeId +']');
+
+		$.getJSON(rootUrl  + 'college/' + collegeId + '/department', function (response) {
+			li.find('ul').remove();
+			var ul = $('<ul></ul>');
+			_.each(response.childOrganization, function(item){
+				addTreeItem(item, ul);
+			});
+			li.append(ul);
+		});
+	}
+
+	// load person for department
+	function loadPersonTreeData(departmentId){
+		var li = $('li[data-id=' + departmentId +']');
+
+		$.getJSON(rootUrl  + 'department/' + departmentId + '/employee', function (response) {
+			li.find('ul').remove();
+			var ul = $('<ul></ul>');
+			_.each(response.childOrganization, function(item){
+				addTreeItem(item, ul);
+			});
+			li.append(ul);
+		});
+	}
+
+	function addDepartmentItem(item, el){
+		var html = '<tr data-id="' + item.id + '" data-type="' + item.clazz + '">';
+			html += '<td><a href="#">' + item.firstName  + ' ' + item.lastName + '</a></td>';
+			html += '<td><a href="#"  class="pull-right remove-person" title="Remove Item"><i class="icon-remove"></i></a></td>';
+			html += '</tr>';
+		el.append(html);
+	}
+
 	// load tree data
 	$.getJSON(rootUrl + 'campus/1/college', function (response) {
 		var ul = $('<ul></ul>').appendTo(".treeview");
@@ -35,19 +71,9 @@ $(function() {
 			var type = parent.attr('data-type');
 
 			if (type === '.College') {
-				$.getJSON(rootUrl  + 'college/' + id + '/department', function (response) {
-					var ul = $('<ul></ul>').appendTo(parent);
-					_.each(response.childOrganization, function(item){
-						addTreeItem(item, ul);
-					});
-				});
+				loadDepartmentTreeData(id);
 			} else if (type === '.Department') {
-				$.getJSON( rootUrl + 'department/' + id + '/employee', function (response) {
-					var ul = $('<ul></ul>').appendTo(parent);
-					_.each(response.childOrganization, function(item){
-						addTreeItem(item, ul);
-					});
-				});
+				loadPersonTreeData(id);
 			}
 		}
 	});
@@ -75,12 +101,14 @@ $(function() {
 		if (type === '.College') {
 			$.getJSON(rootUrl + 'college/' + id + '/department', function (response) {
 				var el = $(".college");
+
+				el.attr("data-college-id", response.id);
 				el.find(".panel-header").append(response.name);
 
 				_.each(response.childOrganization, function(item){
 					var html = '<tr data-id="' + item.id + '" data-type="' + item.clazz + '">';
 						html += '<td><a href="#">' + item.name + '</a></td>';
-						html += '<td><a href="#"  class="pull-right remove" title="Remove Item"><i class="icon-remove"></i></a></td>';
+						html += '<td><a href="#"  class="pull-right remove-department" title="Remove Item"><i class="icon-remove"></i></a></td>';
 						html += '</tr>';
 					el.find("tbody").append(html);
 				});
@@ -89,14 +117,165 @@ $(function() {
 			});
 		} else if (type === '.Department') {
 			$.getJSON(rootUrl + 'department/' + id + '/employee', function (response) {
-			});
+				var el = $(".department");
 
-			$(".department").removeClass("hidden");
+				el.attr("data-department-id", response.id);
+				el.find(".panel-header").append(response.name);
+
+				_.each(response.childOrganization, function(item){
+					addDepartmentItem(item, el.find("tbody"));
+				});
+
+				el.removeClass("hidden");
+			});
 		} else if (type === '.Person') {
 			$.getJSON(rootUrl + 'person/' + id + '/room', function (response) {
-			});
+				var el = $(".person");
 
-			$(".person").removeClass("hidden");
+				el.attr("data-department-id", response.id);
+				el.find(".panel-header").append(response.person.firstName + " " + response.person.lastName);
+				el.find(".person-email").append(response.person.email);
+
+				_.each(response.rooms, function(item){
+					var html = '<tr data-id="' + item.id + '" data-building="' + item.building.id + '" data-type="' + item.clazz + '">';
+						html += '<td><a href="#">' + item.building.name  + ' ' + item.name + '</a></td>';
+						html += '<td><a href="#"  class="pull-right remove-room" title="Remove Item"><i class="icon-remove"></i></a></td>';
+						html += '</tr>';
+					el.find("tbody").append(html);
+				});
+
+				el.removeClass("hidden");
+			});
 		}
+	});
+
+	// college panel
+	$(document).on('click', ".add-department", function(evt){
+		evt.preventDefault();
+		if ($('.table-container').find('tr:first-child input').length === 0) {
+			var html = '<tr>';
+				html += '	<td>';
+				html += '		<label for="name" class="hidden">Name</label>';
+				html += '		<input id="name" name="name" type="text" class="input-xxlarge required" placeholder="Name" /></td>';
+				html += '	<td>';
+				html += '		<div class="pull-right">';
+				html += '			<a href="#" class="save save-department margin-right5" title="Save Room Assignment"><i class="icon-ok"></i></a>';
+				html += '			<a href="#" class="cancel" title="Cancel Add"><i class="icon-remove"></i></a>';
+				html += '		</div>';
+				html += '	</td>';
+				html += '</tr>';
+
+			$('.table-container').prepend($(html));
+		}
+	});
+
+	$(document).on('click', ".remove-department", function(evt){
+		evt.preventDefault();
+		var target = $(evt.target);
+		var collegeId = target.parents('section').attr('data-college-id');
+		var departmentId = target.parents('tr').attr('data-id');
+
+		$.ajax({ type: 'DELETE', url: rootUrl + 'department/' + departmentId })
+			.done(function (data) {
+				target.parents('tr').remove();
+
+				var ul = $('li[data-id=' + collegeId +'] ul');
+				if(ul){
+					loadDepartmentTreeData(collegeId);
+				}
+			});
+	});
+
+	$(document).on('click', ".save-department", function(evt){
+		evt.preventDefault();
+		var target = $(evt.target);
+		var collegeId = target.parents('section').attr('data-college-id');
+		var tr = target.parents('tr');
+
+		var data = {'clazz': '.Department', name: tr.find(':first-child input').val()};
+		$.ajax({ type: 'POST', url: rootUrl + 'department/' + collegeId, data: JSON.stringify(data) })
+			.done(function (response) {
+				tr.remove();
+				var ul = $('li[data-id=' + collegeId +'] ul');
+				if(ul){
+					loadDepartmentTreeData(collegeId);
+				}
+			});
+	});
+
+	// department panel
+	$(document).on('click', ".add-person", function(evt){
+		evt.preventDefault();
+		var target = $(evt.target);
+		var departmentId = target.parents('section').attr('data-department-id');
+		var personId = target.parents('tr').attr('data-id');
+		var tr = target.parents('tr');
+
+		if ($('.table-container').find('tr:first-child input').length === 0) {
+			var html = '<tr>';
+				html += '	<td>';
+				html += '		<label for="personSearch" class="hidden">Name</label>';
+				html += '		<input id="personSearch" name="personSearch" type="text" placeholder="Last Name, First Name" class="typeahead" style="width: 300px;"/></td>';
+				html += '	<td>';
+				html += '		<div class="pull-right">';
+				html += '			<a href="#" class="save save-department margin-right5" title="Save Room Assignment"><i class="icon-ok"></i></a>';
+				html += '			<a href="#" class="cancel" title="Cancel Add"><i class="icon-remove"></i></a>';
+				html += '		</div>';
+				html += '	</td>';
+				html += '</tr>';
+
+			$('.table-container').prepend($(html));
+		}
+
+		$('.table-container .typeahead').typeahead({
+			name: 'person',
+			remote: rootUrl + 'person/1/find?search=%QUERY'
+		}).on('typeahead:selected', function (event, item) {
+			$.ajax({ type: 'PUT', url: rootUrl + 'department/' + departmentId + '/employee/' + personId })
+				.done(function (response) {
+					var ul = $('li[data-id=' + collegeId +'] ul');
+					if(ul){
+						addDepartmentItem(item, tr.parents("tbody"));
+						loadPersonTreeData(departmentId);
+					}
+					tr.remove();
+				});
+		});
+	});
+
+	$(document).on('click', ".remove-person", function(evt){
+		evt.preventDefault();
+		var target = $(evt.target);
+		var departmentId = target.parents('section').attr('data-department-id');
+		var personId = target.parents('tr').attr('data-id');
+
+		$.ajax({ type: 'PUT', url: rootUrl + 'department/' + departmentId + '/employee/' + personId + '/remove' })
+			.done(function (data) {
+				target.parents('tr').remove();
+
+				var ul = $('li[data-id=' + departmentId +'] ul');
+				if(ul){
+					loadPersonTreeData(departmentId);
+				}
+			});
+	});
+
+	// person panel
+	$(document).on('click', ".remove-person", function(evt){
+		evt.preventDefault();
+		var target = $(evt.target);
+		var personId = target.parents('section').attr('data-person-id');
+		var roomId = target.parents('tr').attr('data-id');
+
+		$.ajax({ type: 'PUT', url: rootUrl + 'room/' + roomId + '/remove/' +  personId })
+			.done(function (data) {
+				target.parents('tr').remove();
+			});
+	});
+
+	// cancel
+	$(document).on('click', ".cancel", function(evt){
+		evt.preventDefault();
+		$(evt.target).parents('tr').remove();
 	});
 });
