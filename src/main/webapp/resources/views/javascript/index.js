@@ -174,7 +174,7 @@ $(function() {
 				el.find(".person-email").html(response.person.email);
 
 				_.each(response.rooms, function(item){
-					addDepartmentItem(item, el.find("tbody"));
+					addRoomItem(item, el.find("tbody"));
 				});
 
 				el.removeClass("hidden");
@@ -268,9 +268,8 @@ $(function() {
 						loadPersonTreeData(departmentId);
 					}
 
-					var target = $(evt.target);
-					addDepartmentItem(item, target.parents('tbody'));
-					target.parents('tr').remove();
+					addDepartmentItem(item, $('.department .table-container'));
+					$(evt.target).parents('tr').remove();
 				});
 		});
 	});
@@ -348,10 +347,10 @@ $(function() {
 		var target = $(evt.target);
 		var personId = target.parents('section').attr('data-person-id');
 
-		$.ajax({ type: 'POST', url: rootUrl + 'room/' + $("#room").val() + "/add/" + personId })
+		$.ajax({ type: 'PUT', url: rootUrl + 'room/' + $("#room").val() + "/add/" + personId })
 			.done(function (response) {
-				tr.remove();
-				//addDepartmentItem(response, )
+				target.parents('tr').remove();
+				addRoomItem(response, $('.person .table-container'));
 			});
 	});
 
