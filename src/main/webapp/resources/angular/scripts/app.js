@@ -12,18 +12,4 @@ angular.module('demoApp', ['ngResource'])
             });
     });
 
-// TODO
-// person to room page
 // /:collegeId/:departmentId/:personId
-// edit person page
-
-
-// buildings
-    //api/campus/:campusId/building
-// floors
-    //api/building/:buildingId/floor
-// rooms
-    //api/floor/:floorId/room
-
-// save room to person
-    //api/room/:roomId/add/:personId
