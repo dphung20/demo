@@ -34,7 +34,7 @@ public class RoomController {
 		room.getOccuupant().add(person);
 		roomService.save(room);
 		
-		return roomService.toJson(room);
+		return roomService.toJsonWithBuilding(room);
 	}
 	
 	@RequestMapping(value = "/{id}/remove/{personId}", method = RequestMethod.PUT)

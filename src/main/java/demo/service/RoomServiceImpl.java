@@ -1,11 +1,18 @@
 package demo.service;
 
+import java.io.StringWriter;
 import java.util.List;
+
+import javax.xml.bind.DataBindingException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.fasterxml.jackson.core.JsonFactory;
+import com.fasterxml.jackson.core.JsonGenerator;
+
 import demo.data.RoomRepository;
+import demo.domain.Organization;
 import demo.domain.Person;
 import demo.domain.Room;
 
@@ -36,6 +43,35 @@ public class RoomServiceImpl extends OrganizationServiceImpl<Room> implements Ro
 	@Override
 	public Room save(Room room) {
 		return repository.save(room);
+	}
+	
+	@Override
+	public String toJsonWithBuilding(Room entity) {
+		try {
+			StringWriter sw = new StringWriter();
+			
+			JsonFactory factory = new JsonFactory();
+			JsonGenerator json = factory.createJsonGenerator(sw);
+			json.writeStartObject();
+			json.writeStringField("clazz", "." + entity.getClass().getSimpleName());
+			json.writeStringField("id", String.valueOf(entity.getId()));
+			json.writeStringField("name", entity.getName());
+
+			Organization building = entity.getParentFacility().getParentFacility();
+			json.writeFieldName("building");
+			json.writeStartObject();
+			json.writeStringField("clazz", "." + building.getClass().getSimpleName());
+			json.writeStringField("id", String.valueOf(building.getId()));
+			json.writeStringField("name", building.getName());
+			json.writeEndObject();
+			
+			json.writeEndObject();
+			json.close();
+			
+			return sw.toString();
+		} catch(Exception e) {
+			throw new DataBindingException(e);
+		}
 	}
 	
 }
