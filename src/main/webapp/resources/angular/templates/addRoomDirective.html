@@ -1,0 +1,9 @@
+<td>
+	<select ng-model="select.building" ng-options="item.id as item.name for item in buildings"></select>
+	<select ng-model="select.floor" ng-options="item.id as item.name for item in floors"></select>
+	<select ng-model="select.room" ng-options="item.id as item.name for item in rooms"></select>
+</td>
+<td>
+	<a href class="pull-right cancel" title="Cancel Add" ng-click="add.show = false; new.person = ''"><i class="icon-remove"></i></a>
+	<a href class="pull-right save margin-right5" title="Save Room Assignment" ng-click="save()"><i class="icon-ok"></i></a>
+</td>

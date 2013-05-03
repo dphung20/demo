@@ -14,16 +14,7 @@
 		</tr>
 	</thead>
 	<tbody class="table-container">
-		<tr ng-show="add.show">
-			<td>
-				<select id="building" class="input-large"></select> 
-				<select id="floor" class="input-medium"></select> 
-				<select id="room" class="input-small"></select>
-			</td>
-			<td>
-				<a href class="pull-right cancel" title="Cancel Add" ng-click="add.show = false; new.person = ''"><i class="icon-remove"></i></a>
-			<a href class="pull-right save margin-right5" title="Save Room Assignment" ng-click="save()"><i class="icon-ok"></i></a>
-			</td>
+		<tr ng-show="add.show" demo-addroom>
 		</tr>
 		<tr ng-repeat="item in editData.response.rooms | orderBy: 'building.name'">
 			<td><a href="#">{{item.building.name}} - {{item.name}}</a></td>

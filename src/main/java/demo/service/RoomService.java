@@ -9,4 +9,6 @@ import demo.domain.Room;
 public interface RoomService extends OrganizationService<Room> {
 
 	List<Room> findBy(Person person);
+	
+	String toJsonWithBuilding(Room entity);
 }
