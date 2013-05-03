@@ -49,7 +49,15 @@ $(function() {
 
 	function addDepartmentItem(item, el){
 		var html = '<tr data-id="' + item.id + '" data-type="' + item.clazz + '">';
-			html += '<td><a href="#">' + item.firstName  + ' ' + item.lastName + '</a></td>';
+			html += '<td>' + item.name + '</td>';
+			html += '<td><a href="#"  class="pull-right remove-department" title="Remove Item"><i class="icon-remove"></i></a></td>';
+			html += '</tr>';
+		el.append(html);
+	}
+
+	function addPersonItem(item, el){
+		var html = '<tr data-id="' + item.id + '" data-type="' + item.clazz + '">';
+			html += '<td>' + item.firstName  + ' ' + item.lastName + '</td>';
 			html += '<td><a href="#"  class="pull-right remove-person" title="Remove Item"><i class="icon-remove"></i></a></td>';
 			html += '</tr>';
 		el.append(html);
@@ -57,7 +65,7 @@ $(function() {
 
 	function addRoomItem(item, el){
 		var html = '<tr data-id="' + item.id + '" data-building="' + item.building.id + '" data-type="' + item.clazz + '">';
-			html += '<td><a href="#">' + item.building.name  + ' ' + item.name + '</a></td>';
+			html += '<td>' + item.building.name  + ' ' + item.name + '</td>';
 			html += '<td><a href="#"  class="pull-right remove-room" title="Remove Item"><i class="icon-remove"></i></a></td>';
 			html += '</tr>';
 		el.append(html);
@@ -143,11 +151,7 @@ $(function() {
 				el.find(".panel-header").html(response.name);
 
 				_.each(response.childOrganization, function(item){
-					var html = '<tr data-id="' + item.id + '" data-type="' + item.clazz + '">';
-						html += '<td><a href="#">' + item.name + '</a></td>';
-						html += '<td><a href="#"  class="pull-right remove-department" title="Remove Item"><i class="icon-remove"></i></a></td>';
-						html += '</tr>';
-					el.find("tbody").append(html);
+					addDepartmentItem(item, el.find("tbody"));
 				});
 
 				el.removeClass("hidden");
@@ -160,7 +164,7 @@ $(function() {
 				el.find(".panel-header").html(response.name);
 
 				_.each(response.childOrganization, function(item){
-					addDepartmentItem(item, el.find("tbody"));
+					addPersonItem(item, el.find("tbody"));
 				});
 
 				el.removeClass("hidden");
@@ -233,6 +237,8 @@ $(function() {
 				if(ul){
 					loadDepartmentTreeData(collegeId);
 				}
+
+				addDepartmentItem(response, $('.college .table-container'));
 			});
 	});
 
@@ -268,7 +274,7 @@ $(function() {
 						loadPersonTreeData(departmentId);
 					}
 
-					addDepartmentItem(item, $('.department .table-container'));
+					addPersonItem(item, $('.department .table-container'));
 					$(evt.target).parents('tr').remove();
 				});
 		});
