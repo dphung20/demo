@@ -21,3 +21,9 @@ angular.module('demoApp').factory('Department', function ($resource) {
         removeEmployee: {method: 'PUT', params: {employee: 'employee', remove: 'remove'}}
     });
 });
+
+angular.module('demoApp').factory('Person', function ($resource) {
+    return $resource('/demo/api/person/:id/:room', {id: '@id'}, {
+        get: {method: 'GET', params: {room: 'room'}}
+    });
+});

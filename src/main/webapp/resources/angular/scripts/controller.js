@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('demoApp').controller('IndexCtrl', function ($scope, Campus, College, Department) {
+angular.module('demoApp').controller('IndexCtrl', function ($scope, Campus, College, Department, Person) {
 
 	$scope.template = {treeView: '/demo/resources/angular/templates/treeView.html'};
 	$scope.campus = Campus.get({id: '1'});
@@ -33,6 +33,14 @@ angular.module('demoApp').controller('IndexCtrl', function ($scope, Campus, Coll
 			if (typeof data.childOrganization === 'undefined') {
 				Department.get({id: data.id}, function (response) {
 					data.childOrganization = response.childOrganization;
+				});
+			}
+			$scope.editData = data;
+		} else if (data.clazz === '.Person') {
+			$scope.template.editView = '/demo/resources/angular/templates/editPerson.html';
+			if (typeof data.childOrganization === 'undefined') {
+				Person.get({id: data.id}, function (response) {
+					data.response = response;
 				});
 			}
 			$scope.editData = data;
@@ -74,3 +82,10 @@ angular.module('demoApp').controller('DepartmentEditCtrl', function ($scope, Dep
 		$scope.new.person = '';
 	};
 });
+
+angular.module('demoApp').controller('PersonEditCtrl', function ($scope) {
+
+});
+
+
+

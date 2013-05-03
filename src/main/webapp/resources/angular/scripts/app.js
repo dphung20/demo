@@ -11,3 +11,8 @@ angular.module('demoApp', ['ngResource'])
                 redirectTo: '/'
             });
     });
+
+// TODO
+// person to room page
+// /:collegeId/:departmentId/:personId
+// edit person page
