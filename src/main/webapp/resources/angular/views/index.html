@@ -1,1 +1,15 @@
-Hello World
+<div class="row-fluid">
+	<div class="span12">
+		<div class="treeview-side">
+			<h3>Manage My Organization</h3>
+			<input id="filter" type="text" placeholder="Filter Organization" style="width: 300px;" /><br /><br />
+			<div id="tree-container" class="treeview">
+				<ul>
+					<li ng-repeat="data in campus.childOrganization | orderBy: 'name'" ng-include src="template.treeView"></li>
+				</ul>
+			</div>
+		</div>
+		<div id="edit-container" style="margin-left: 350px;" ng-include src="template.editView">
+		</div>
+	</div>
+</div>
