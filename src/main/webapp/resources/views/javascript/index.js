@@ -152,7 +152,7 @@ $(function() {
 	// college panel
 	$(document).on('click', ".add-department", function(evt){
 		evt.preventDefault();
-		if ($('.table-container').find('tr:first-child input').length === 0) {
+		if ($('.college .table-container').find('tr:first-child input').length === 0) {
 			var html = '<tr>';
 				html += '	<td>';
 				html += '		<label for="name" class="hidden">Name</label>';
@@ -165,7 +165,7 @@ $(function() {
 				html += '	</td>';
 				html += '</tr>';
 
-			$('.table-container').prepend($(html));
+			$('.college .table-container').prepend($(html));
 		}
 	});
 
@@ -206,12 +206,9 @@ $(function() {
 	// department panel
 	$(document).on('click', ".add-person", function(evt){
 		evt.preventDefault();
-		var target = $(evt.target);
-		var departmentId = target.parents('section').attr('data-department-id');
-		var personId = target.parents('tr').attr('data-id');
-		var tr = target.parents('tr');
+		var departmentId = $(evt.target).parents('section').attr('data-department-id');
 
-		if ($('.table-container').find('tr:first-child input').length === 0) {
+		if ($('.department .table-container').find('tr:first-child input').length === 0) {
 			var html = '<tr>';
 				html += '	<td>';
 				html += '		<label for="personSearch" class="hidden">Name</label>';
@@ -224,21 +221,23 @@ $(function() {
 				html += '	</td>';
 				html += '</tr>';
 
-			$('.table-container').prepend($(html));
+			$('.department .table-container').prepend($(html));
 		}
 
-		$('.table-container .typeahead').typeahead({
+		$('.department .table-container .typeahead').typeahead({
 			name: 'person',
-			remote: rootUrl + 'person/1/find?search=%QUERY'
-		}).on('typeahead:selected', function (event, item) {
-			$.ajax({ type: 'PUT', url: rootUrl + 'department/' + departmentId + '/employee/' + personId })
+			remote: rootUrl + 'person/find?search=%QUERY'
+		}).on('typeahead:selected', function (evt, item) {
+			$.ajax({ type: 'PUT', url: rootUrl + 'department/' + departmentId + '/employee/' + item.id })
 				.done(function (response) {
-					var ul = $('li[data-id=' + collegeId +'] ul');
+					var ul = $('li[data-id=' + departmentId +'] ul');
 					if(ul){
-						addDepartmentItem(item, tr.parents("tbody"));
 						loadPersonTreeData(departmentId);
 					}
-					tr.remove();
+
+					var target = $(evt.target);
+					addDepartmentItem(item, target.parents('tbody'));
+					target.parents('tr').remove();
 				});
 		});
 	});
@@ -261,7 +260,7 @@ $(function() {
 	});
 
 	// person panel
-	$(document).on('click', ".remove-person", function(evt){
+	$(document).on('click', ".remove-room", function(evt){
 		evt.preventDefault();
 		var target = $(evt.target);
 		var personId = target.parents('section').attr('data-person-id');

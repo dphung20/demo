@@ -130,8 +130,11 @@ public class PersonServiceImpl extends BaseServiceImpl<Person, Integer> implemen
 			
 			for(Person item : entities) {
 				json.writeStartObject();
+				json.writeStringField("clazz", "." + item.getClass().getSimpleName());
 				json.writeStringField("id", String.valueOf(item.getId()));
 				json.writeStringField("value", item.getLastName() + ", " + item.getFirstName());
+				json.writeStringField("firstName", item.getFirstName());
+				json.writeStringField("lastName", item.getLastName());
 				json.writeEndObject();
 			}
 			
