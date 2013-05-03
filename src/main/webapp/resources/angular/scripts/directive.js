@@ -16,3 +16,13 @@ angular.module('demoApp').directive('demoTypeahead', function (Department) {
 		}
 	};
 });
+
+angular.module('demoApp').directive('demoAddroom', function () {
+	return {
+		restrict: 'A',
+		templateUrl: '/demo/resources/angular/templates/addRoomDirective.html',
+		link: function postLink(scope, element, attrs, controller) {
+
+		}
+	};
+});
