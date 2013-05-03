@@ -84,6 +84,14 @@ angular.module('demoApp').controller('DepartmentEditCtrl', function ($scope, Dep
 });
 
 angular.module('demoApp').controller('PersonEditCtrl', function ($scope, Room) {
+	
+	$scope.remove = function (data) {
+		Room.removePerson({id: data.id, personId: $scope.editData.id}, {}, function (response) {
+			var index = $scope.editData.response.rooms.indexOf(data);
+			$scope.editData.response.rooms.splice(index, 1);
+		});
+	};
+
 	$scope.save = function () {
 	    Room.addPerson({id: $scope.select.room, personId: $scope.editData.id}, {}, function (response) {
 	    	$scope.editData.response.rooms.push(response);

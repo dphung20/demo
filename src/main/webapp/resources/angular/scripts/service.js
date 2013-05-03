@@ -43,6 +43,7 @@ angular.module('demoApp').factory('Floor', function ($resource) {
 
 angular.module('demoApp').factory('Room', function ($resource) {
     return $resource('/demo/api/room/:id/:param1/:personId', {id: '@id', personId: '@personId'}, {
-        addPerson: {method: 'PUT', params: {param1: 'add'}}
+        addPerson: {method: 'PUT', params: {param1: 'add'}},
+        removePerson: {method: 'PUT', params: {param1: 'remove'}}
     });
 });

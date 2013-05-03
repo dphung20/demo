@@ -26,7 +26,11 @@ angular.module('demoApp').directive('demoAddroom', function (Campus, Building, F
 
 			Campus.getBuildings({id: '1'}, function (buildings) {
 				scope.buildings = buildings.childFacility;
-				scope.select.building = buildings.childFacility[0].id;
+				if (typeof scope.editData.response.rooms !== 'undefinded') {
+					scope.select.building = scope.editData.response.rooms[0].building.id;
+				} else {
+					scope.select.building = buildings.childFacility[0].id;
+				}
 				Building.getFloors({id: scope.select.building}, function (floors) {
 					scope.floors = floors.childFacility;
 					scope.select.floor = floors.childFacility[0].id
@@ -41,8 +45,10 @@ angular.module('demoApp').directive('demoAddroom', function (Campus, Building, F
 				if (newValue !== oldValue) {
 					Building.getFloors({id: newValue}, function (floors) {
 						scope.floors = floors.childFacility;
+						scope.select.floor = floors.childFacility[0].id
 						Floor.getRooms({id: floors.childFacility[0].id}, function (rooms) {
 							scope.rooms = rooms.childFacility;
+							scope.select.room = rooms.childFacility[0].id;
 						});
 					});
 				}
@@ -52,6 +58,7 @@ angular.module('demoApp').directive('demoAddroom', function (Campus, Building, F
 				if (newValue !== oldValue) {
 					Floor.getRooms({id: newValue}, function (rooms) {
 						scope.rooms = rooms.childFacility;
+						scope.select.room = rooms.childFacility[0].id;
 					});
 				}
 			});
