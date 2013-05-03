@@ -33,6 +33,19 @@ INSERT INTO Core.College(Id) VALUES (@Id);
 -- Department Data
 INSERT INTO Core.Party(PartyType) VALUES (null);
 SET @Id = IDENTITY();
+SET @DepartmentAPB = @Id
+INSERT INTO Core.Organization(Id, Code, Name, ParentOrganization) VALUES (@Id, '', 'Agricultural Plant Biology', @CollegeAgId);
+INSERT INTO Core.Department(Id) VALUES (@Id);
+
+INSERT INTO Core.Party(PartyType) VALUES (null);
+SET @Id = IDENTITY();
+SET @DepartmentARE = @Id
+INSERT INTO Core.Organization(Id, Code, Name, ParentOrganization) VALUES (@Id, '', 'Agricultural and Resource Economics', @CollegeAgId);
+INSERT INTO Core.Department(Id) VALUES (@Id);
+
+INSERT INTO Core.Party(PartyType) VALUES (null);
+SET @Id = IDENTITY();
+SET @DepartmentAS = @Id
 INSERT INTO Core.Organization(Id, Code, Name, ParentOrganization) VALUES (@Id, '030045', 'Animal Science', @CollegeAgId);
 INSERT INTO Core.Department(Id) VALUES (@Id);
 
@@ -43,42 +56,17 @@ INSERT INTO Core.Department(Id) VALUES (@Id);
 
 INSERT INTO Core.Party(PartyType) VALUES (null);
 SET @Id = IDENTITY();
-INSERT INTO Core.Organization(Id, Code, Name, ParentOrganization) VALUES (@Id, '', 'Entomology', @CollegeAgId);
-INSERT INTO Core.Department(Id) VALUES (@Id);
-
-INSERT INTO Core.Party(PartyType) VALUES (null);
-SET @Id = IDENTITY();
-INSERT INTO Core.Organization(Id, Code, Name, ParentOrganization) VALUES (@Id, '', 'Nematology', @CollegeAgId);
-INSERT INTO Core.Department(Id) VALUES (@Id);
-
-INSERT INTO Core.Party(PartyType) VALUES (null);
-SET @Id = IDENTITY();
-INSERT INTO Core.Organization(Id, Code, Name, ParentOrganization) VALUES (@Id, '', 'Plant Pathology', @CollegeAgId);
-INSERT INTO Core.Department(Id) VALUES (@Id);
-
-INSERT INTO Core.Party(PartyType) VALUES (null);
-SET @Id = IDENTITY();
-INSERT INTO Core.Organization(Id, Code, Name, ParentOrganization) VALUES (@Id, '', 'Plant Sciences', @CollegeAgId);
-INSERT INTO Core.Department(Id) VALUES (@Id);
-
-INSERT INTO Core.Party(PartyType) VALUES (null);
-SET @Id = IDENTITY();
 INSERT INTO Core.Organization(Id, Code, Name, ParentOrganization) VALUES (@Id, '', 'Crop and Ecosystem Sciences', @CollegeAgId);
 INSERT INTO Core.Department(Id) VALUES (@Id);
 
 INSERT INTO Core.Party(PartyType) VALUES (null);
 SET @Id = IDENTITY();
-INSERT INTO Core.Organization(Id, Code, Name, ParentOrganization) VALUES (@Id, '', 'Horticultural Sciences', @CollegeAgId);
+INSERT INTO Core.Organization(Id, Code, Name, ParentOrganization) VALUES (@Id, '', 'Entomology', @CollegeAgId);
 INSERT INTO Core.Department(Id) VALUES (@Id);
 
 INSERT INTO Core.Party(PartyType) VALUES (null);
 SET @Id = IDENTITY();
-INSERT INTO Core.Organization(Id, Code, Name, ParentOrganization) VALUES (@Id, '', 'Agricultural Plant Biology', @CollegeAgId);
-INSERT INTO Core.Department(Id) VALUES (@Id);
-
-INSERT INTO Core.Party(PartyType) VALUES (null);
-SET @Id = IDENTITY();
-INSERT INTO Core.Organization(Id, Code, Name, ParentOrganization) VALUES (@Id, '', 'Viticulture and Enology', @CollegeAgId);
+INSERT INTO Core.Organization(Id, Code, Name, ParentOrganization) VALUES (@Id, '', 'Environmental Design', @CollegeAgId);
 INSERT INTO Core.Department(Id) VALUES (@Id);
 
 INSERT INTO Core.Party(PartyType) VALUES (null);
@@ -98,37 +86,12 @@ INSERT INTO Core.Department(Id) VALUES (@Id);
 
 INSERT INTO Core.Party(PartyType) VALUES (null);
 SET @Id = IDENTITY();
-INSERT INTO Core.Organization(Id, Code, Name, ParentOrganization) VALUES (@Id, '', 'Environmental Design', @CollegeAgId);
-INSERT INTO Core.Department(Id) VALUES (@Id);
-
-INSERT INTO Core.Party(PartyType) VALUES (null);
-SET @Id = IDENTITY();
-INSERT INTO Core.Organization(Id, Code, Name, ParentOrganization) VALUES (@Id, '', 'Landscape Architecture', @CollegeAgId);
-INSERT INTO Core.Department(Id) VALUES (@Id);
-
-INSERT INTO Core.Party(PartyType) VALUES (null);
-SET @Id = IDENTITY();
-INSERT INTO Core.Organization(Id, Code, Name, ParentOrganization) VALUES (@Id, '', 'Land, Air and Water Resources', @CollegeAgId);
-INSERT INTO Core.Department(Id) VALUES (@Id);
-
-INSERT INTO Core.Party(PartyType) VALUES (null);
-SET @Id = IDENTITY();
-INSERT INTO Core.Organization(Id, Code, Name, ParentOrganization) VALUES (@Id, '', 'Wildlife, Fish and Conservation Biology', @CollegeAgId);
-INSERT INTO Core.Department(Id) VALUES (@Id);
-
-INSERT INTO Core.Party(PartyType) VALUES (null);
-SET @Id = IDENTITY();
-INSERT INTO Core.Organization(Id, Code, Name, ParentOrganization) VALUES (@Id, '', 'Human Sciences Departments', @CollegeAgId);
-INSERT INTO Core.Department(Id) VALUES (@Id);
-
-INSERT INTO Core.Party(PartyType) VALUES (null);
-SET @Id = IDENTITY();
-INSERT INTO Core.Organization(Id, Code, Name, ParentOrganization) VALUES (@Id, '', 'Agricultural and Resource Economics', @CollegeAgId);
-INSERT INTO Core.Department(Id) VALUES (@Id);
-
-INSERT INTO Core.Party(PartyType) VALUES (null);
-SET @Id = IDENTITY();
 INSERT INTO Core.Organization(Id, Code, Name, ParentOrganization) VALUES (@Id, '', 'Food Science and Technology', @CollegeAgId);
+INSERT INTO Core.Department(Id) VALUES (@Id);
+
+INSERT INTO Core.Party(PartyType) VALUES (null);
+SET @Id = IDENTITY();
+INSERT INTO Core.Organization(Id, Code, Name, ParentOrganization) VALUES (@Id, '', 'Horticultural Sciences', @CollegeAgId);
 INSERT INTO Core.Department(Id) VALUES (@Id);
 
 INSERT INTO Core.Party(PartyType) VALUES (null);
@@ -138,13 +101,55 @@ INSERT INTO Core.Department(Id) VALUES (@Id);
 
 INSERT INTO Core.Party(PartyType) VALUES (null);
 SET @Id = IDENTITY();
+INSERT INTO Core.Organization(Id, Code, Name, ParentOrganization) VALUES (@Id, '', 'Human Sciences Departments', @CollegeAgId);
+INSERT INTO Core.Department(Id) VALUES (@Id);
+
+INSERT INTO Core.Party(PartyType) VALUES (null);
+SET @Id = IDENTITY();
+INSERT INTO Core.Organization(Id, Code, Name, ParentOrganization) VALUES (@Id, '', 'Land, Air and Water Resources', @CollegeAgId);
+INSERT INTO Core.Department(Id) VALUES (@Id);
+
+INSERT INTO Core.Party(PartyType) VALUES (null);
+SET @Id = IDENTITY();
+INSERT INTO Core.Organization(Id, Code, Name, ParentOrganization) VALUES (@Id, '', 'Landscape Architecture', @CollegeAgId);
+INSERT INTO Core.Department(Id) VALUES (@Id);
+
+INSERT INTO Core.Party(PartyType) VALUES (null);
+SET @Id = IDENTITY();
+INSERT INTO Core.Organization(Id, Code, Name, ParentOrganization) VALUES (@Id, '', 'Nematology', @CollegeAgId);
+INSERT INTO Core.Department(Id) VALUES (@Id);
+
+INSERT INTO Core.Party(PartyType) VALUES (null);
+SET @Id = IDENTITY();
 INSERT INTO Core.Organization(Id, Code, Name, ParentOrganization) VALUES (@Id, '', 'Nutrition', @CollegeAgId);
+INSERT INTO Core.Department(Id) VALUES (@Id);
+
+INSERT INTO Core.Party(PartyType) VALUES (null);
+SET @Id = IDENTITY();
+INSERT INTO Core.Organization(Id, Code, Name, ParentOrganization) VALUES (@Id, '', 'Plant Pathology', @CollegeAgId);
+INSERT INTO Core.Department(Id) VALUES (@Id);
+
+INSERT INTO Core.Party(PartyType) VALUES (null);
+SET @Id = IDENTITY();
+INSERT INTO Core.Organization(Id, Code, Name, ParentOrganization) VALUES (@Id, '', 'Plant Sciences', @CollegeAgId);
 INSERT INTO Core.Department(Id) VALUES (@Id);
 
 INSERT INTO Core.Party(PartyType) VALUES (null);
 SET @Id = IDENTITY();
 INSERT INTO Core.Organization(Id, Code, Name, ParentOrganization) VALUES (@Id, '', 'Textiles and Clothing', @CollegeAgId);
 INSERT INTO Core.Department(Id) VALUES (@Id);
+
+INSERT INTO Core.Party(PartyType) VALUES (null);
+SET @Id = IDENTITY();
+INSERT INTO Core.Organization(Id, Code, Name, ParentOrganization) VALUES (@Id, '', 'Viticulture and Enology', @CollegeAgId);
+INSERT INTO Core.Department(Id) VALUES (@Id);
+
+INSERT INTO Core.Party(PartyType) VALUES (null);
+SET @Id = IDENTITY();
+INSERT INTO Core.Organization(Id, Code, Name, ParentOrganization) VALUES (@Id, '', 'Wildlife, Fish and Conservation Biology', @CollegeAgId);
+INSERT INTO Core.Department(Id) VALUES (@Id);
+
+
 
 
 -- Building
@@ -188,51 +193,61 @@ INSERT INTO Core.Floor(Id) VALUES (@Id);
 -- Room
 INSERT INTO Core.Party(PartyType) VALUES (null);
 SET @Id = IDENTITY();
+SET @Room1 = @Id
 INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '1402', '1402', @Floor1Id);
 INSERT INTO Core.Room(Id) VALUES (@Id);
 
 INSERT INTO Core.Party(PartyType) VALUES (null);
 SET @Id = IDENTITY();
+SET @Room2 = @Id
 INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '1410', '1410', @Floor1Id);
 INSERT INTO Core.Room(Id) VALUES (@Id);
 
 INSERT INTO Core.Party(PartyType) VALUES (null);
 SET @Id = IDENTITY();
+SET @Room3 = @Id
 INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '1309', '1309', @Floor1Id);
 INSERT INTO Core.Room(Id) VALUES (@Id);
 
 INSERT INTO Core.Party(PartyType) VALUES (null);
 SET @Id = IDENTITY();
+SET @Room4 = @Id
 INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '1311', '1311', @Floor1Id);
 INSERT INTO Core.Room(Id) VALUES (@Id);
 
 INSERT INTO Core.Party(PartyType) VALUES (null);
 SET @Id = IDENTITY();
+SET @Room5 = @Id
 INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '1315', '1315', @Floor1Id);
 INSERT INTO Core.Room(Id) VALUES (@Id);
 
 INSERT INTO Core.Party(PartyType) VALUES (null);
 SET @Id = IDENTITY();
+SET @Room6 = @Id
 INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '1423', '1423', @Floor1Id);
 INSERT INTO Core.Room(Id) VALUES (@Id);
 
 INSERT INTO Core.Party(PartyType) VALUES (null);
 SET @Id = IDENTITY();
+SET @Room7 = @Id
 INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '1411', '1411', @Floor1Id);
 INSERT INTO Core.Room(Id) VALUES (@Id);
 
 INSERT INTO Core.Party(PartyType) VALUES (null);
 SET @Id = IDENTITY();
+SET @Room8 = @Id
 INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '1301', '1301', @Floor1Id);
 INSERT INTO Core.Room(Id) VALUES (@Id);
 
 INSERT INTO Core.Party(PartyType) VALUES (null);
 SET @Id = IDENTITY();
+SET @Room9 = @Id
 INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '1409', '1409', @Floor1Id);
 INSERT INTO Core.Room(Id) VALUES (@Id);
 
 INSERT INTO Core.Party(PartyType) VALUES (null);
 SET @Id = IDENTITY();
+SET @Room10 = @Id
 INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '1417', '1417', @Floor1Id);
 INSERT INTO Core.Room(Id) VALUES (@Id);
 
@@ -396,47 +411,63 @@ INSERT INTO Core.Room(Id) VALUES (@Id);
 -- Person Data
 INSERT INTO Core.Party(PartyType) VALUES (null);
 SET @Id = IDENTITY();
-INSERT INTO Core.Person(Id, FirstName, LastName, Email) VALUES (@Id, 'SYSTEM', 'SYSTEM', 'no-reply@ucdavis.edu');
-
-INSERT INTO Core.Party(PartyType) VALUES (null);
-SET @Id = IDENTITY();
 INSERT INTO Core.Person(Id, FirstName, LastName, Email) VALUES (@Id, 'Loren', 'Helgren', 'no-reply@ucdavis.edu');
+INSERT INTO Core.DepartmentToPerson(Department, Person) VALUES(@DepartmentAPB, @Id)
+INSERT INTO Core.RoomToPerson(Room, Person) VALUES(@Room1, @Id)
+INSERT INTO Core.RoomToPerson(Room, Person) VALUES(@Room2, @Id)
+INSERT INTO Core.RoomToPerson(Room, Person) VALUES(@Room3, @Id)
 
 INSERT INTO Core.Party(PartyType) VALUES (null);
 SET @Id = IDENTITY();
 INSERT INTO Core.Person(Id, FirstName, LastName, Email) VALUES (@Id, 'Inga', 'Cohn', 'no-reply@ucdavis.edu');
+INSERT INTO Core.DepartmentToPerson(Department, Person) VALUES(@DepartmentAPB, @Id)
+INSERT INTO Core.RoomToPerson(Room, Person) VALUES(@Room4, @Id)
+INSERT INTO Core.RoomToPerson(Room, Person) VALUES(@Room5, @Id)
+INSERT INTO Core.RoomToPerson(Room, Person) VALUES(@Room6, @Id)
 
 INSERT INTO Core.Party(PartyType) VALUES (null);
 SET @Id = IDENTITY();
 INSERT INTO Core.Person(Id, FirstName, LastName, Email) VALUES (@Id, 'Ingeborg', 'Sebastian', 'no-reply@ucdavis.edu');
+INSERT INTO Core.DepartmentToPerson(Department, Person) VALUES(@DepartmentARE, @Id)
+INSERT INTO Core.RoomToPerson(Room, Person) VALUES(@Room7, @Id)
+INSERT INTO Core.RoomToPerson(Room, Person) VALUES(@Room6, @Id)
 
 INSERT INTO Core.Party(PartyType) VALUES (null);
 SET @Id = IDENTITY();
 INSERT INTO Core.Person(Id, FirstName, LastName, Email) VALUES (@Id, 'Noah', 'Crain', 'no-reply@ucdavis.edu');
+INSERT INTO Core.DepartmentToPerson(Department, Person) VALUES(@DepartmentARE, @Id)
+INSERT INTO Core.RoomToPerson(Room, Person) VALUES(@Room9, @Id)
+INSERT INTO Core.RoomToPerson(Room, Person) VALUES(@Room10, @Id)
 
 INSERT INTO Core.Party(PartyType) VALUES (null);
 SET @Id = IDENTITY();
 INSERT INTO Core.Person(Id, FirstName, LastName, Email) VALUES (@Id, 'Mayra', 'Wawrzyniak', 'no-reply@ucdavis.edu');
+INSERT INTO Core.DepartmentToPerson(Department, Person) VALUES(@DepartmentARE, @Id)
 
 INSERT INTO Core.Party(PartyType) VALUES (null);
 SET @Id = IDENTITY();
 INSERT INTO Core.Person(Id, FirstName, LastName, Email) VALUES (@Id, 'Rickey', 'Peebles', 'no-reply@ucdavis.edu');
+INSERT INTO Core.DepartmentToPerson(Department, Person) VALUES(@DepartmentAS, @Id)
 
 INSERT INTO Core.Party(PartyType) VALUES (null);
 SET @Id = IDENTITY();
 INSERT INTO Core.Person(Id, FirstName, LastName, Email) VALUES (@Id, 'Jutta', 'Carini', 'no-reply@ucdavis.edu');
+INSERT INTO Core.DepartmentToPerson(Department, Person) VALUES(@DepartmentAS, @Id)
 
 INSERT INTO Core.Party(PartyType) VALUES (null);
 SET @Id = IDENTITY();
 INSERT INTO Core.Person(Id, FirstName, LastName, Email) VALUES (@Id, 'Malisa', 'Allbright', 'no-reply@ucdavis.edu');
+INSERT INTO Core.DepartmentToPerson(Department, Person) VALUES(@DepartmentAS, @Id)
 
 INSERT INTO Core.Party(PartyType) VALUES (null);
 SET @Id = IDENTITY();
 INSERT INTO Core.Person(Id, FirstName, LastName, Email) VALUES (@Id, 'Beula', 'Dills', 'no-reply@ucdavis.edu');
+INSERT INTO Core.DepartmentToPerson(Department, Person) VALUES(@DepartmentAS, @Id)
 
 INSERT INTO Core.Party(PartyType) VALUES (null);
 SET @Id = IDENTITY();
 INSERT INTO Core.Person(Id, FirstName, LastName, Email) VALUES (@Id, 'Mandie', 'Stoney', 'no-reply@ucdavis.edu');
+INSERT INTO Core.DepartmentToPerson(Department, Person) VALUES(@DepartmentAS, @Id)
 
 INSERT INTO Core.Party(PartyType) VALUES (null);
 SET @Id = IDENTITY();

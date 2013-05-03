@@ -2,32 +2,26 @@
  * project specific styles
  ***********************************************************************************************************/
 body {
-  padding-top: 80px;
-  font-size: 12px;
-  line-height: 18px;
-  color: #333333;
-
-   min-width:980px; 
-   width: auto !important; 
-   width: 980px; 
-
+	padding-top: 80px;
+	font-size: 12px;
+	line-height: 18px;
+	color: #333333;
+	min-width: 980px;
+	width: auto !important;
+	width: 980px;
 }
 
 a:hover { text-decoration: none;}
 
+.margin-top0 { margin-top: 0 }
+.margin-bottom0 { margin-bottom: 0; }
 .margin-bottom10 { margin-bottom: 10px; }
 .margin-right5 { margin-right: 5px; }
 
 .error { color: #B94A48; }
 
-.user-info.pull-right { color: #ffffff; margin-top: 7px; padding-left: 20px; }
-.user-info a, .user-info span { color: #ffffff; margin-right: 5px; margin-left: 5px; }
-
-.choose-role img { margin-right: 10px;}
-.choose-role h4, .choose-role p { color: #666666;}
-.choose-role .alert { border: 1px solid #CCCCCC; cursor: pointer; }
-
-.profile-content { margin-left: 60px; padding-top: 5px;}
+.dl-horizontal dt { width: 120px; text-align: left; }
+.dl-horizontal dd { margin-left: 120px; }
 
 .treeview-side { width: 330px; float: left;}
 .treeview-side h3 { border-bottom: 1px solid #eeeeee;}
@@ -45,20 +39,20 @@ a:hover { text-decoration: none;}
 
 .treeview label { font-size: 0px; position: absolute }
 .treeview label, .treeview label::before, .treeview a {
-  display: inline-block;
-  height: 16px;
-  line-height: 16px;
-  white-space: normal;
-  vertical-align: top;
+	display: inline-block;
+	height: 16px;
+	line-height: 16px;
+	white-space: normal;
+	vertical-align: top;
 }
 .treeview label::before {
-  content: "";
-  background: url("../img/icons.png") no-repeat; 
-  width: 16px;
-  margin-top: 1px;
-  background-position: 0 -32px;
+	content: "";
+	background: url("../img/icons.png") no-repeat; 
+	width: 16px;
+	margin-top: 1px;
+	background-position: 0 -32px;
     user-select: none;
-  -moz-user-select: none;
+	-moz-user-select: none;
     -webkit-user-select: none;
     
 }

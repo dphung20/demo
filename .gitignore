@@ -20,6 +20,8 @@ local.properties
 .settings/
 .loadpath
 
+demo.sublime*
+
 # External tool builders
 .externalToolBuilders/
 
