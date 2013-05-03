@@ -155,257 +155,316 @@ INSERT INTO Core.Department(Id) VALUES (@Id);
 -- Building
 INSERT INTO Core.Party(PartyType) VALUES (null);
 SET @Id = IDENTITY();
-SET @BuildingId = @Id
+SET @BuildingAId = @Id
 INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '4556', 'Myer Hall', @CampusId);
 INSERT INTO Core.Building(Id) VALUES (@Id);
 
--- Floor
---INSERT INTO Core.Party(PartyType) VALUES (null);
---SET @Id = IDENTITY();
---SET @Floor0Id = @Id
---INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '0', 'Basement', @BuildingId);
---INSERT INTO Core.Floor(Id) VALUES (@Id);
-
 INSERT INTO Core.Party(PartyType) VALUES (null);
 SET @Id = IDENTITY();
-SET @Floor1Id = @Id
-INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '1', '1st Floor', @BuildingId);
+SET @BuildingBId = @Id
+INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '3961', 'Chemistry', @CampusId);
+INSERT INTO Core.Building(Id) VALUES (@Id);
+
+-- Floor
+INSERT INTO Core.Party(PartyType) VALUES (null);
+SET @Id = IDENTITY();
+SET @BuildingAFloor1Id = @Id
+INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '1', '1st Floor', @BuildingAId);
 INSERT INTO Core.Floor(Id) VALUES (@Id);
 
---INSERT INTO Core.Party(PartyType) VALUES (null);
---SET @Id = IDENTITY();
---SET @Floor2Id = @Id
---INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '2', '2nd Floor', @BuildingId);
---INSERT INTO Core.Floor(Id) VALUES (@Id);
---
---INSERT INTO Core.Party(PartyType) VALUES (null);
---SET @Id = IDENTITY();
---SET @Floor3Id = @Id
---INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '3', '3rd Floor', @BuildingId);
---INSERT INTO Core.Floor(Id) VALUES (@Id);
---
---INSERT INTO Core.Party(PartyType) VALUES (null);
---SET @Id = IDENTITY();
---SET @Floor4Id = @Id
---INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '4', '4th Floor', @BuildingId);
---INSERT INTO Core.Floor(Id) VALUES (@Id);
+INSERT INTO Core.Party(PartyType) VALUES (null);
+SET @Id = IDENTITY();
+SET @BuildingAFloor2Id = @Id
+INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '2', '2nd Floor', @BuildingAId);
+INSERT INTO Core.Floor(Id) VALUES (@Id);
+
+INSERT INTO Core.Party(PartyType) VALUES (null);
+SET @Id = IDENTITY();
+SET @BuildingBFloor1Id = @Id
+INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '1', '1st Floor', @BuildingBId);
+INSERT INTO Core.Floor(Id) VALUES (@Id);
+
+INSERT INTO Core.Party(PartyType) VALUES (null);
+SET @Id = IDENTITY();
+SET @BuildingBFloor2Id = @Id
+INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '2', '2nd Floor', @BuildingBId);
+INSERT INTO Core.Floor(Id) VALUES (@Id);
+
 
 -- Room
+-- building A 1nd floor
 INSERT INTO Core.Party(PartyType) VALUES (null);
 SET @Id = IDENTITY();
-SET @Room1 = @Id
-INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '1402', '1402', @Floor1Id);
+SET @BuildingARoom1 = @Id
+INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '1402', '1402', @BuildingAFloor1Id);
 INSERT INTO Core.Room(Id) VALUES (@Id);
 
 INSERT INTO Core.Party(PartyType) VALUES (null);
 SET @Id = IDENTITY();
-SET @Room2 = @Id
-INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '1410', '1410', @Floor1Id);
+SET @BuildingARoom2 = @Id
+INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '1410', '1410', @BuildingAFloor1Id);
 INSERT INTO Core.Room(Id) VALUES (@Id);
 
 INSERT INTO Core.Party(PartyType) VALUES (null);
 SET @Id = IDENTITY();
-SET @Room3 = @Id
-INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '1309', '1309', @Floor1Id);
+SET @BuildingARoom3 = @Id
+INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '1309', '1309', @BuildingAFloor1Id);
 INSERT INTO Core.Room(Id) VALUES (@Id);
 
 INSERT INTO Core.Party(PartyType) VALUES (null);
 SET @Id = IDENTITY();
-SET @Room4 = @Id
-INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '1311', '1311', @Floor1Id);
+SET @BuildingARoom4 = @Id
+INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '1311', '1311', @BuildingAFloor1Id);
 INSERT INTO Core.Room(Id) VALUES (@Id);
 
 INSERT INTO Core.Party(PartyType) VALUES (null);
 SET @Id = IDENTITY();
-SET @Room5 = @Id
-INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '1315', '1315', @Floor1Id);
+SET @BuildingARoom5 = @Id
+INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '1315', '1315', @BuildingAFloor1Id);
 INSERT INTO Core.Room(Id) VALUES (@Id);
 
 INSERT INTO Core.Party(PartyType) VALUES (null);
 SET @Id = IDENTITY();
-SET @Room6 = @Id
-INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '1423', '1423', @Floor1Id);
+SET @BuildingARoom6 = @Id
+INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '1423', '1423', @BuildingAFloor1Id);
 INSERT INTO Core.Room(Id) VALUES (@Id);
 
 INSERT INTO Core.Party(PartyType) VALUES (null);
 SET @Id = IDENTITY();
-SET @Room7 = @Id
-INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '1411', '1411', @Floor1Id);
+SET @BuildingARoom7 = @Id
+INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '1411', '1411', @BuildingAFloor1Id);
 INSERT INTO Core.Room(Id) VALUES (@Id);
 
 INSERT INTO Core.Party(PartyType) VALUES (null);
 SET @Id = IDENTITY();
-SET @Room8 = @Id
-INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '1301', '1301', @Floor1Id);
+SET @BuildingARoom8 = @Id
+INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '1301', '1301', @BuildingAFloor1Id);
 INSERT INTO Core.Room(Id) VALUES (@Id);
 
 INSERT INTO Core.Party(PartyType) VALUES (null);
 SET @Id = IDENTITY();
-SET @Room9 = @Id
-INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '1409', '1409', @Floor1Id);
+SET @BuildingARoom9 = @Id
+INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '1409', '1409', @BuildingAFloor1Id);
 INSERT INTO Core.Room(Id) VALUES (@Id);
 
 INSERT INTO Core.Party(PartyType) VALUES (null);
 SET @Id = IDENTITY();
-SET @Room10 = @Id
-INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '1417', '1417', @Floor1Id);
+SET @BuildingARoom10 = @Id
+INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '1417', '1417', @BuildingAFloor1Id);
 INSERT INTO Core.Room(Id) VALUES (@Id);
 
 INSERT INTO Core.Party(PartyType) VALUES (null);
 SET @Id = IDENTITY();
-INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '1419', '1419', @Floor1Id);
+INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '1419', '1419', @BuildingAFloor1Id);
 INSERT INTO Core.Room(Id) VALUES (@Id);
 
 INSERT INTO Core.Party(PartyType) VALUES (null);
 SET @Id = IDENTITY();
-INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '1312', '1312', @Floor1Id);
+INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '1312', '1312', @BuildingAFloor1Id);
 INSERT INTO Core.Room(Id) VALUES (@Id);
 
 INSERT INTO Core.Party(PartyType) VALUES (null);
 SET @Id = IDENTITY();
-INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '1303', '1303', @Floor1Id);
+INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '1303', '1303', @BuildingAFloor1Id);
 INSERT INTO Core.Room(Id) VALUES (@Id);
 
 INSERT INTO Core.Party(PartyType) VALUES (null);
 SET @Id = IDENTITY();
-INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '1402A', '1402A', @Floor1Id);
+INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '1402A', '1402A', @BuildingAFloor1Id);
 INSERT INTO Core.Room(Id) VALUES (@Id);
 
 INSERT INTO Core.Party(PartyType) VALUES (null);
 SET @Id = IDENTITY();
-INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '1415A', '1415A', @Floor1Id);
+INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '1415A', '1415A', @BuildingAFloor1Id);
 INSERT INTO Core.Room(Id) VALUES (@Id);
 
 INSERT INTO Core.Party(PartyType) VALUES (null);
 SET @Id = IDENTITY();
-INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '1417A', '1417A', @Floor1Id);
+INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '1417A', '1417A', @BuildingAFloor1Id);
 INSERT INTO Core.Room(Id) VALUES (@Id);
 
 INSERT INTO Core.Party(PartyType) VALUES (null);
 SET @Id = IDENTITY();
-INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '1330', '1330', @Floor1Id);
+INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '1330', '1330', @BuildingAFloor1Id);
 INSERT INTO Core.Room(Id) VALUES (@Id);
 
 INSERT INTO Core.Party(PartyType) VALUES (null);
 SET @Id = IDENTITY();
-INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '1335', '1335', @Floor1Id);
+INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '1335', '1335', @BuildingAFloor1Id);
 INSERT INTO Core.Room(Id) VALUES (@Id);
 
 INSERT INTO Core.Party(PartyType) VALUES (null);
 SET @Id = IDENTITY();
-INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '1338', '1338', @Floor1Id);
+INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '1338', '1338', @BuildingAFloor1Id);
 INSERT INTO Core.Room(Id) VALUES (@Id);
 
 INSERT INTO Core.Party(PartyType) VALUES (null);
 SET @Id = IDENTITY();
-INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '1339', '1339', @Floor1Id);
+INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '1339', '1339', @BuildingAFloor1Id);
+INSERT INTO Core.Room(Id) VALUES (@Id);
+
+-- building A 2nd floor
+INSERT INTO Core.Party(PartyType) VALUES (null);
+SET @Id = IDENTITY();
+INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '2109', '2109', @BuildingAFloor2Id);
 INSERT INTO Core.Room(Id) VALUES (@Id);
 
 INSERT INTO Core.Party(PartyType) VALUES (null);
 SET @Id = IDENTITY();
-INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '1403', '1403', @Floor1Id);
+INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '2125', '2125', @BuildingAFloor2Id);
 INSERT INTO Core.Room(Id) VALUES (@Id);
 
 INSERT INTO Core.Party(PartyType) VALUES (null);
 SET @Id = IDENTITY();
-INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '1405', '1405', @Floor1Id);
+INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '2213', '2213', @BuildingAFloor2Id);
 INSERT INTO Core.Room(Id) VALUES (@Id);
 
 INSERT INTO Core.Party(PartyType) VALUES (null);
 SET @Id = IDENTITY();
-INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '1420', '1420', @Floor1Id);
+INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '2251', '2251', @BuildingAFloor2Id);
 INSERT INTO Core.Room(Id) VALUES (@Id);
 
 INSERT INTO Core.Party(PartyType) VALUES (null);
 SET @Id = IDENTITY();
-INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '1429A', '1429A', @Floor1Id);
+INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '2301', '2301', @BuildingAFloor2Id);
 INSERT INTO Core.Room(Id) VALUES (@Id);
 
 INSERT INTO Core.Party(PartyType) VALUES (null);
 SET @Id = IDENTITY();
-INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '1305', '1305', @Floor1Id);
+INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '2302', '2302', @BuildingAFloor2Id);
 INSERT INTO Core.Room(Id) VALUES (@Id);
 
 INSERT INTO Core.Party(PartyType) VALUES (null);
 SET @Id = IDENTITY();
-INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '1302', '1302', @Floor1Id);
+INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '2303', '2303', @BuildingAFloor2Id);
 INSERT INTO Core.Room(Id) VALUES (@Id);
 
 INSERT INTO Core.Party(PartyType) VALUES (null);
 SET @Id = IDENTITY();
-INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '1323', '1323', @Floor1Id);
+INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '2306', '2306', @BuildingAFloor2Id);
 INSERT INTO Core.Room(Id) VALUES (@Id);
 
 INSERT INTO Core.Party(PartyType) VALUES (null);
 SET @Id = IDENTITY();
-INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '1329', '1329', @Floor1Id);
+INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '2307', '2307', @BuildingAFloor2Id);
 INSERT INTO Core.Room(Id) VALUES (@Id);
 
 INSERT INTO Core.Party(PartyType) VALUES (null);
 SET @Id = IDENTITY();
-INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '1232', '1232', @Floor1Id);
+INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '2308', '2308', @BuildingAFloor2Id);
+INSERT INTO Core.Room(Id) VALUES (@Id);
+
+-- building b 1st floor
+INSERT INTO Core.Party(PartyType) VALUES (null);
+SET @Id = IDENTITY();
+SET @BuildingBRoom1 = @Id
+INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '101', '101', @BuildingBFloor1Id);
 INSERT INTO Core.Room(Id) VALUES (@Id);
 
 INSERT INTO Core.Party(PartyType) VALUES (null);
 SET @Id = IDENTITY();
-INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '1327', '1327', @Floor1Id);
+SET @BuildingBRoom2 = @Id
+INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '103', '103', @BuildingBFloor1Id);
 INSERT INTO Core.Room(Id) VALUES (@Id);
 
 INSERT INTO Core.Party(PartyType) VALUES (null);
 SET @Id = IDENTITY();
-INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '1202A', '1202A', @Floor1Id);
+SET @BuildingBRoom3 = @Id
+INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '107', '107', @BuildingBFloor1Id);
 INSERT INTO Core.Room(Id) VALUES (@Id);
 
 INSERT INTO Core.Party(PartyType) VALUES (null);
 SET @Id = IDENTITY();
-INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '1408', '1408', @Floor1Id);
+SET @BuildingBRoom4 = @Id
+INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '111', '111', @BuildingBFloor1Id);
 INSERT INTO Core.Room(Id) VALUES (@Id);
 
 INSERT INTO Core.Party(PartyType) VALUES (null);
 SET @Id = IDENTITY();
-INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '1333', '1333', @Floor1Id);
+SET @BuildingBRoom5 = @Id
+INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '117', '117', @BuildingBFloor1Id);
 INSERT INTO Core.Room(Id) VALUES (@Id);
 
 INSERT INTO Core.Party(PartyType) VALUES (null);
 SET @Id = IDENTITY();
-INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '1406', '1406', @Floor1Id);
+SET @BuildingBRoom6 = @Id
+INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '123', '123', @BuildingBFloor1Id);
 INSERT INTO Core.Room(Id) VALUES (@Id);
 
 INSERT INTO Core.Party(PartyType) VALUES (null);
 SET @Id = IDENTITY();
-INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '1202', '1202', @Floor1Id);
+SET @BuildingBRoom7 = @Id
+INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '123', '123', @BuildingBFloor1Id);
 INSERT INTO Core.Room(Id) VALUES (@Id);
 
 INSERT INTO Core.Party(PartyType) VALUES (null);
 SET @Id = IDENTITY();
-INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '1334', '1334', @Floor1Id);
+SET @BuildingBRoom8 = @Id
+INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '130', '130', @BuildingBFloor1Id);
 INSERT INTO Core.Room(Id) VALUES (@Id);
 
 INSERT INTO Core.Party(PartyType) VALUES (null);
 SET @Id = IDENTITY();
-INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '1325', '1325', @Floor1Id);
+SET @BuildingBRoom9 = @Id
+INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '131', '131', @BuildingBFloor1Id);
 INSERT INTO Core.Room(Id) VALUES (@Id);
 
 INSERT INTO Core.Party(PartyType) VALUES (null);
 SET @Id = IDENTITY();
-INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '1326', '1326', @Floor1Id);
+SET @BuildingBRoom10 = @Id
+INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '133', '133', @BuildingBFloor1Id);
+INSERT INTO Core.Room(Id) VALUES (@Id);
+
+-- building b 2nd floor
+INSERT INTO Core.Party(PartyType) VALUES (null);
+SET @Id = IDENTITY();
+INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '203', '203', @BuildingBFloor2Id);
 INSERT INTO Core.Room(Id) VALUES (@Id);
 
 INSERT INTO Core.Party(PartyType) VALUES (null);
 SET @Id = IDENTITY();
-INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '1328', '1328', @Floor1Id);
+INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '207', '207', @BuildingBFloor2Id);
 INSERT INTO Core.Room(Id) VALUES (@Id);
 
 INSERT INTO Core.Party(PartyType) VALUES (null);
 SET @Id = IDENTITY();
-INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '1331', '1331', @Floor1Id);
+INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '211', '211', @BuildingBFloor2Id);
 INSERT INTO Core.Room(Id) VALUES (@Id);
 
 INSERT INTO Core.Party(PartyType) VALUES (null);
 SET @Id = IDENTITY();
-INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '1332', '1332', @Floor1Id);
+INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '212', '212', @BuildingBFloor2Id);
 INSERT INTO Core.Room(Id) VALUES (@Id);
 
+INSERT INTO Core.Party(PartyType) VALUES (null);
+SET @Id = IDENTITY();
+INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '213', '213', @BuildingBFloor2Id);
+INSERT INTO Core.Room(Id) VALUES (@Id);
+
+INSERT INTO Core.Party(PartyType) VALUES (null);
+SET @Id = IDENTITY();
+INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '217', '217', @BuildingBFloor2Id);
+INSERT INTO Core.Room(Id) VALUES (@Id);
+
+INSERT INTO Core.Party(PartyType) VALUES (null);
+SET @Id = IDENTITY();
+INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '227', '227', @BuildingBFloor2Id);
+INSERT INTO Core.Room(Id) VALUES (@Id);
+
+INSERT INTO Core.Party(PartyType) VALUES (null);
+SET @Id = IDENTITY();
+INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '229', '229', @BuildingBFloor2Id);
+INSERT INTO Core.Room(Id) VALUES (@Id);
+
+INSERT INTO Core.Party(PartyType) VALUES (null);
+SET @Id = IDENTITY();
+INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '231', '231', @BuildingBFloor2Id);
+INSERT INTO Core.Room(Id) VALUES (@Id);
+
+INSERT INTO Core.Party(PartyType) VALUES (null);
+SET @Id = IDENTITY();
+INSERT INTO Core.Organization(Id, Code, Name, ParentFacility) VALUES (@Id, '233', '233', @BuildingBFloor2Id);
+INSERT INTO Core.Room(Id) VALUES (@Id);
 
 
 -- Person Data
@@ -413,31 +472,33 @@ INSERT INTO Core.Party(PartyType) VALUES (null);
 SET @Id = IDENTITY();
 INSERT INTO Core.Person(Id, FirstName, LastName, Email) VALUES (@Id, 'Loren', 'Helgren', 'no-reply@ucdavis.edu');
 INSERT INTO Core.DepartmentToPerson(Department, Person) VALUES(@DepartmentAPB, @Id)
-INSERT INTO Core.RoomToPerson(Room, Person) VALUES(@Room1, @Id)
-INSERT INTO Core.RoomToPerson(Room, Person) VALUES(@Room2, @Id)
-INSERT INTO Core.RoomToPerson(Room, Person) VALUES(@Room3, @Id)
+INSERT INTO Core.RoomToPerson(Room, Person) VALUES(@BuildingARoom1, @Id)
+INSERT INTO Core.RoomToPerson(Room, Person) VALUES(@BuildingARoom2, @Id)
+INSERT INTO Core.RoomToPerson(Room, Person) VALUES(@BuildingARoom3, @Id)
+INSERT INTO Core.RoomToPerson(Room, Person) VALUES(@BuildingBRoom1, @Id)
 
 INSERT INTO Core.Party(PartyType) VALUES (null);
 SET @Id = IDENTITY();
 INSERT INTO Core.Person(Id, FirstName, LastName, Email) VALUES (@Id, 'Inga', 'Cohn', 'no-reply@ucdavis.edu');
 INSERT INTO Core.DepartmentToPerson(Department, Person) VALUES(@DepartmentAPB, @Id)
-INSERT INTO Core.RoomToPerson(Room, Person) VALUES(@Room4, @Id)
-INSERT INTO Core.RoomToPerson(Room, Person) VALUES(@Room5, @Id)
-INSERT INTO Core.RoomToPerson(Room, Person) VALUES(@Room6, @Id)
+INSERT INTO Core.RoomToPerson(Room, Person) VALUES(@BuildingARoom4, @Id)
+INSERT INTO Core.RoomToPerson(Room, Person) VALUES(@BuildingARoom5, @Id)
+INSERT INTO Core.RoomToPerson(Room, Person) VALUES(@BuildingARoom6, @Id)
+INSERT INTO Core.RoomToPerson(Room, Person) VALUES(@BuildingBRoom2, @Id)
 
 INSERT INTO Core.Party(PartyType) VALUES (null);
 SET @Id = IDENTITY();
 INSERT INTO Core.Person(Id, FirstName, LastName, Email) VALUES (@Id, 'Ingeborg', 'Sebastian', 'no-reply@ucdavis.edu');
 INSERT INTO Core.DepartmentToPerson(Department, Person) VALUES(@DepartmentARE, @Id)
-INSERT INTO Core.RoomToPerson(Room, Person) VALUES(@Room7, @Id)
-INSERT INTO Core.RoomToPerson(Room, Person) VALUES(@Room6, @Id)
+INSERT INTO Core.RoomToPerson(Room, Person) VALUES(@BuildingARoom7, @Id)
+INSERT INTO Core.RoomToPerson(Room, Person) VALUES(@BuildingARoom6, @Id)
 
 INSERT INTO Core.Party(PartyType) VALUES (null);
 SET @Id = IDENTITY();
 INSERT INTO Core.Person(Id, FirstName, LastName, Email) VALUES (@Id, 'Noah', 'Crain', 'no-reply@ucdavis.edu');
 INSERT INTO Core.DepartmentToPerson(Department, Person) VALUES(@DepartmentARE, @Id)
-INSERT INTO Core.RoomToPerson(Room, Person) VALUES(@Room9, @Id)
-INSERT INTO Core.RoomToPerson(Room, Person) VALUES(@Room10, @Id)
+INSERT INTO Core.RoomToPerson(Room, Person) VALUES(@BuildingARoom9, @Id)
+INSERT INTO Core.RoomToPerson(Room, Person) VALUES(@BuildingARoom10, @Id)
 
 INSERT INTO Core.Party(PartyType) VALUES (null);
 SET @Id = IDENTITY();

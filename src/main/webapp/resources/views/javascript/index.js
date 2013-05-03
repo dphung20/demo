@@ -55,6 +55,42 @@ $(function() {
 		el.append(html);
 	}
 
+	function addRoomItem(item, el){
+		var html = '<tr data-id="' + item.id + '" data-building="' + item.building.id + '" data-type="' + item.clazz + '">';
+			html += '<td><a href="#">' + item.building.name  + ' ' + item.name + '</a></td>';
+			html += '<td><a href="#"  class="pull-right remove-room" title="Remove Item"><i class="icon-remove"></i></a></td>';
+			html += '</tr>';
+		el.append(html);
+	}
+
+	function loadFloorData(){
+		$.getJSON(rootUrl + "building/" + $("#building").val() + "/floor", function (response) {
+			var el = $("#floor").empty();
+			_.each(response.childFacility, function(item){
+				el.append($('<option value="' + item.id + '">' + item.name + '</option>'));
+			}, this);
+
+			loadRoomData();
+		});
+	}
+
+	function loadRoomData(floorId){
+		var existingRooms = _.map($(".table-container tr[data-id]"), function(item){
+			return item.getAttribute("data-id");
+		});
+
+		$.getJSON(rootUrl + "floor/" + $("#floor").val() + "/room", function (response) {
+			var el = $("#room").empty();
+			var rooms = _.reject(response.childFacility, function(item){
+				return existingRooms.indexOf(item.id) >= 0;
+			});
+
+			_.each(rooms, function(item){
+				el.append($('<option value="' + item.id + '">' + item.name + '</option>'));
+			}, this);
+		});
+	}
+
 	// load tree data
 	$.getJSON(rootUrl + 'campus/1/college', function (response) {
 		var ul = $('<ul></ul>').appendTo(".treeview");
@@ -96,6 +132,7 @@ $(function() {
 
 		// hide all panels
 		$(".panel").addClass("hidden");
+		$(".add-item").remove();
 
 		// show panel of selected item
 		if (type === '.College') {
@@ -103,7 +140,7 @@ $(function() {
 				var el = $(".college");
 
 				el.attr("data-college-id", response.id);
-				el.find(".panel-header").append(response.name);
+				el.find(".panel-header").html(response.name);
 
 				_.each(response.childOrganization, function(item){
 					var html = '<tr data-id="' + item.id + '" data-type="' + item.clazz + '">';
@@ -120,7 +157,7 @@ $(function() {
 				var el = $(".department");
 
 				el.attr("data-department-id", response.id);
-				el.find(".panel-header").append(response.name);
+				el.find(".panel-header").html(response.name);
 
 				_.each(response.childOrganization, function(item){
 					addDepartmentItem(item, el.find("tbody"));
@@ -132,16 +169,12 @@ $(function() {
 			$.getJSON(rootUrl + 'person/' + id + '/room', function (response) {
 				var el = $(".person");
 
-				el.attr("data-department-id", response.id);
-				el.find(".panel-header").append(response.person.firstName + " " + response.person.lastName);
-				el.find(".person-email").append(response.person.email);
+				el.attr("data-person-id", response.person.id);
+				el.find(".panel-header").html(response.person.firstName + " " + response.person.lastName);
+				el.find(".person-email").html(response.person.email);
 
 				_.each(response.rooms, function(item){
-					var html = '<tr data-id="' + item.id + '" data-building="' + item.building.id + '" data-type="' + item.clazz + '">';
-						html += '<td><a href="#">' + item.building.name  + ' ' + item.name + '</a></td>';
-						html += '<td><a href="#"  class="pull-right remove-room" title="Remove Item"><i class="icon-remove"></i></a></td>';
-						html += '</tr>';
-					el.find("tbody").append(html);
+					addDepartmentItem(item, el.find("tbody"));
 				});
 
 				el.removeClass("hidden");
@@ -153,7 +186,7 @@ $(function() {
 	$(document).on('click', ".add-department", function(evt){
 		evt.preventDefault();
 		if ($('.college .table-container').find('tr:first-child input').length === 0) {
-			var html = '<tr>';
+			var html = '<tr class="add-item">';
 				html += '	<td>';
 				html += '		<label for="name" class="hidden">Name</label>';
 				html += '		<input id="name" name="name" type="text" class="input-xxlarge required" placeholder="Name" /></td>';
@@ -209,7 +242,7 @@ $(function() {
 		var departmentId = $(evt.target).parents('section').attr('data-department-id');
 
 		if ($('.department .table-container').find('tr:first-child input').length === 0) {
-			var html = '<tr>';
+			var html = '<tr class="add-item">';
 				html += '	<td>';
 				html += '		<label for="personSearch" class="hidden">Name</label>';
 				html += '		<input id="personSearch" name="personSearch" type="text" placeholder="Last Name, First Name" class="typeahead" style="width: 300px;"/></td>';
@@ -260,6 +293,44 @@ $(function() {
 	});
 
 	// person panel
+	$(document).on('click', ".add-room", function(evt){
+		evt.preventDefault();
+		var personId = $(evt.target).parents('section').attr('data-person-id');
+
+		if ($('.person .table-container').find('tr:first-child select').length === 0) {
+			var html = '<tr class="add-item">';
+				html += '	<td>';
+				html += '		<select id="building" class="input-large"></select>';
+				html += '		<select id="floor" class="input-medium"></select>';
+				html += '		<select id="room" class="input-small"></select>';
+				html += '	</td>';
+				html += '	<td>';
+				html += '		<div class="pull-right">';
+				html += '			<a href="#" class="save save-room margin-right5" title="Save Room Assignment"><i class="icon-ok"></i></a>';
+				html += '			<a href="#" class="cancel" title="Cancel Add"><i class="icon-remove"></i></a>';
+				html += '		</div>';
+				html += '	</td>';
+				html += '</tr>';
+
+			var tr = $(html);
+			$('.person .table-container').prepend(tr);
+
+			$.getJSON(rootUrl + "campus/1/building", function (response) {
+				var el = $("#building").empty();
+				_.each(response.childFacility, function(item){
+					el.append($('<option value="' + item.id + '">' + item.name + '</option>'));
+				}, this);
+
+				var currentBuilding = $('.table-container tr:last-child').attr("data-building");
+				if(currentBuilding){
+					$("#building").val(currentBuilding);
+				}
+
+				loadFloorData();
+			});
+		}
+	});
+
 	$(document).on('click', ".remove-room", function(evt){
 		evt.preventDefault();
 		var target = $(evt.target);
@@ -271,6 +342,22 @@ $(function() {
 				target.parents('tr').remove();
 			});
 	});
+
+	$(document).on('click', ".save-room", function(evt){
+		evt.preventDefault();
+		var target = $(evt.target);
+		var personId = target.parents('section').attr('data-person-id');
+
+		$.ajax({ type: 'POST', url: rootUrl + 'room/' + $("#room").val() + "/add/" + personId })
+			.done(function (response) {
+				tr.remove();
+				//addDepartmentItem(response, )
+			});
+	});
+
+	$(document).on('change', '#building', loadFloorData);
+	$(document).on('change', '#floor', loadRoomData);
+
 
 	// cancel
 	$(document).on('click', ".cancel", function(evt){
