@@ -25,7 +25,8 @@ angular.module('demoApp').factory('Department', function ($resource) {
 
 angular.module('demoApp').factory('Person', function ($resource) {
     return $resource('/demo/api/person/:id/:room', {id: '@id'}, {
-        get: {method: 'GET', params: {room: 'room'}}
+        get: {method: 'GET', params: {room: 'room'}},
+        put: {method: 'PUT'}
     });
 });
 
