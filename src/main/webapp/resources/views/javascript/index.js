@@ -109,7 +109,7 @@ $(function() {
 
 	// event to load data then toggle subitems in tree
 	$(document).on('click', '#tree-container input',function(evt){
-		var parent = $(event.target).parent();
+		var parent = $(evt.target).parent();
 		if (!parent.has('ul').length) {
 			var id = parent.attr('data-id');
 			var type = parent.attr('data-type');
