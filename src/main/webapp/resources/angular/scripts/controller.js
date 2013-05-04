@@ -1,9 +1,25 @@
 'use strict';
 
-angular.module('demoApp').controller('IndexCtrl', function ($scope, Campus, College, Department, Person) {
+angular.module('demoApp').controller('IndexCtrl', function ($scope, $location, Campus, College, Department, Person) {
 
 	$scope.template = {treeView: '/demo/resources/angular/templates/treeView.html'};
 	$scope.campus = Campus.get({id: '1'});
+
+	var params = $location.search();
+	if (typeof params.college !== 'undefined') {
+		College.get({id: params.college}, function (response) {
+			$scope.edit(response);
+		});
+	} else if (typeof params.department !== 'undefined') {
+		Department.get({id: params.department}, function (response) {
+			$scope.edit(response);
+		});
+	} else if (typeof params.person !== 'undefined' ) {
+		Person.get({id: params.person}, function (response) {
+			$scope.edit(response);
+		});
+	}
+	// console.log($location.search());
 
 	$scope.expand = function (data) {
 		if (typeof data.childOrganization === 'undefined') {
@@ -20,6 +36,7 @@ angular.module('demoApp').controller('IndexCtrl', function ($scope, Campus, Coll
 	};
 
 	$scope.edit = function (data) {
+		$location.url('/');
 		if (data.clazz === '.College') {
 			$scope.template.editView = '/demo/resources/angular/templates/editCollege.html';
 			if (typeof data.childOrganization === 'undefined') {
@@ -27,7 +44,7 @@ angular.module('demoApp').controller('IndexCtrl', function ($scope, Campus, Coll
 					data.childOrganization = response.childOrganization;
 				});
 			}
-			$scope.editData = data;
+			$location.search('college', data.id);
 		} else if (data.clazz === '.Department') {
 			$scope.template.editView = '/demo/resources/angular/templates/editDepartment.html';
 			if (typeof data.childOrganization === 'undefined') {
@@ -35,7 +52,7 @@ angular.module('demoApp').controller('IndexCtrl', function ($scope, Campus, Coll
 					data.childOrganization = response.childOrganization;
 				});
 			}
-			$scope.editData = data;
+			$location.search('department', data.id);
 		} else if (data.clazz === '.Person') {
 			$scope.template.editView = '/demo/resources/angular/templates/editPerson.html';
 			if (typeof data.childOrganization === 'undefined') {
@@ -43,8 +60,9 @@ angular.module('demoApp').controller('IndexCtrl', function ($scope, Campus, Coll
 					data.response = response;
 				});
 			}
-			$scope.editData = data;
+			$location.search('person', data.id);
 		}
+		$scope.editData = data;
 	};
 });
 
