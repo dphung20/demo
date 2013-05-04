@@ -83,7 +83,7 @@ angular.module('demoApp').controller('DepartmentEditCtrl', function ($scope, Dep
 	};
 });
 
-angular.module('demoApp').controller('PersonEditCtrl', function ($scope, Room) {
+angular.module('demoApp').controller('PersonEditCtrl', function ($scope, Room, Person) {
 	
 	$scope.remove = function (data) {
 		Room.removePerson({id: data.id, personId: $scope.editData.id}, {}, function (response) {
@@ -97,6 +97,13 @@ angular.module('demoApp').controller('PersonEditCtrl', function ($scope, Room) {
 	    	$scope.editData.response.rooms.push(response);
 	    	$scope.add.show = false;
 	    });
+	};
+
+	$scope.update = function () {
+		var data = $scope.editData.response.person;
+		data.firstName = $scope.editData.firstName;
+		data.lastName = $scope.editData.lastName;
+		Person.put({id: data.id}, data);
 	};
 });
 

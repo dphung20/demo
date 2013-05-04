@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -39,5 +40,17 @@ public class PersonController {
 	public Object find(String search) throws IOException {
 		String[] name = search.split(",");
 		return personService.toJsonTypeAhead(personService.findByName(name[0].trim(), name.length > 1 ? name[1].trim() : "", new PageRequest(0, 10)));
+	}
+	
+	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+	@ResponseBody
+	public Object update(@PathVariable("id") Integer id, @RequestBody Person personFormBean) {
+		Person person = personService.find(id);
+		
+		person.setFirstName(personFormBean.getFirstName());
+		person.setLastName(personFormBean.getLastName());
+		person.setEmail(personFormBean.getEmail());
+		
+		return personService.toJson(personService.save(person));
 	}
 }
