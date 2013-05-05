@@ -71,6 +71,8 @@ $(function() {
 		el.append(html);
 	}
 
+
+
 	function loadFloorData(){
 		$.getJSON(rootUrl + "building/" + $("#building").val() + "/floor", function (response) {
 			var el = $("#floor").empty();
@@ -133,9 +135,7 @@ $(function() {
 		$.getJSON(rootUrl + 'person/' + personId + '/room', function (response) {
 			var el = $(".person");
 
-			el.attr("data-person-id", response.person.id);
-			el.find(".panel-header").html(response.person.firstName + " " + response.person.lastName);
-			el.find(".person-email").html(response.person.email);
+			showPersonDetailInfo(response.person);
 
 			_.each(response.rooms, function(item){
 				addRoomItem(item, el.find("tbody"));
@@ -143,7 +143,24 @@ $(function() {
 
 			el.removeClass("hidden");
 		});
+	}
 
+	function showPersonDetailInfo(item){
+
+		var html = '<div><strong>Personnel Information</strong></div>';
+		html += '<address>';
+		html += '	<a href="mailto:#" class="person-email">' + item.email + '</a><br />';
+		html += '</address>';
+
+		var el = $(".person");
+
+		el.attr("data-person-id", item.id);
+		el.attr("data-person-firstName", item.firstName);
+		el.attr("data-person-lastName", item.lastName);
+		el.attr("data-person-email", item.email);
+
+		el.find(".panel-header").html(item.firstName + " " + item.lastName);
+		el.find(".personnel").empty().append($(html));
 	}
 
 	// load tree data
@@ -173,7 +190,7 @@ $(function() {
 	$(document).on('click', '#tree-container a', function(evt){
 		var target = $(evt.target);
 		evt.preventDefault();
-		
+
 		// highlight selected
 		$('#tree-container').find(".selected").removeClass("selected");
 		target.addClass("selected");
@@ -205,6 +222,7 @@ $(function() {
 	// college panel
 	$(document).on('click', ".add-department", function(evt){
 		evt.preventDefault();
+
 		if ($('.college .table-container').find('tr:first-child input').length === 0) {
 			var html = '<tr class="add-item">';
 				html += '	<td>';
@@ -385,7 +403,63 @@ $(function() {
 		evt.preventDefault();
 		$(evt.target).parents('tr').remove();
 	});
-	
+
+	$(document).on('click', ".icon-pencil", function(evt){
+		evt.preventDefault();
+		var section = $(evt.target).parents('section');
+
+		if ($('.person .table-container').find('tr:first-child select').length === 0) {
+			var html = '<div class="control-group">';
+			html += '	<label class="control-label" for="firstName">First Name</label>';
+			html += '	<div class="controls">';
+			html += '		<input type="text" id="firstName" name="firstName" value="' + section.attr('data-person-firstname') + '" placeholder="First Name" />';
+			html += '	</div>';
+			html += '</div>';
+			html += '<div class="control-group">';
+			html += '	<label class="control-label" for="lastName">Last Name</label>';
+			html += '	<div class="controls">';
+			html += '		<input type="text" id="lastName" name="lastName" value="' + section.attr('data-person-lastname') + '" placeholder="Last Name" />';
+			html += '	</div>';
+			html += '</div>';
+			html += '<div class="control-group">';
+			html += '	<label class="control-label" for="email">Email</label>';
+			html += '	<div class="controls">';
+			html += '		<input type="text" id="email" name="email" value="' + section.attr('data-person-email') + '" placeholder="Email" />';
+			html += '	</div>';
+			html += '</div>';
+			html += '<div class="control-group">';
+			html += '	<div class="controls">';
+			html += '		<button type="submit" class="btn btn-primary update">Update</button>';
+			html += '	</div>';
+			html += '</div>';
+
+
+			$('.personnel').empty().append($(html));
+		}
+	});
+
+	$(document).on('click', ".update", function(evt){
+		evt.preventDefault();
+		var section = $(evt.target).parents('section');
+
+		var person = {
+			clazz: ".Person",
+			id: section.attr('data-person-id'),
+			firstName: $('#firstName').val(),
+			lastName: $('#lastName').val(),
+			email: $('#email').val()
+		};
+
+		$.ajax({ type: 'PUT', url: rootUrl + 'person/' + section.attr('data-person-id'), data: JSON.stringify(person) })
+			.done(function (response) {
+				showPersonDetailInfo(response);
+
+				var li = $('li[data-id=' + person.id +']');
+				if(li){
+					li.find("div").html(person.firstName + " " + person.lastName);
+				}
+			});
+	});
 
 	// load panel 
 	var hash = window.location.hash;
@@ -407,5 +481,5 @@ $(function() {
 	} else{
 		console.log($(".editData").first());
 	}
-	
+
 });

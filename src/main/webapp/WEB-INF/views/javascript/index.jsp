@@ -65,13 +65,16 @@
 				
 				<!-- person -->
 				<section class="panel person hidden">
+					<a href="#"><i class="icon-pencil pull-right"></i></a>
 					<h3 class="panel-header"></h3>
 					
-					<div><strong>Personnel Information</strong></div>
-					<address>
-						<a href="mailto:#" class="person-email"></a><br />
-					</address>
-					
+					<div class="personnel">
+						<div><strong>Personnel Information</strong></div>
+						<address>
+							<a href="mailto:#" class="person-email"></a><br />
+						</address>
+					</div>
+
 					<table class="table table-condensed">
 						<thead>
 							<tr>
