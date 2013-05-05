@@ -304,9 +304,27 @@ $.ajax({ type: 'PUT', url: 'api/person/' + $('#id').val(), data: JSON.stringify(
     </article>
   </slide>
 
+
+  <slide class="">
+    <hgroup class="">
+      <h2>Angular Reference</h2>
+    </hgroup>
+    <article>
+      <ul>
+      <li><a href="http://angularjs.org/">Official Angular Page</a> </li>
+      <li><a href="http://www.egghead.io/">Series of really good tutorial by John Lindquist</a></li>
+      <li><a href="http://weblogs.asp.net/dwahlin/archive/2013/04/12/video-tutorial-angularjs-fundamentals-in-60-ish-minutes.aspx">Angular Fundamentals in 60+ Minutes</a></li>
+      <li><a href="http://www.youtube.com/user/angularjs">Youtube channel on google meetup</a></li>
+      <li><a href="http://tekpub.com/productions/angular">Tekpub video on Angular</a> </li>
+      </ul>
+    </article> 
+  </slide>
+
   <slide class="segue dark nobackground">
     <hgroup class="">
       <h2>Demo Application</h2>
+      <br/>
+      <a href="https://github.com/dphung20/demo">https://github.com/dphung20/demo</a>
     </hgroup>
   </slide>
 
