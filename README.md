@@ -23,4 +23,4 @@ Additional Notes
 ----------------
  - System using H2 in memory database that gets reinitialize everytime the application is restarted
  - Initial data for H2 is located at src/main/resources/data/data.sql
- - Not all best practices were follow when create this app.
+ - Not all best practices were follow when creating this app.  Please do not use this as a reference implementation in your project.
