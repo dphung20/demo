@@ -152,6 +152,13 @@ public class TraditionalController {
 			roomService.save(room);
 		}
 		
+		if(formBean.getFirstName() != null) {
+			person.setFirstName(formBean.getFirstName());
+			person.setLastName(formBean.getLastName());
+			person.setEmail(formBean.getEmail());
+			personService.save(person);
+		}
+		
 		if(formBean.getShowAddRow() != null) {
 			model.addAttribute("buildings", campus.getChildFacility());
 			

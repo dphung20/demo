@@ -151,12 +151,43 @@
 					<!-- person -->
 					<c:if test="${not empty person}">
 					<section class="panel person">
+						<a href="#"><i class="icon-pencil pull-right"></i></a>
 						<h3 class="panel-header">${person.firstName} ${person.lastName}</h3>
 						
-						<div><strong>Personnel Information</strong></div>
-						<address>
-							<a href="mailto:#" class="person-email">${person.email}</a><br />
-						</address>
+						<c:choose>
+							<c:when test="${formBean.showEditPerson}">
+						 		<div class="control-group">
+									<label class="control-label" for="firstname">First Name</label>
+									<div class="controls">
+										<form:input path="formBean.firstName" value="${person.firstName}"/>
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="lastname">Last Name</label>
+									<div class="controls">
+										<form:input path="formBean.lastName" value="${person.lastName}"/>
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="email">Email</label>
+									<div class="controls">
+										<form:input path="formBean.email" value="${person.email}"/>
+									</div>
+								</div>
+								<div class="control-group">
+									<div class="controls">
+										<button type="submit" class="btn btn-primary">Update</button>
+									</div>
+								</div>
+															
+							</c:when>
+							<c:when test="!${formBean.showEditPerson}">
+								<div><strong>Personnel Information</strong></div>
+								<address>
+									<a href="mailto:#" class="person-email">${person.email}</a><br />
+								</address>
+							</c:when>
+						</c:choose>
 						
 						<table class="table table-condensed">
 							<thead>
@@ -196,7 +227,8 @@
 					</c:if>
 					
 					<input type="text" id="deletedId" name="deletedId" class="hidden"/>
-					<input type="text" id="showAddRow" name="showAddRow" class="hidden"/>				
+					<input type="text" id="showAddRow" name="showAddRow" class="hidden"/>
+					<input type="text" id="showEditPerson" name="showEditPerson" class="hidden"/>				
 				</div>
 				
 			</div>
@@ -236,6 +268,12 @@
 		$(document).on("click", ".cancel", function(evt){
 			evt.preventDefault();
 			$("#showAddRow").val(false);
+			$("form").submit();
+		});
+		
+		$(document).on("click", ".icon-pencil", function(evt){
+			evt.preventDefault();
+			$('#showEditPerson').val(true);
 			$("form").submit();
 		});
 
