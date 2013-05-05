@@ -69,7 +69,6 @@ URL: https://code.google.com/p/io-2012-slides
     </hgroup>
     <article>
       <ul>
-        <li>Well understood</li>
         <li>Simple. Does not required learning javascript</li>
         <li>Great if page is a simple form</li>
         <li>Good IDE Support</li>
@@ -93,6 +92,13 @@ URL: https://code.google.com/p/io-2012-slides
       <div class="flexbox vright">
             <img src="resources/slides/images/dropdown.png"/>
       </div>  
+      <div class="flexbox vleft">
+            <img src="resources/slides/images/tree.png"/>
+      </div>        
+      <div class="flexbox vcenter">
+            <img src="resources/slides/images/typeahead.png"/>
+      </div>        
+
 
     </article>
   </slide>
@@ -125,7 +131,19 @@ URL: https://code.google.com/p/io-2012-slides
       <ul>
       	<li>Can update part of the page instead of the whole page</li>
         <li>Can get pretty close to RIA (Rich Internet Applcation)<li>
+        <li>Asynchronous.  None blocking interaction w/ updates happening in the background</li>
+        <li>Better interactivity</li> 
       </ul>
+
+      <div class="flexbox vright">
+            <img src="resources/slides/images/dropdown.png"/>
+      </div>  
+      <div class="flexbox vleft">
+            <img src="resources/slides/images/tree.png"/>
+      </div>        
+      <div class="flexbox vcenter">
+            <img src="resources/slides/images/typeahead.png"/>
+      </div>           
     </article>
   </slide>
   
