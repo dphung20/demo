@@ -52,8 +52,14 @@ URL: https://code.google.com/p/io-2012-slides
         <li>Server performs some operations based on the user request and then returns the HTML page to the client</li>
         <li>Request to the application will happen synchronously</li>
         <li>Every time user makes a request to the server, user must wait for some time until the server is done creating a new page for that request.</li> 
-        
       </ul>
+
+      <br/>
+
+      <div class="flexbox vcenter">
+            <img src="resources/slides/images/traditionalmodel.gif"/>
+            <footer class="source">http://publib.boulder.ibm.com/infocenter/radhelp/v7r5/index.jsp?topic=%2Fcom.ibm.etools.webtoolscore.doc%2Ftopics%2Fcajax.html</footer>
+      </div>
     </article>
   </slide>
 
@@ -82,6 +88,12 @@ URL: https://code.google.com/p/io-2012-slides
         <li>Does not allow RIA (Rich Internet Applcation) - Web application that has many of the characteristics of desktop application</li>
         <li>Not a great model for mobile</li>
       </ul>
+
+      
+      <div class="flexbox vright">
+            <img src="resources/slides/images/dropdown.png"/>
+      </div>  
+
     </article>
   </slide>
     
@@ -91,10 +103,17 @@ URL: https://code.google.com/p/io-2012-slides
     </hgroup>
     <article>
       <ul>
-        <li>User interact with the interface and send Http request to the web server</li>
-        <li>Server performs some operations based on the user request and then returns the HTML page to the client</li>
-        <li>Request to the application will happen synchronously</li>
+        <li>Asynchronous web applications</li>
+        <li>Allows user to interact with a Web page without the interruption of constant page reloading</li>
+        <li>Web site interaction happens quickly with only portions of the page reloading and refreshing</li>
       </ul>
+
+      <br/>
+      
+      <div class="flexbox vcenter">
+            <img src="resources/slides/images/ajaxmodel.gif"/>
+            <footer class="source">http://publib.boulder.ibm.com/infocenter/radhelp/v7r5/index.jsp?topic=%2Fcom.ibm.etools.webtoolscore.doc%2Ftopics%2Fcajax.html</footer>
+      </div>      
     </article>
   </slide>
   
@@ -123,45 +142,11 @@ URL: https://code.google.com/p/io-2012-slides
         <li>Asynchronous callback can lead to complex code that is hard to maintain, debug, and test</li> 
         <li>Easy to end up with spaghetti code</li>
         <li>Not so good IDE support</li>
+        <li>Must learn Javascript</li>
       </ul>
     </article>
   </slide>
     
-  <slide>
-    <hgroup>
-      <h2>Javascript MVC Web Applications Model</h2>
-    </hgroup>
-    <article>
-      <ul>
-        <li>User interact with the interface and send Http request to the web server</li>
-        <li>Server performs some operations based on the user request and then returns the HTML page to the client</li>
-        <li>Request to the application will happen synchronously</li>
-      </ul>
-    </article>
-  </slide>  
-  
-  <slide>
-    <hgroup>
-      <h2>Advantage</h2>
-    </hgroup>
-    <article>
-      <ul>
-      	<li>todo</li>
-      </ul>
-    </article>
-  </slide>
-  
-  <slide>
-    <hgroup>
-      <h2>Disadvantage</h2>
-    </hgroup>
-    <article>
-      <ul>
-      	<li>todo</li>
-      </ul>
-    </article>
-  </slide>
-   
   <slide>
     <hgroup>
       <h2>DOM Manipulation is Ugly</h2>
@@ -225,37 +210,88 @@ $.ajax({ type: 'PUT', url: 'api/person/' + $('#id').val(), data: JSON.stringify(
 
   <slide>
     <hgroup>
-      <h2>Slide with Image</h2>
+      <h2>Javascript MVC Web Applications Model</h2>
     </hgroup>
     <article>
-      <img src="resources/slides/images/chart.png" class="reflect" alt="Description" title="Description">
-      <footer class="source">source: place source info here</footer>
+      <ul>
+        <li>Same as Ajax model but apply MVC design pattern</li>
+        <li>Normally leads to a single page application</li>
+        <li>The C in MVC is loosely defined in a lot of javascript framework</li>
+      </ul>
+    </article>
+  </slide>  
+  
+  <slide>
+    <hgroup>
+      <h2>Advantage</h2>
+    </hgroup>
+    <article>
+      <ul>
+        <li>MVC is a well established pattern</li>
+        <li>Separation of Concern</li>
+        <li>Should lead to more testable code</li>
+        <li>Code is better structure. Reduce spaghetti code.
+        <li>Maintainable</li>
+      </ul>
+    </article>
+  </slide>
+  
+  <slide>
+    <hgroup>
+      <h2>Disadvantage</h2>
+    </hgroup>
+    <article>
+      <ul>
+        <li>Can end up pushing to much business logic to client if not careful</li>
+        <li>Higher potential for memory leak if not careful</li>
+        <li>Crawlers don't excute javascript so they won't index the site</li>
+        <li>Must learn Javascript</li>
+      </ul>
     </article>
   </slide>
 
   <slide>
     <hgroup>
-      <h2>Slide with Image (Centered horz/vert)</h2>
+      <h2>Angular.js</h2>
     </hgroup>
-    <article class="flexbox vcenter">
-      <img src="resources/slides/images/barchart.png" alt="Description" title="Description">
-      <footer class="source">source: place source info here</footer>
-    </article>
-  </slide>
-
-  <slide class="fill nobackground" style="background-image: url(resources/slides/images/demo.png)">
-    <hgroup>
-      <h2 class="white">Full Image (with Optional Header)</h2>
-    </hgroup>
-    <footer class="source white">www.flickr.com/photos/25797459@N06/5438799763/</footer>
-  </slide>
-
-
-  <slide>
     <article>
-      <iframe data-src="http://localhost:8080/demo/javascript/#/person/85"></iframe>
+      <ul>
+        <li>JavaScript framework by Google</li>
+        <li>Data Binding and Dependency Injection</li>
+        <li>Makes HTML your Template</li>
+        <li>Enterprise-level Testing</li>
+      </ul>
+
+      <br/><br/><br/><br/><br/><br/><br/><br/>
+      <div class="flexbox vright">
+            <img src="resources/slides/images/AngularJS-large.png"/>
+      </div>        
+    </article>
+  </slide>  
+  
+  <slide>
+    <hgroup>
+      <h2>Advantage</h2>
+    </hgroup>
+    <article>
+      <ul>
+        <li>Two-way data binding</li>
+        <li>Dependency Injection</li>
+        <li>Decouple DOM manipulation from application logic</li>
+        <li>Reduction of Code, faster development time</li>
+        <li>Testable, E2E Testing</li>
+        <li>Chrome plugin</li>
+        <li>Actively Developed</li>
+      </ul>
     </article>
   </slide>
+
+  <slide class="segue dark nobackground">
+    <hgroup class="">
+      <h2>Demo Application</h2>
+    </hgroup>
+  </slide>
+
 
 
   <slide class="thank-you-slide dark nobackground">
