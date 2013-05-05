@@ -69,7 +69,7 @@ public class TraditionalController {
 		}
 		
 		// add new department
-		if(formBean.getName() != null) {
+		if(formBean.getName() != null && formBean.getName().trim().length() > 0) {
 			Department department = new Department();
 			department.setName(formBean.getName());
 			department.setParentOrganization(college);

@@ -99,6 +99,53 @@ $(function() {
 		});
 	}
 
+	function showCollegePanel(collegeId){
+		$.getJSON(rootUrl + 'college/' + collegeId + '/department', function (response) {
+			var el = $(".college");
+
+			el.attr("data-college-id", response.id);
+			el.find(".panel-header").html(response.name);
+
+			_.each(response.childOrganization, function(item){
+				addDepartmentItem(item, el.find("tbody"));
+			});
+
+			el.removeClass("hidden");
+		});
+	}
+
+	function showDepartmentPanel(departmentId){
+		$.getJSON(rootUrl + 'department/' + departmentId + '/employee', function (response) {
+			var el = $(".department");
+
+			el.attr("data-department-id", response.id);
+			el.find(".panel-header").html(response.name);
+
+			_.each(response.childOrganization, function(item){
+				addPersonItem(item, el.find("tbody"));
+			});
+
+			el.removeClass("hidden");
+		});
+	}
+
+	function showPersonPanel(personId){
+		$.getJSON(rootUrl + 'person/' + personId + '/room', function (response) {
+			var el = $(".person");
+
+			el.attr("data-person-id", response.person.id);
+			el.find(".panel-header").html(response.person.firstName + " " + response.person.lastName);
+			el.find(".person-email").html(response.person.email);
+
+			_.each(response.rooms, function(item){
+				addRoomItem(item, el.find("tbody"));
+			});
+
+			el.removeClass("hidden");
+		});
+
+	}
+
 	// load tree data
 	$.getJSON(rootUrl + 'campus/1/college', function (response) {
 		var ul = $('<ul></ul>').appendTo(".treeview");
@@ -126,7 +173,7 @@ $(function() {
 	$(document).on('click', '#tree-container a', function(evt){
 		var target = $(evt.target);
 		evt.preventDefault();
-
+		
 		// highlight selected
 		$('#tree-container').find(".selected").removeClass("selected");
 		target.addClass("selected");
@@ -142,47 +189,16 @@ $(function() {
 		$(".panel").addClass("hidden");
 		$(".add-item").remove();
 
+		var url = type.toLowerCase().replace('.', '')  + '/' + id;
+		window.history.pushState(null, null, "#/" + url);
+
 		// show panel of selected item
 		if (type === '.College') {
-			$.getJSON(rootUrl + 'college/' + id + '/department', function (response) {
-				var el = $(".college");
-
-				el.attr("data-college-id", response.id);
-				el.find(".panel-header").html(response.name);
-
-				_.each(response.childOrganization, function(item){
-					addDepartmentItem(item, el.find("tbody"));
-				});
-
-				el.removeClass("hidden");
-			});
+			showCollegePanel(id);
 		} else if (type === '.Department') {
-			$.getJSON(rootUrl + 'department/' + id + '/employee', function (response) {
-				var el = $(".department");
-
-				el.attr("data-department-id", response.id);
-				el.find(".panel-header").html(response.name);
-
-				_.each(response.childOrganization, function(item){
-					addPersonItem(item, el.find("tbody"));
-				});
-
-				el.removeClass("hidden");
-			});
+			showDepartmentPanel(id);
 		} else if (type === '.Person') {
-			$.getJSON(rootUrl + 'person/' + id + '/room', function (response) {
-				var el = $(".person");
-
-				el.attr("data-person-id", response.person.id);
-				el.find(".panel-header").html(response.person.firstName + " " + response.person.lastName);
-				el.find(".person-email").html(response.person.email);
-
-				_.each(response.rooms, function(item){
-					addRoomItem(item, el.find("tbody"));
-				});
-
-				el.removeClass("hidden");
-			});
+			showPersonPanel(id);
 		}
 	});
 
@@ -369,4 +385,27 @@ $(function() {
 		evt.preventDefault();
 		$(evt.target).parents('tr').remove();
 	});
+	
+
+	// load panel 
+	var hash = window.location.hash;
+	if(hash){
+		var regex = new RegExp('^([^/]+)/([^/]+)$');
+		var params = regex.exec(window.location.hash.replace('#/', '')).slice(1);
+
+		switch(params[0]){
+			case "college":
+				showCollegePanel(params[1]);
+				break;
+			case "department":
+				showDepartmentPanel(params[1]);
+				break;
+			case "person":
+				showPersonPanel(params[1]);
+				break;
+		}
+	} else{
+		console.log($(".editData").first());
+	}
+	
 });
