@@ -31,18 +31,18 @@
 	
 	<hr/>	
 	<div class="row-fluid choose-role">
-		<div class="span3">
+		<div class="span4">
 	
-			<h3 class="margin-bottom0"><a href="traditional/">Traditional</a></h3>
+			<h3 class="margin-bottom0"><a href="traditional/">Traditional Web Application Model</a></h3>
 			<p>Spring MVC with a little javascript / JQuery</p>
 
-			<h3 class="margin-bottom0"><a href="javascript/">Javascript</a></h3>
-			<p>Javescript / JQuery without used of any framework</p>
+			<h3 class="margin-bottom0"><a href="javascript/">Ajax Web Application Model</a></h3>
+			<p>Javescript / JQuery without any framework</p>
 
-			<h3 class="margin-bottom0"><a href="angular/">Angular</a></h3>
+			<h3 class="margin-bottom0"><a href="angular/">Javascript MVC w/ Angular</a></h3>
 			<p>Javascript structure in MVC pattern using Angular framework</p>
 		</div>
-		<div class="span8 offset1">
+		<div class="span4 offset1">
 			<h3 class="margin-bottom0">Database Information</h3>
 			<dl class="dl-horizontal margin-top0">
 				<dt>H2 Database</dt>
@@ -54,6 +54,9 @@
 				<dt>Password</dt>
 				<dd></dd>
 			</dl>
+			
+			<h3 class="margin-bottom0">Presentation Slides</h3>
+			<a href="slides">Web Application Development</a>
 		</div>
 	</div>
 	

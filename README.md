@@ -4,7 +4,7 @@ Demo Application
 Demo Application Showcase the different between implementation.
 
   - Traditional w/ little javascript
-  - Javescript / JQuery without used of any framework
+  - Javescript / JQuery without any framework
   - Javascript structure in MVC pattern using Angular framework
 
 
