@@ -5,12 +5,9 @@ angular.module('demoApp', ['ngResource'])
         $routeProvider
             .when('/', {
                 templateUrl: '/demo/resources/angular/views/index.html',
-                controller: 'IndexCtrl',
-                reloadOnSearch: false
+                controller: 'IndexCtrl'
             })
             .otherwise({
                 redirectTo: '/'
             });
     });
-
-// /:collegeId/:departmentId/:personId

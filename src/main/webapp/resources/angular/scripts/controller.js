@@ -2,24 +2,9 @@
 
 angular.module('demoApp').controller('IndexCtrl', function ($scope, $location, Campus, College, Department, Person) {
 
+	var locationStack = [];
 	$scope.template = {treeView: '/demo/resources/angular/templates/treeView.html'};
 	$scope.campus = Campus.get({id: '1'});
-
-	var params = $location.search();
-	if (typeof params.college !== 'undefined') {
-		College.get({id: params.college}, function (response) {
-			$scope.edit(response);
-		});
-	} else if (typeof params.department !== 'undefined') {
-		Department.get({id: params.department}, function (response) {
-			$scope.edit(response);
-		});
-	} else if (typeof params.person !== 'undefined' ) {
-		Person.get({id: params.person}, function (response) {
-			$scope.edit(response);
-		});
-	}
-	// console.log($location.search());
 
 	$scope.expand = function (data) {
 		if (typeof data.childOrganization === 'undefined') {
@@ -44,7 +29,6 @@ angular.module('demoApp').controller('IndexCtrl', function ($scope, $location, C
 					data.childOrganization = response.childOrganization;
 				});
 			}
-			$location.search('college', data.id);
 		} else if (data.clazz === '.Department') {
 			$scope.template.editView = '/demo/resources/angular/templates/editDepartment.html';
 			if (typeof data.childOrganization === 'undefined') {
@@ -52,7 +36,6 @@ angular.module('demoApp').controller('IndexCtrl', function ($scope, $location, C
 					data.childOrganization = response.childOrganization;
 				});
 			}
-			$location.search('department', data.id);
 		} else if (data.clazz === '.Person') {
 			$scope.template.editView = '/demo/resources/angular/templates/editPerson.html';
 			if (typeof data.childOrganization === 'undefined') {
@@ -60,7 +43,6 @@ angular.module('demoApp').controller('IndexCtrl', function ($scope, $location, C
 					data.response = response;
 				});
 			}
-			$location.search('person', data.id);
 		}
 		$scope.editData = data;
 	};
@@ -122,6 +104,15 @@ angular.module('demoApp').controller('PersonEditCtrl', function ($scope, Room, P
 		data.firstName = $scope.editData.firstName;
 		data.lastName = $scope.editData.lastName;
 		Person.put({id: data.id}, data);
+	};
+
+	$scope.editable = function () {
+		$scope.revertData = {};
+		angular.copy($scope.editData, $scope.revertData);
+	};
+
+	$scope.revert = function () {
+		angular.copy($scope.revertData, $scope.editData);
 	};
 });
 
