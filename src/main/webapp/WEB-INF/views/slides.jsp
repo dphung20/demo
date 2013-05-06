@@ -112,9 +112,9 @@ URL: https://code.google.com/p/io-2012-slides
         <li>Asynchronous web applications</li>
         <li>Allows user to interact with a Web page without the interruption of constant page reloading</li>
         <li>Web site interaction happens quickly with only portions of the page reloading and refreshing</li>
+        <li>Purpose of Ajax is to create a more interactive and productive connection between a user and the application</li>
       </ul>
 
-      <br/>
       
       <div class="flexbox vcenter">
             <img src="resources/slides/images/ajaxmodel.gif"/>
@@ -164,7 +164,32 @@ URL: https://code.google.com/p/io-2012-slides
       </ul>
     </article>
   </slide>
-    
+
+  <slide>
+    <hgroup>
+      <h2>Cost</h2>
+    </hgroup>
+    <article>
+      <ul>
+      </ul>
+      <footer class="source">http://www.openajax.org/whitepapers/When%20Does%20Ajax%20Make%20Business%20Sense.php</footer>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>ROI - Return on Investment</h2>
+    </hgroup>
+    <article>
+      <ul>
+        <li>Provides similar user interface to a desktop application. This makes the application more intuitive and reduces the cost to provide in-depth training or job aids</li>
+        <li>Increase developer productivity by reducing the amount of coding needed</li>
+        <li>Adopting Ajax techniques is becoming a business requirement to maintain parity with the rest of the industry and match growing user expectations about Web-based user experience</li>
+      </ul>
+      <footer class="source">http://www.openajax.org/whitepapers/When%20Does%20Ajax%20Make%20Business%20Sense.php</footer>
+    </article>
+  </slide>
+
   <slide>
     <hgroup>
       <h2>DOM Manipulation is Ugly</h2>
@@ -267,6 +292,31 @@ $.ajax({ type: 'PUT', url: 'api/person/' + $('#id').val(), data: JSON.stringify(
       </ul>
     </article>
   </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Cost</h2>
+    </hgroup>
+    <article>
+      <ul>
+      </ul>
+      <footer class="source">http://www.openajax.org/whitepapers/When%20Does%20Ajax%20Make%20Business%20Sense.php</footer>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>ROI - Return on Investment</h2>
+    </hgroup>
+    <article>
+      <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+    </article>
+  </slide>
+
 
   <slide>
     <hgroup>
