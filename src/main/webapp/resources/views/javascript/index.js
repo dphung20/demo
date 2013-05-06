@@ -479,7 +479,8 @@ $(function() {
 				break;
 		}
 	} else{
-		console.log($(".editData").first());
+		window.history.pushState(null, null, '#/college/2');
+		showCollegePanel(2);
 	}
 
 });
