@@ -1,5 +1,5 @@
 <div ng-controller="PersonEditCtrl">
-<h3>{{editData.firstName}} {{editData.lastName}} <i class="icon-pencil pull-right" ng-click="edit.show = true"></i></h3>
+<h3>{{editData.firstName}} {{editData.lastName}} <i class="icon-pencil pull-right" ng-click="editable(); edit.show = true"></i></h3>
 
 <div ng-hide="edit.show">
 <div><strong>Personnel Information</strong></div>
@@ -30,6 +30,7 @@
 		<div class="control-group">
 			<div class="controls">
 				<button type="submit" class="btn btn-primary" ng-click="update(); edit.show = false">Update</button>
+				<button type="submit" class="btn" ng-click="revert(); edit.show = false">Cancel</button>
 			</div>
 		</div>
 	</form>

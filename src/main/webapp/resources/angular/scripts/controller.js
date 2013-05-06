@@ -105,6 +105,15 @@ angular.module('demoApp').controller('PersonEditCtrl', function ($scope, Room, P
 		data.lastName = $scope.editData.lastName;
 		Person.put({id: data.id}, data);
 	};
+
+	$scope.editable = function () {
+		$scope.revertData = {};
+		angular.copy($scope.editData, $scope.revertData);
+	};
+
+	$scope.revert = function () {
+		angular.copy($scope.revertData, $scope.editData);
+	};
 });
 
 
