@@ -335,6 +335,34 @@ $.ajax({ type: 'PUT', url: 'api/person/' + $('#id').val(), data: JSON.stringify(
 
   <slide>
     <hgroup>
+      <h2>Disadvantage</h2>
+    </hgroup>
+    <article>
+      <ul>
+        <li>Have a greater understanding of the DOM at the node level</li>
+        <li>Writing directives can be difficult</li>
+        <!-- <li>Less control compared to micro-frameworks</li> -->
+        <li>Must learn the "Angular Way"</li>
+        <li>Must learn Javascript</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Core Idea</h2>
+    </hgroup>
+    <article>
+      <ul>
+        <li>Controller - Contains no DOM manipulation and binds data to the scope</li>
+        <li>Service - RESTful api abstracted to an object</li>
+        <li>Directive - Extends HTML</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
       <h2>Cost</h2>
     </hgroup>
     <article>
