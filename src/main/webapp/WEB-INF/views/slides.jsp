@@ -98,7 +98,7 @@ URL: https://code.google.com/p/io-2012-slides
       <div class="flexbox vcenter">
             <img src="resources/slides/images/typeahead.png"/>
       </div>        
-
+      <div class="source">* UI that are hard / impossible to do</div>
 
     </article>
   </slide>
@@ -145,6 +145,7 @@ URL: https://code.google.com/p/io-2012-slides
             <img src="resources/slides/images/typeahead.png"/>
       </div>           
     </article>
+     <div class="source">* UI that are easy with ajax</div>
   </slide>
   
   <slide>
@@ -171,6 +172,8 @@ URL: https://code.google.com/p/io-2012-slides
     </hgroup>
     <article>
       <ul>
+          <li>Require developers to learn both server side as well as client side programming</li>
+          <li>Must understand HTML, DOM updates, XMLHttpRequest, and JavaScript</li>
       </ul>
       <footer class="source">http://www.openajax.org/whitepapers/When%20Does%20Ajax%20Make%20Business%20Sense.php</footer>
     </article>
@@ -183,8 +186,9 @@ URL: https://code.google.com/p/io-2012-slides
     <article>
       <ul>
         <li>Provides similar user interface to a desktop application. This makes the application more intuitive and reduces the cost to provide in-depth training or job aids</li>
-        <li>Increase developer productivity by reducing the amount of coding needed</li>
         <li>Adopting Ajax techniques is becoming a business requirement to maintain parity with the rest of the industry and match growing user expectations about Web-based user experience</li>
+        <li>Increase developer productivity by reducing the amount of coding needed</li>
+        <li>Leverage existing frameworks and thereby reducing the cost of having to code everything from scratch (ie. JQuery, Jquery UI, Bootstrap, etc.)
       </ul>
       <footer class="source">http://www.openajax.org/whitepapers/When%20Does%20Ajax%20Make%20Business%20Sense.php</footer>
     </article>
@@ -295,31 +299,6 @@ $.ajax({ type: 'PUT', url: 'api/person/' + $('#id').val(), data: JSON.stringify(
 
   <slide>
     <hgroup>
-      <h2>Cost</h2>
-    </hgroup>
-    <article>
-      <ul>
-      </ul>
-      <footer class="source">http://www.openajax.org/whitepapers/When%20Does%20Ajax%20Make%20Business%20Sense.php</footer>
-    </article>
-  </slide>
-
-  <slide>
-    <hgroup>
-      <h2>ROI - Return on Investment</h2>
-    </hgroup>
-    <article>
-      <ul>
-        <li></li>
-        <li></li>
-        <li></li>
-      </ul>
-    </article>
-  </slide>
-
-
-  <slide>
-    <hgroup>
       <h2>Angular.js</h2>
     </hgroup>
     <article>
@@ -354,6 +333,33 @@ $.ajax({ type: 'PUT', url: 'api/person/' + $('#id').val(), data: JSON.stringify(
     </article>
   </slide>
 
+  <slide>
+    <hgroup>
+      <h2>Cost</h2>
+    </hgroup>
+    <article>
+      <ul>
+          <li> Same cost as Ajax Model </li>
+          <li> Must understand MVC Model </li>
+          <li> Must understand dependency injection </li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>ROI - Return on Investment</h2>
+    </hgroup>
+    <article>
+      <ul>
+        <li> Same as Ajax Model</li>
+        <li> Reduce maintenance cost</li>
+        <li> Testable Javascript Code </li>
+        <li> Even faster development time</li>
+        <li> Testing solution for Mobile platform</li>
+      </ul>
+    </article>
+  </slide>
 
   <slide class="">
     <hgroup class="">
