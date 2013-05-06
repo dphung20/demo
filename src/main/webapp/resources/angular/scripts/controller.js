@@ -2,23 +2,46 @@
 
 angular.module('demoApp').controller('IndexCtrl', function ($scope, $location, Campus, College, Department, Person) {
 
+	var locationStack = [];
 	$scope.template = {treeView: '/demo/resources/angular/templates/treeView.html'};
 	$scope.campus = Campus.get({id: '1'});
 
 	var params = $location.search();
-	if (typeof params.college !== 'undefined') {
-		College.get({id: params.college}, function (response) {
-			$scope.edit(response);
-		});
-	} else if (typeof params.department !== 'undefined') {
-		Department.get({id: params.department}, function (response) {
-			$scope.edit(response);
-		});
-	} else if (typeof params.person !== 'undefined' ) {
-		Person.get({id: params.person}, function (response) {
-			$scope.edit(response);
-		});
+	switch (Object.keys(params).length) {
+		case 3:
+			// person
+			Person.get({id: params.person}, function (response) {
+				$scope.edit(response);
+			});
+			break;
+		case 2:
+			// department
+			Department.get({id: params.department}, function (response) {
+				$scope.edit(response);
+			});
+			break;
+		case 1:
+			College.get({id: params.college}, function (response) {
+				$scope.edit(response);
+			});
+			break;
+		case 0:
+			// default
+			break;
 	}
+	// if (typeof params.college !== 'undefined') {
+	// 	College.get({id: params.college}, function (response) {
+	// 		$scope.edit(response);
+	// 	});
+	// } else if (typeof params.department !== 'undefined') {
+	// 	Department.get({id: params.department}, function (response) {
+	// 		$scope.edit(response);
+	// 	});
+	// } else if (typeof params.person !== 'undefined' ) {
+	// 	Person.get({id: params.person}, function (response) {
+	// 		$scope.edit(response);
+	// 	});
+	// }
 	// console.log($location.search());
 
 	$scope.expand = function (data) {
@@ -44,7 +67,6 @@ angular.module('demoApp').controller('IndexCtrl', function ($scope, $location, C
 					data.childOrganization = response.childOrganization;
 				});
 			}
-			$location.search('college', data.id);
 		} else if (data.clazz === '.Department') {
 			$scope.template.editView = '/demo/resources/angular/templates/editDepartment.html';
 			if (typeof data.childOrganization === 'undefined') {
@@ -52,7 +74,6 @@ angular.module('demoApp').controller('IndexCtrl', function ($scope, $location, C
 					data.childOrganization = response.childOrganization;
 				});
 			}
-			$location.search('department', data.id);
 		} else if (data.clazz === '.Person') {
 			$scope.template.editView = '/demo/resources/angular/templates/editPerson.html';
 			if (typeof data.childOrganization === 'undefined') {
@@ -60,9 +81,35 @@ angular.module('demoApp').controller('IndexCtrl', function ($scope, $location, C
 					data.response = response;
 				});
 			}
-			$location.search('person', data.id);
 		}
+
+		updateUrl(data);
 		$scope.editData = data;
+	};
+
+	function updateUrl(data) {
+		constructUrl($scope.campus, data);
+		locationStack.pop();
+		locationStack.reverse();
+
+		switch (locationStack.length) {
+			case 3: $location.search('person', locationStack[2]);
+			case 2: $location.search('department', locationStack[1]);
+			case 1: $location.search('college', locationStack[0]);
+		}
+
+		locationStack = [];
+	};
+
+	function constructUrl(element, data) {
+		if (element === data) {
+			locationStack.push(data.id);
+		} else if (element.childOrganization != null) {
+			for (var i = 0; locationStack.length === 0, i < element.childOrganization.length; i++) {
+				constructUrl(element.childOrganization[i], data);
+			}
+			locationStack.push(element.id);
+		}
 	};
 });
 
