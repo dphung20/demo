@@ -69,7 +69,7 @@ URL: https://code.google.com/p/io-2012-slides
     </hgroup>
     <article>
       <ul>
-        <li>Simple. Does not required learning javascript</li>
+        <li>Simple. Does not require learning javascript</li>
         <li>Great if page is a simple form</li>
         <li>Good IDE Support</li>
       </ul>
@@ -105,7 +105,7 @@ URL: https://code.google.com/p/io-2012-slides
     
   <slide>
     <hgroup>
-      <h2>Ajax Web Applications Model</h2>
+      <h2>Ajax Web Applications Model (Web 2.0)</h2>
     </hgroup>
     <article>
       <ul>
@@ -163,34 +163,6 @@ URL: https://code.google.com/p/io-2012-slides
         <li>Not so good IDE support</li>
         <li>Must learn Javascript</li>
       </ul>
-    </article>
-  </slide>
-
-  <slide>
-    <hgroup>
-      <h2>Cost</h2>
-    </hgroup>
-    <article>
-      <ul>
-          <li>Require developers to learn both server side as well as client side programming</li>
-          <li>Must understand HTML, DOM updates, XMLHttpRequest, and JavaScript</li>
-      </ul>
-      <footer class="source">http://www.openajax.org/whitepapers/When%20Does%20Ajax%20Make%20Business%20Sense.php</footer>
-    </article>
-  </slide>
-
-  <slide>
-    <hgroup>
-      <h2>ROI - Return on Investment</h2>
-    </hgroup>
-    <article>
-      <ul>
-        <li>Provides similar user interface to a desktop application. This makes the application more intuitive and reduces the cost to provide in-depth training or job aids</li>
-        <li>Adopting Ajax techniques is becoming a business requirement to maintain parity with the rest of the industry and match growing user expectations about Web-based user experience</li>
-        <li>Increase developer productivity by reducing the amount of coding needed</li>
-        <li>Leverage existing frameworks and thereby reducing the cost of having to code everything from scratch (ie. JQuery, Jquery UI, Bootstrap, etc.)
-      </ul>
-      <footer class="source">http://www.openajax.org/whitepapers/When%20Does%20Ajax%20Make%20Business%20Sense.php</footer>
     </article>
   </slide>
 
@@ -264,6 +236,8 @@ $.ajax({ type: 'PUT', url: 'api/person/' + $('#id').val(), data: JSON.stringify(
         <li>Same as Ajax model but apply MVC design pattern</li>
         <li>Normally leads to a single page application</li>
         <li>The C in MVC is loosely defined in a lot of javascript framework</li>
+        <li>Solves some problems associatedwith Ajax model</li>
+        <li>Provides order and structure to your javascript code</li>
       </ul>
     </article>
   </slide>  
@@ -304,7 +278,7 @@ $.ajax({ type: 'PUT', url: 'api/person/' + $('#id').val(), data: JSON.stringify(
     <article>
       <ul>
         <li>JavaScript framework by Google</li>
-        <li>Data Binding and Dependency Injection</li>
+        <li>Full fledged framework</li>
         <li>Makes HTML your Template</li>
         <li>Enterprise-level Testing</li>
       </ul>
@@ -329,6 +303,7 @@ $.ajax({ type: 'PUT', url: 'api/person/' + $('#id').val(), data: JSON.stringify(
         <li>Testable, E2E Testing</li>
         <li>Chrome plugin</li>
         <li>Actively Developed</li>
+        <li>Back by Google.  Have the resouces and weight to making changes & recomendation to W3C. (ie. Web Components)</li>
       </ul>
     </article>
   </slide>
@@ -367,7 +342,8 @@ $.ajax({ type: 'PUT', url: 'api/person/' + $('#id').val(), data: JSON.stringify(
     </hgroup>
     <article>
       <ul>
-          <li> Same cost as Ajax Model </li>
+          <li> Require developers to learn both server side as well as client side programming</li>
+          <li> Must understand HTML, DOM updates, XMLHttpRequest, and JavaScript</li>
           <li> Must understand MVC Model </li>
           <li> Must understand dependency injection </li>
       </ul>
@@ -380,14 +356,18 @@ $.ajax({ type: 'PUT', url: 'api/person/' + $('#id').val(), data: JSON.stringify(
     </hgroup>
     <article>
       <ul>
-        <li> Same as Ajax Model</li>
+        <li> Provides similar user interface to a desktop application. This makes the application more intuitive and reduces the cost to provide in-depth training</li>
+        <li> Adopting Ajax techniques is becoming a business requirement to maintain parity with the rest of the industry and match growing user expectations about Web-based user experience</li>
+        <li> Increase developer productivity by reducing the amount of coding needed</li>
+        <li> Leverage existing frameworks and thereby reducing the cost of having to code everything from scratch (ie. JQuery, Jquery UI, Bootstrap, etc.)
         <li> Reduce maintenance cost</li>
         <li> Testable Javascript Code </li>
-        <li> Even faster development time</li>
+        <li> Faster development time</li>
         <li> Testing solution for Mobile platform</li>
       </ul>
     </article>
   </slide>
+
 
   <slide class="">
     <hgroup class="">
@@ -412,6 +392,20 @@ $.ajax({ type: 'PUT', url: 'api/person/' + $('#id').val(), data: JSON.stringify(
     </hgroup>
   </slide>
 
+  <slide>
+    <hgroup>
+      <h2>Takeaway</h2>
+    </hgroup>
+    <article>
+      <ul>
+        <li> If you are doing a lot of dynamic dom minipulation and using a lot of javascript you should consider using a javascript MVC</li>
+        <li> To write anything maintainable, you have to write test </li>
+        <li> Angular make writing RIA application easier and quicker </li>
+        <li> Angular make it possible to write test for javascript </li>
+        <li> Angular will make you write less code </li>
+      </ul>
+    </article>
+  </slide>
 
 
   <slide class="thank-you-slide dark nobackground">
