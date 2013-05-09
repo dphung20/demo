@@ -1,11 +1,3 @@
-<!--
-Google IO 2012/2013 HTML5 Slide Template
-
-Authors: Eric Bidelman <ebidel@gmail.com>
-         Luke Mahé <lukem@google.com>
-
-URL: https://code.google.com/p/io-2012-slides
--->
 <!DOCTYPE html>
 <html>
 <head>
@@ -48,10 +40,10 @@ URL: https://code.google.com/p/io-2012-slides
     </hgroup>
     <article>
       <ul>
-        <li>User interact with the interface and send Http request to the web server</li>
-        <li>Server performs some operations based on the user request and then returns the HTML page to the client</li>
-        <li>Request to the application will happen synchronously</li>
-        <li>Every time user makes a request to the server, user must wait for some time until the server is done creating a new page for that request.</li> 
+        <li>Users interact with the interface and send Http requests to the web server</li>
+        <li>Server performs operations based on the user request and returns an HTML page to the client</li>
+        <li>Requests to the application happen synchronously</li>
+        <li>Each user interaction requires a request be issued to the application server where the content is rendered and returned to the user's browser. It is not unusal for this process to take several seconds.</li> 
       </ul>
 
       <br/>
@@ -65,54 +57,41 @@ URL: https://code.google.com/p/io-2012-slides
 
   <slide>
     <hgroup>
-      <h2>Advantage</h2>
+      <h2>Advantages</h2>
     </hgroup>
     <article>
       <ul>
         <li>Simple. Does not require learning javascript</li>
-        <li>Great if page is a simple form</li>
-        <li>Good IDE Support</li>
+        <li>Great if the page is a simple form</li>
+        <li>Good IDE support</li>
       </ul>
     </article>
   </slide>
   
   <slide>
     <hgroup>
-      <h2>Disadvantage</h2>
+      <h2>Disadvantages</h2>
     </hgroup>
     <article>
       <ul>
         <li>Page can only be updated as a whole</li>
-        <li>Synchronous, must wait for server to finish rendering.</li>
-        <li>Does not allow RIA (Rich Internet Applcation) - Web application that has many of the characteristics of desktop application</li>
+        <li>Synchronous. Must wait for server to finish rendering.</li>
+        <li>Does not allow for RIA (Rich Internet Application) - A Web application that has many characteristics of a desktop application</li>
         <li>Not a great model for mobile</li>
       </ul>
-
-      
-      <div class="flexbox vright">
-            <img src="resources/slides/images/dropdown.png"/>
-      </div>  
-      <div class="flexbox vleft">
-            <img src="resources/slides/images/tree.png"/>
-      </div>        
-      <div class="flexbox vcenter">
-            <img src="resources/slides/images/typeahead.png"/>
-      </div>        
-      <div class="source">* UI that are hard / impossible to do</div>
-
     </article>
   </slide>
     
   <slide>
     <hgroup>
-      <h2>Ajax Web Applications Model (Web 2.0)</h2>
+      <h2>Ajax Web Application Model (Web 2.0)</h2>
     </hgroup>
     <article>
       <ul>
-        <li>Asynchronous web applications</li>
-        <li>Allows user to interact with a Web page without the interruption of constant page reloading</li>
-        <li>Web site interaction happens quickly with only portions of the page reloading and refreshing</li>
-        <li>Purpose of Ajax is to create a more interactive and productive connection between a user and the application</li>
+        <li>Asynchronous Web applications</li>
+        <li>Allows the user to interact with a Web page without the interruption of page reloads</li>
+        <li>Web site interaction happens quickly - only portions of the page reload and refresh</li>
+        <li>Ajax creates an interactive and productive connection between a user and the application</li>
       </ul>
 
       
@@ -125,14 +104,14 @@ URL: https://code.google.com/p/io-2012-slides
   
   <slide>
     <hgroup>
-      <h2>Advantage</h2>
+      <h2>Advantages</h2>
     </hgroup>
     <article>
       <ul>
-      	<li>Can update part of the page instead of the whole page</li>
-        <li>Can get pretty close to RIA (Rich Internet Applcation)<li>
-        <li>Asynchronous.  None blocking interaction w/ updates happening in the background</li>
-        <li>Better interactivity</li> 
+        <li>Can update part of a Web page instead of the whole page</li>
+        <li>Can get close to RIA<li>
+        <li>Asynchronous. Non-blocking interaction. Updates happen in the background</li>
+        <li>Fluid user experience</li> 
       </ul>
 
       <div class="flexbox vright">
@@ -145,23 +124,23 @@ URL: https://code.google.com/p/io-2012-slides
             <img src="resources/slides/images/typeahead.png"/>
       </div>           
     </article>
-     <div class="source">* UI that are easy with ajax</div>
+     <div class="source">Exampls of UIs that are easy with Ajax</div>
   </slide>
   
   <slide>
     <hgroup>
-      <h2>Disadvantage</h2>
+      <h2>Disadvantages</h2>
     </hgroup>
     <article>
       <ul>
-      	<li>Ajax requests does not get register in browser's history</li>
+        <li>Ajax requests are not registered in a browser's history</li>
         <li>Dynamic updates make it difficult to bookmark and return to a particular state</li>
-        <li>Not support by some older browsers</li>
+        <li>Not supported by some browsers</li>
         <li>Crawlers don't excute javascript so they won't index the site</li>
-        <li>Asynchronous callback can lead to complex code that is hard to maintain, debug, and test</li> 
-        <li>Easy to end up with spaghetti code</li>
-        <li>Not so good IDE support</li>
-        <li>Must learn Javascript</li>
+        <li>Asynchronous callbacks can lead to complex code that is difficult to maintain, debug, and test</li> 
+        <li>Potential for spaghetti code</li>
+        <li>IDE support is limited</li>
+        <li>Javascript knowledge needed</li>
       </ul>
     </article>
   </slide>
@@ -176,7 +155,7 @@ URL: https://code.google.com/p/io-2012-slides
 {
   'clazz':'.Department',
   'id':135,
-  'name':'My New Deaprtmnt'
+  'name':'My New Department'
 }
 </pre>
 
@@ -202,7 +181,7 @@ $('.college').prepend($(html));
 
   <slide>
     <hgroup>
-      <h2>Must Manual Transform Form To JSON </h2>
+      <h2>Must Manually Transform Form To JSON </h2>
     </hgroup>
     <article class="smaller">
       <pre class="prettyprint" data-lang="javascript">
@@ -233,25 +212,25 @@ $.ajax({ type: 'PUT', url: 'api/person/' + $('#id').val(), data: JSON.stringify(
     </hgroup>
     <article>
       <ul>
-        <li>Same as Ajax model but apply MVC design pattern</li>
-        <li>Normally leads to a single page application</li>
-        <li>The C in MVC is loosely defined in a lot of javascript framework</li>
-        <li>Solves some problems associatedwith Ajax model</li>
-        <li>Provides order and structure to your javascript code</li>
+        <li>Same as Ajax model but applies MVC design pattern</li>
+        <li>Normally leads to single page application</li>
+        <li>The Controller concept in MVC is loosely defined in many JavaScript frameworks</li>
+        <li>Solves some problems associated with an Ajax model</li>
+        <li>Provides an order and structure to JavaScript code</li>
       </ul>
     </article>
   </slide>  
   
   <slide>
     <hgroup>
-      <h2>Advantage</h2>
+      <h2>Advantages</h2>
     </hgroup>
     <article>
       <ul>
-        <li>MVC is a well established pattern</li>
-        <li>Separation of Concern</li>
-        <li>Should lead to more testable code</li>
-        <li>Code is better structure. Reduce spaghetti code.
+        <li>MVC is a well established design pattern</li>
+        <li>Separation of concerns</li>
+        <li>Leads to more testable code</li>
+        <li>Better code structure reduces spaghetti code.
         <li>Maintainable</li>
       </ul>
     </article>
@@ -259,14 +238,14 @@ $.ajax({ type: 'PUT', url: 'api/person/' + $('#id').val(), data: JSON.stringify(
   
   <slide>
     <hgroup>
-      <h2>Disadvantage</h2>
+      <h2>Disadvantages</h2>
     </hgroup>
     <article>
       <ul>
-        <li>Can end up pushing to much business logic to client if not careful</li>
-        <li>Higher potential for memory leak if not careful</li>
-        <li>Crawlers don't excute javascript so they won't index the site</li>
-        <li>Must learn Javascript</li>
+        <li>Can push too much business logic to client if not careful</li>
+        <li>Higher potential for memory leaks if not careful</li>
+        <li>Crawlers don't execute JavaScript so they won't index the site</li>
+        <li>Developers must learn JavaScript</li>
       </ul>
     </article>
   </slide>
@@ -279,7 +258,7 @@ $.ajax({ type: 'PUT', url: 'api/person/' + $('#id').val(), data: JSON.stringify(
       <ul>
         <li>JavaScript framework by Google</li>
         <li>Full fledged framework</li>
-        <li>Makes HTML your Template</li>
+        <li>Makes HTML your template</li>
         <li>Enterprise-level Testing</li>
       </ul>
 
@@ -292,7 +271,7 @@ $.ajax({ type: 'PUT', url: 'api/person/' + $('#id').val(), data: JSON.stringify(
   
   <slide>
     <hgroup>
-      <h2>Advantage</h2>
+      <h2>Advantages</h2>
     </hgroup>
     <article>
       <ul>
@@ -303,29 +282,30 @@ $.ajax({ type: 'PUT', url: 'api/person/' + $('#id').val(), data: JSON.stringify(
         <li>Testable, E2E Testing</li>
         <li>Chrome plugin</li>
         <li>Actively Developed</li>
-        <li>Back by Google.  Have the resouces and weight to making changes & recomendation to W3C. (ie. Web Components)</li>
+        <li>Backed by Google, who are making changes & recommendations to W3C. (ie. Web Components)</li>
+        <li>Can start small. Does not require rewrite of the whole application</li>
       </ul>
     </article>
   </slide>
 
   <slide>
     <hgroup>
-      <h2>Disadvantage</h2>
+      <h2>Disadvantages</h2>
     </hgroup>
     <article>
       <ul>
-        <li>Have a greater understanding of the DOM at the node level</li>
+        <li>Requires a greater understanding of the DOM at the node level</li>
         <li>Writing directives can be difficult</li>
         <!-- <li>Less control compared to micro-frameworks</li> -->
         <li>Must learn the "Angular Way"</li>
-        <li>Must learn Javascript</li>
+        <li>Must learn JavaScript</li>
       </ul>
     </article>
   </slide>
 
   <slide>
     <hgroup>
-      <h2>Core Idea</h2>
+      <h2>Core Concepts</h2>
     </hgroup>
     <article>
       <ul>
@@ -342,10 +322,10 @@ $.ajax({ type: 'PUT', url: 'api/person/' + $('#id').val(), data: JSON.stringify(
     </hgroup>
     <article>
       <ul>
-          <li> Require developers to learn both server side as well as client side programming</li>
+          <li> Requires developers to learn both server side and client side programming</li>
           <li> Must understand HTML, DOM updates, XMLHttpRequest, and JavaScript</li>
-          <li> Must understand MVC Model </li>
-          <li> Must understand dependency injection </li>
+          <li> Must understand MVC Models</li>
+          <li> Must understand dependency injections</li>
       </ul>
     </article>
   </slide>
@@ -357,13 +337,13 @@ $.ajax({ type: 'PUT', url: 'api/person/' + $('#id').val(), data: JSON.stringify(
     <article>
       <ul>
         <li> Provides similar user interface to a desktop application. This makes the application more intuitive and reduces the cost to provide in-depth training</li>
-        <li> Adopting Ajax techniques is becoming a business requirement to maintain parity with the rest of the industry and match growing user expectations about Web-based user experience</li>
-        <li> Increase developer productivity by reducing the amount of coding needed</li>
-        <li> Leverage existing frameworks and thereby reducing the cost of having to code everything from scratch (ie. JQuery, Jquery UI, Bootstrap, etc.)
-        <li> Reduce maintenance cost</li>
-        <li> Testable Javascript Code </li>
+        <li> Adopting Ajax techniques is becoming a business requirement to maintain parity with the rest of the industry and match growing user expectations about Web-based user experiences</li>
+        <li> Increases developer productivity by reducing the amount of coding needed</li>
+        <li> Leverages existing frameworks and thereby reduces the cost of having to code everything from scratch (ie. JQuery, Jquery UI, Bootstrap, etc.)
+        <li> Reduces overall maintenance cost</li>
+        <li> Testable Javascript code </li>
         <li> Faster development time</li>
-        <li> Testing solution for Mobile platform</li>
+        <li> Testing solutions for Mobile platforms</li>
       </ul>
     </article>
   </slide>
@@ -376,9 +356,9 @@ $.ajax({ type: 'PUT', url: 'api/person/' + $('#id').val(), data: JSON.stringify(
     <article>
       <ul>
       <li><a href="http://angularjs.org/">Official Angular Page</a> </li>
-      <li><a href="http://www.egghead.io/">Series of really good tutorial by John Lindquist</a></li>
+      <li><a href="http://www.egghead.io/">Series of really good tutorials by John Lindquist</a></li>
       <li><a href="http://weblogs.asp.net/dwahlin/archive/2013/04/12/video-tutorial-angularjs-fundamentals-in-60-ish-minutes.aspx">Angular Fundamentals in 60+ Minutes</a></li>
-      <li><a href="http://www.youtube.com/user/angularjs">Youtube channel on google meetup</a></li>
+      <li><a href="http://www.youtube.com/user/angularjs">Youtube channel on google meetups</a></li>
       <li><a href="http://tekpub.com/productions/angular">Tekpub video on Angular</a> </li>
       </ul>
     </article> 
@@ -400,9 +380,9 @@ $.ajax({ type: 'PUT', url: 'api/person/' + $('#id').val(), data: JSON.stringify(
       <ul>
         <li> If you are doing a lot of dynamic dom minipulation and using a lot of javascript you should consider using a javascript MVC</li>
         <li> To write anything maintainable, you have to write test </li>
-        <li> Angular make writing RIA application easier and quicker </li>
-        <li> Angular make it possible to write test for javascript </li>
-        <li> Angular will make you write less code </li>
+        <li> Angular makes writing RIA application easier and quicker </li>
+        <li> Angular makes it possible to write test for javascript </li>
+        <li> Angular results in fewer lines of code compared with other RIA/Javascript MVC framework </li>
       </ul>
     </article>
   </slide>

@@ -56,7 +56,7 @@
 			</dl>
 			
 			<h3 class="margin-bottom0">Presentation Slides</h3>
-			<a href="slides">Web Application Development</a>
+			<a href="slides">Web Application Development (Use Chrome)</a>
 		</div>
 	</div>
 	
