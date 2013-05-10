@@ -1,8 +1,7 @@
 'use strict';
 
-angular.module('demoApp').controller('IndexCtrl', function ($scope, $location, Campus, College, Department, Person) {
+angular.module('demoApp').controller('IndexCtrl', function ($scope, Campus, College, Department, Person) {
 
-	var locationStack = [];
 	$scope.template = {treeView: '/demo/resources/angular/templates/treeView.html'};
 	$scope.campus = Campus.get({id: '1'});
 
@@ -21,7 +20,6 @@ angular.module('demoApp').controller('IndexCtrl', function ($scope, $location, C
 	};
 
 	$scope.edit = function (data) {
-		$location.url('/');
 		if (data.clazz === '.College') {
 			$scope.template.editView = '/demo/resources/angular/templates/editCollege.html';
 			if (typeof data.childOrganization === 'undefined') {
@@ -84,7 +82,7 @@ angular.module('demoApp').controller('DepartmentEditCtrl', function ($scope, Dep
 });
 
 angular.module('demoApp').controller('PersonEditCtrl', function ($scope, Room, Person) {
-	
+
 	$scope.remove = function (data) {
 		Room.removePerson({id: data.id, personId: $scope.editData.id}, {}, function (response) {
 			var index = $scope.editData.response.rooms.indexOf(data);
@@ -93,10 +91,10 @@ angular.module('demoApp').controller('PersonEditCtrl', function ($scope, Room, P
 	};
 
 	$scope.save = function () {
-	    Room.addPerson({id: $scope.select.room, personId: $scope.editData.id}, {}, function (response) {
-	    	$scope.editData.response.rooms.push(response);
-	    	$scope.add.show = false;
-	    });
+		Room.addPerson({id: $scope.select.room, personId: $scope.editData.id}, {}, function (response) {
+			$scope.editData.response.rooms.push(response);
+			$scope.add.show = false;
+		});
 	};
 
 	$scope.update = function () {
