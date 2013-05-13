@@ -51,7 +51,7 @@ captureTimeout = 5000;
 singleRun = false;
 
 proxies = {
-  '/': 'http://localhost:8080/demo/angular/'
+  '/': 'http://localhost:8080/'
 };
 
 urlRoot = '/karma/';

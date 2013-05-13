@@ -4,7 +4,7 @@ describe('Demo App', function() {
 
 	describe('Main index view', function() {
 		beforeEach(function() {
-			browser().navigateTo('/');
+			browser().navigateTo('/demo/angular/');
 		});
 
 		it('should list videos', function() {
