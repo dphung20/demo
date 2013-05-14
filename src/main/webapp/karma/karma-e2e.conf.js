@@ -17,11 +17,6 @@ exclude = [];
 // possible values: dots || progress || growl
 reporters = ['progress'];
 
-// web server port
-port = 8000;
-
-// cli runner port
-runnerPort = 5000;
 
 // enable / disable colors in the output (reporters and logs)
 colors = true;
