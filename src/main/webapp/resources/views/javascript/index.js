@@ -23,7 +23,7 @@ $(function() {
 	function loadDepartmentTreeData(collegeId){
 		var li = $('li[data-id=' + collegeId +']');
 
-		$.getJSON(rootUrl  + 'college/' + collegeId + '/department', function (response) {
+		$.getJSON(rootUrl  + 'college/' + collegeId + '/childorganization', function (response) {
 			li.find('ul').remove();
 			var ul = $('<ul></ul>');
 			_.each(response.childOrganization, function(item){
@@ -37,7 +37,7 @@ $(function() {
 	function loadPersonTreeData(departmentId){
 		var li = $('li[data-id=' + departmentId +']');
 
-		$.getJSON(rootUrl  + 'department/' + departmentId + '/employee', function (response) {
+		$.getJSON(rootUrl  + 'department/' + departmentId + '/childorganization', function (response) {
 			li.find('ul').remove();
 			var ul = $('<ul></ul>');
 			_.each(response.childOrganization, function(item){
@@ -74,7 +74,7 @@ $(function() {
 
 
 	function loadFloorData(){
-		$.getJSON(rootUrl + "building/" + $("#building").val() + "/floor", function (response) {
+		$.getJSON(rootUrl + "building/" + $("#building").val() + "/childfacility", function (response) {
 			var el = $("#floor").empty();
 			_.each(response.childFacility, function(item){
 				el.append($('<option value="' + item.id + '">' + item.name + '</option>'));
@@ -89,7 +89,7 @@ $(function() {
 			return item.getAttribute("data-id");
 		});
 
-		$.getJSON(rootUrl + "floor/" + $("#floor").val() + "/room", function (response) {
+		$.getJSON(rootUrl + "floor/" + $("#floor").val() + "/childfacility", function (response) {
 			var el = $("#room").empty();
 			var rooms = _.reject(response.childFacility, function(item){
 				return existingRooms.indexOf(item.id) >= 0;
@@ -102,7 +102,7 @@ $(function() {
 	}
 
 	function showCollegePanel(collegeId){
-		$.getJSON(rootUrl + 'college/' + collegeId + '/department', function (response) {
+		$.getJSON(rootUrl + 'college/' + collegeId + '/childorganization', function (response) {
 			var el = $(".college");
 
 			el.attr("data-college-id", response.id);
@@ -117,7 +117,7 @@ $(function() {
 	}
 
 	function showDepartmentPanel(departmentId){
-		$.getJSON(rootUrl + 'department/' + departmentId + '/employee', function (response) {
+		$.getJSON(rootUrl + 'department/' + departmentId + '/childorganization', function (response) {
 			var el = $(".department");
 
 			el.attr("data-department-id", response.id);
@@ -164,7 +164,7 @@ $(function() {
 	}
 
 	// load tree data
-	$.getJSON(rootUrl + 'campus/1/college', function (response) {
+	$.getJSON(rootUrl + 'campus/1/childorganization', function (response) {
 		var ul = $('<ul></ul>').appendTo(".treeview");
 		_.each(response.childOrganization, function(item){
 			addTreeItem(item, ul);
@@ -205,9 +205,6 @@ $(function() {
 		// hide all panels
 		$(".panel").addClass("hidden");
 		$(".add-item").remove();
-
-		var url = type.toLowerCase().replace('.', '')  + '/' + id;
-		window.history.pushState(null, null, "#/" + url);
 
 		// show panel of selected item
 		if (type === '.College') {
@@ -264,7 +261,7 @@ $(function() {
 		var tr = target.parents('tr');
 
 		var data = {'clazz': '.Department', name: tr.find(':first-child input').val()};
-		$.ajax({ type: 'POST', url: rootUrl + 'department/' + collegeId, data: JSON.stringify(data) })
+		$.ajax({ type: 'POST', url: rootUrl + 'college/' + collegeId + '/childorganization', data: JSON.stringify(data) })
 			.done(function (response) {
 				tr.remove();
 				var ul = $('li[data-id=' + collegeId +'] ul');
@@ -301,7 +298,7 @@ $(function() {
 			name: 'person',
 			remote: rootUrl + 'person/find?search=%QUERY'
 		}).on('typeahead:selected', function (evt, item) {
-			$.ajax({ type: 'PUT', url: rootUrl + 'department/' + departmentId + '/employee/' + item.id })
+			$.ajax({ type: 'PUT', url: rootUrl + 'department/' + departmentId + '/childorganization/' + item.id })
 				.done(function (response) {
 					var ul = $('li[data-id=' + departmentId +'] ul');
 					if(ul){
@@ -320,7 +317,7 @@ $(function() {
 		var departmentId = target.parents('section').attr('data-department-id');
 		var personId = target.parents('tr').attr('data-id');
 
-		$.ajax({ type: 'PUT', url: rootUrl + 'department/' + departmentId + '/employee/' + personId + '/remove' })
+		$.ajax({ type: 'DELETE', url: rootUrl + 'department/' + departmentId + '/childorganization/' + personId + '/remove' })
 			.done(function (data) {
 				target.parents('tr').remove();
 
@@ -376,7 +373,7 @@ $(function() {
 		var personId = target.parents('section').attr('data-person-id');
 		var roomId = target.parents('tr').attr('data-id');
 
-		$.ajax({ type: 'PUT', url: rootUrl + 'room/' + roomId + '/remove/' +  personId })
+		$.ajax({ type: 'DELETE', url: rootUrl + 'room/' + roomId + '/person/' +  personId })
 			.done(function (data) {
 				target.parents('tr').remove();
 			});
@@ -387,7 +384,7 @@ $(function() {
 		var target = $(evt.target);
 		var personId = target.parents('section').attr('data-person-id');
 
-		$.ajax({ type: 'PUT', url: rootUrl + 'room/' + $("#room").val() + "/add/" + personId })
+		$.ajax({ type: 'PUT', url: rootUrl + 'room/' + $("#room").val() + "/person/" + personId })
 			.done(function (response) {
 				target.parents('tr').remove();
 				addRoomItem(response, $('.person .table-container'));
@@ -462,25 +459,5 @@ $(function() {
 	});
 
 	// load panel 
-	var hash = window.location.hash;
-	if(hash){
-		var regex = new RegExp('^([^/]+)/([^/]+)$');
-		var params = regex.exec(window.location.hash.replace('#/', '')).slice(1);
-
-		switch(params[0]){
-			case "college":
-				showCollegePanel(params[1]);
-				break;
-			case "department":
-				showDepartmentPanel(params[1]);
-				break;
-			case "person":
-				showPersonPanel(params[1]);
-				break;
-		}
-	} else{
-		window.history.pushState(null, null, '#/college/2');
-		showCollegePanel(2);
-	}
-
+	showCollegePanel(2);
 });

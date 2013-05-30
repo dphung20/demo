@@ -1,0 +1,6 @@
+<input type="checkbox" id="{{data.id}}" ng-click="expand(data)" ng-show="data.name"/>
+<label for="{{data.id}}" ng-show="data.name"></label>
+<a ng-href="#/{{data.clazz.toLowerCase().substr(1, str.length)}}/{{data.id}}"><i class="icon-tags"></i><div>{{data.name || data.firstName}} {{data.lastName}}</div></a>
+<ul>
+    <li ng-repeat="data in data.childOrganization | orderBy: 'name': false" ng-include src="'../resources/angular/templates/tree.html'"></li>
+</ul>

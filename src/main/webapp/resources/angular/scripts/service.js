@@ -1,50 +1,30 @@
 'use strict';
-
-angular.module('demoApp').factory('Campus', function ($resource) {
-    return $resource('/demo/api/campus/:id/:param1', {id: '@id'}, {
-        get: {method: 'GET', params: {param1: 'college'}},
-        getBuildings: {method: 'GET', params: {param1: 'building'}}
+app.factory('Organization', function ($resource) {
+    return $resource('../api/:orgType/:id/:childType/:childId', {id: '@id', childType: 'childorganization'}, {
+        get: {method: 'GET' },
+        addChild: { method: 'PUT' },
+        removeChild: { method: 'DELETE' }
     });
 });
 
-angular.module('demoApp').factory('College', function ($resource) {
-    return $resource('/demo/api/college/:id/:department', {id: '@id'}, {
-        get: {method: 'GET', params: {department: 'department'}}
+app.factory('OrganizationLoader', function($route, $q, Organization){
+    return function(orgType){
+        var delay = $q.defer();
+        Organization.get({ id: $route.current.params.id, orgType: orgType}, function(organization){ delay.resolve(organization); });
+        return delay.promise;
+    };
+});
+
+app.factory('Person', function ($resource) {
+    return $resource('../api/person/:id/:childType', {id: '@id', childType: 'childorganization'}, {
+        get: {method: 'GET', params: { childType: 'room'}}
     });
 });
 
-angular.module('demoApp').factory('Department', function ($resource) {
-    return $resource('/demo/api/department/:id/:employee/:personId/:remove', {id: '@id', personId: '@personId'}, {
-        get: {method: 'GET', params: {employee: 'employee'}},
-        post: {method: 'POST'},
-        delete: {method: 'DELETE'},
-        addEmployee: {method: 'PUT', params: {employee: 'employee'}},
-        removeEmployee: {method: 'PUT', params: {employee: 'employee', remove: 'remove'}}
-    });
-});
-
-angular.module('demoApp').factory('Person', function ($resource) {
-    return $resource('/demo/api/person/:id/:room', {id: '@id'}, {
-        get: {method: 'GET', params: {room: 'room'}},
-        put: {method: 'PUT'}
-    });
-});
-
-angular.module('demoApp').factory('Building', function ($resource) {
-    return $resource('/demo/api/building/:id/:param1', {id: '@id'}, {
-        getFloors: {method: 'GET', params: {param1: 'floor'}}
-    });
-});
-
-angular.module('demoApp').factory('Floor', function ($resource) {
-    return $resource('/demo/api/floor/:id/:param1', {id: '@id'}, {
-        getRooms: {method: 'GET', params: {param1: 'room'}}
-    });
-});
-
-angular.module('demoApp').factory('Room', function ($resource) {
-    return $resource('/demo/api/room/:id/:param1/:personId', {id: '@id', personId: '@personId'}, {
-        addPerson: {method: 'PUT', params: {param1: 'add'}},
-        removePerson: {method: 'PUT', params: {param1: 'remove'}}
-    });
+app.factory('PersonLoader', function($route, $q, Person){
+    return function(orgType){
+        var delay = $q.defer();
+        Person.get({ id: $route.current.params.id}, function(person){ delay.resolve(person); });
+        return delay.promise;
+    };
 });

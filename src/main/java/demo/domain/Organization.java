@@ -3,6 +3,7 @@ package demo.domain;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
@@ -33,11 +34,11 @@ public class Organization extends Party {
 	@ManyToOne
 	private Organization parentFacility;
 
-	@OneToMany(mappedBy = "parentOrganization", orphanRemoval = true)
+	@OneToMany(mappedBy = "parentOrganization", cascade = CascadeType.ALL, orphanRemoval = true)
 	@OrderBy("name")
 	private Set<Organization> childOrganization = new HashSet<Organization>();
 	
-	@OneToMany(mappedBy = "parentFacility", orphanRemoval = true)
+	@OneToMany(mappedBy = "parentFacility", cascade = CascadeType.ALL, orphanRemoval = true)
 	@OrderBy("name")
 	private Set<Organization> childFacility = new HashSet<Organization>();
 	

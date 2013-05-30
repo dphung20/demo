@@ -15,13 +15,13 @@ public class CampusController {
 	
 	@Autowired private CampusService service;
 	
-	@RequestMapping(value = "/{id}/building", method = RequestMethod.GET )
+	@RequestMapping(value = "/{id}/childfacility", method = RequestMethod.GET )
 	@ResponseBody
 	public Object findBuilding(@PathVariable Integer id) {
 		return service.toJsonWithChildFacility(service.find(id));
 	}
 	
-	@RequestMapping(value = "/{id}/college", method = RequestMethod.GET )
+	@RequestMapping(value = "/{id}/childorganization", method = RequestMethod.GET )
 	@ResponseBody
 	public Object findCollege(@PathVariable Integer id) {
 		return service.toJsonWithChildOrganization(service.find(id));

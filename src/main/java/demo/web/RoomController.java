@@ -25,7 +25,7 @@ public class RoomController {
 		return roomService.toJson(roomService.find(id));
 	}
 	
-	@RequestMapping(value = "/{id}/add/{personId}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/{id}/person/{personId}", method = RequestMethod.PUT)
 	@ResponseBody
 	public Object addPerson(@PathVariable Integer id, @PathVariable Integer personId) {
 		Room room = roomService.find(id);
@@ -37,7 +37,7 @@ public class RoomController {
 		return roomService.toJsonWithBuilding(room);
 	}
 	
-	@RequestMapping(value = "/{id}/remove/{personId}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/{id}/person/{personId}", method = RequestMethod.DELETE)
 	@ResponseBody
 	public Object removePerson(@PathVariable Integer id, @PathVariable Integer personId) {
 		Room room = roomService.find(id);

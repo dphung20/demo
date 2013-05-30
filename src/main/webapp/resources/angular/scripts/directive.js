@@ -1,67 +1,58 @@
 'use strict';
-
-angular.module('demoApp').directive('demoTypeahead', function (Department) {
+app.directive('demoTypeahead', function () {
 	return {
-		restrict: 'A',
 		require: 'ngModel',
 		link: function postLink(scope, element, attrs, controller) {
 			element.typeahead({
 				name: 'person',
-				remote: '/demo/api/person/find?search=%QUERY'
+				remote: '../api/person/find?search=%QUERY'
 			}).on('typeahead:selected', function (event, item) {
-				Department.addEmployee({id: scope.editData.id, personId: item.id}, {}, function (response) {
-					scope.save(response);
-				});
+				scope.save(item);
 			});
 		}
 	};
 });
 
-angular.module('demoApp').directive('demoAddroom', function (Campus, Building, Floor, Room) {
+app.directive('demoAddroom', function (Organization) {
 	return {
-		restrict: 'A',
 		templateUrl: '/demo/resources/angular/templates/addRoomDirective.html',
 		link: function postLink(scope, element, attrs, controller) {
 			scope.select = {};
 
-			Campus.getBuildings({id: '1'}, function (buildings) {
+			Organization.get({ id: 1, orgType: 'campus', childType: 'childfacility' }, function (buildings) {
 				scope.buildings = buildings.childFacility;
-				if (typeof scope.editData.response.rooms !== 'undefinded') {
-					scope.select.building = scope.editData.response.rooms[0].building.id;
+				if (typeof scope.model.rooms !== 'undefinded') {
+					scope.select.building = scope.model.rooms[0].building.id;
 				} else {
 					scope.select.building = buildings.childFacility[0].id;
 				}
-				Building.getFloors({id: scope.select.building}, function (floors) {
-					scope.floors = floors.childFacility;
-					scope.select.floor = floors.childFacility[0].id
-					Floor.getRooms({id: scope.select.floor}, function (rooms) {
-						scope.rooms = rooms.childFacility;
-						scope.select.room = rooms.childFacility[0].id;
-					});
-				});
 			});
 
 			scope.$watch('select.building', function (newValue, oldValue) {
-				if (newValue !== oldValue) {
-					Building.getFloors({id: newValue}, function (floors) {
-						scope.floors = floors.childFacility;
-						scope.select.floor = floors.childFacility[0].id
-						Floor.getRooms({id: floors.childFacility[0].id}, function (rooms) {
-							scope.rooms = rooms.childFacility;
-							scope.select.room = rooms.childFacility[0].id;
-						});
-					});
+				if (newValue) {
+					scope.loadFloor(newValue);
 				}
 			});
 
 			scope.$watch('select.floor', function (newValue, oldValue) {
-				if (newValue !== oldValue) {
-					Floor.getRooms({id: newValue}, function (rooms) {
-						scope.rooms = rooms.childFacility;
-						scope.select.room = rooms.childFacility[0].id;
-					});
+				if (newValue) {
+					scope.loadRoom(newValue);
 				}
 			});
+
+			scope.loadFloor = function(id){
+				Organization.get({ id: id, orgType: 'building', childType: 'childfacility' }, function (floors) {
+					scope.floors = floors.childFacility;
+					scope.select.floor = floors.childFacility[0].id;
+				});
+			};
+
+			scope.loadRoom = function(id){
+				Organization.get({ id: id, orgType: 'floor', childType: 'childfacility' }, function (rooms) {
+					scope.rooms = rooms.childFacility;
+					scope.select.room = rooms.childFacility[0].id;
+				});
+			};
 		}
 	};
 });

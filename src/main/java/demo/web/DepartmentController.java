@@ -3,12 +3,10 @@ package demo.web;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import demo.domain.College;
 import demo.domain.Department;
 import demo.service.CollegeService;
 import demo.service.DepartmentService;
@@ -22,42 +20,29 @@ public class DepartmentController {
 	@Autowired private CollegeService collegeService;
 	@Autowired private PersonService personService;
 	
-	@RequestMapping(value = "/{id}/employee", method = RequestMethod.GET)
+	@RequestMapping(value = "/{id}/childorganization", method = RequestMethod.GET)
 	@ResponseBody
 	public Object findDepartment(@PathVariable Integer id) {
 		Department department = service.find(id);
 		return service.toJsonWithEmployee(department);
 	}
 	
-	@RequestMapping(value = "/{collegeId}", method = RequestMethod.POST)
+	@RequestMapping(value = "{id}/childorganization/{childId}", method = RequestMethod.PUT)
 	@ResponseBody
-	public Object saveDepartment(@PathVariable Integer collegeId, @RequestBody Department departmentFormBean) {
-		College college = collegeService.find(collegeId);
-		departmentFormBean.setParentOrganization(college);
-		return service.toJson(service.save(departmentFormBean));
-	}
-	
-	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-	@ResponseBody
-	public Object deleteDepartment(@PathVariable Integer id) {
-		service.delete(id);
-		return "{}";
-	}
-	
-	@RequestMapping(value = "{id}/employee/{personId}", method = RequestMethod.PUT)
-	@ResponseBody
-	public Object addEmployee(@PathVariable Integer id, @PathVariable Integer personId) {
+	public Object addEmployee(@PathVariable Integer id, @PathVariable Integer childId) {
 		Department department = service.find(id);
-		department.getEmployees().add(personService.find(personId));
+		department.getEmployees().add(personService.find(childId));
 		return service.toJsonWithEmployee(service.save(department));
 	}
 	
-	@RequestMapping(value = "{id}/employee/{personId}/remove", method = RequestMethod.PUT)
+	@RequestMapping(value = "{id}/childorganization/{childId}", method = RequestMethod.DELETE)
 	@ResponseBody
-	public Object removeEmployee(@PathVariable Integer id, @PathVariable Integer personId) {
+	public Object removeEmployee(@PathVariable Integer id, @PathVariable Integer childId) {
 		Department department = service.find(id);
-		department.getEmployees().remove(personService.find(personId));
+		department.getEmployees().remove(personService.find(childId));
 		return service.toJsonWithEmployee(service.save(department));
 	}
+	
+	
 
 }

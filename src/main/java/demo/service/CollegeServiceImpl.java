@@ -6,9 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.google.common.base.Preconditions;
+
 import demo.data.CollegeRepository;
 import demo.domain.Campus;
 import demo.domain.College;
+import demo.domain.Department;
 
 
 @Service
@@ -39,4 +42,13 @@ public class CollegeServiceImpl extends OrganizationServiceImpl<College> impleme
 		return repository.findByCampus(campus);
 	}
 
+	@Override
+	public College addDepartment(College college, Department department) {
+		Preconditions.checkNotNull(college, "College can not be null");
+		Preconditions.checkNotNull(department, "Department can not be null");
+		
+		college.getChildOrganization().add(department);
+		department.setParentOrganization(college);
+		return repository.save(college);
+	}
 }

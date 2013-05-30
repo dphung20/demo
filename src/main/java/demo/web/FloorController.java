@@ -15,7 +15,7 @@ public class FloorController {
 	
 	@Autowired private FloorService service;
 	
-	@RequestMapping(value = "/{id}/room", method = RequestMethod.GET )
+	@RequestMapping(value = "/{id}/childfacility", method = RequestMethod.GET )
 	@ResponseBody
 	public Object findFloor(@PathVariable Integer id) {
 		return service.toJsonWithChildFacility(service.find(id));

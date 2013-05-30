@@ -1,31 +1,23 @@
-<div ng-controller="PersonEditCtrl">
-<h3>{{editData.firstName}} {{editData.lastName}} <i class="icon-pencil pull-right" ng-click="editable(); edit.show = true"></i></h3>
+<h3>{{model.person.firstName}} {{model.person.lastName}} <i class="icon-pencil pull-right" ng-click="editable(); edit.show = true"></i></h3>
 
 <div ng-hide="edit.show">
-<div><strong>Personnel Information</strong></div>
-<address>
-	<a href="mailto:#">{{editData.response.person.email}}</a><br />
-</address>
+<div>
+	<strong>Personnel Information</strong></div>
+	<address><a href="mailto:#">{{model.person.email}}</a><br /></address>
 </div>
 <div ng-show="edit.show">
 	<form>
  		<div class="control-group">
 			<label class="control-label" for="firstname">First Name</label>
-			<div class="controls">
-				<input ng-model="editData.firstName" type="text" id="firstname" placeholder="First Name" />
-			</div>
+			<div class="controls"><input ng-model="model.person.firstName" type="text" id="firstname" placeholder="First Name" /></div>
 		</div>
 		<div class="control-group">
 			<label class="control-label" for="lastname">Last Name</label>
-			<div class="controls">
-				<input ng-model="editData.lastName" type="text" id="lastname" placeholder="Last Name" />
-			</div>
+			<div class="controls"><input ng-model="model.person.lastName" type="text" id="lastname" placeholder="Last Name" /></div>
 		</div>
 		<div class="control-group">
 			<label class="control-label" for="email">Email</label>
-			<div class="controls">
-				<input ng-model="editData.response.person.email" type="text" id="email" placeholder="Email" />
-			</div>
+			<div class="controls"><input ng-model="model.person.email" type="text" id="email" placeholder="Email" /></div>
 		</div>
 		<div class="control-group">
 			<div class="controls">
@@ -44,12 +36,10 @@
 		</tr>
 	</thead>
 	<tbody class="table-container">
-		<tr ng-show="add.show" demo-addroom>
-		</tr>
-		<tr ng-repeat="item in editData.response.rooms | orderBy: 'building.name'">
+		<tr ng-show="add.show" demo-addroom></tr>
+		<tr ng-repeat="item in model.rooms | orderBy: 'building.name'">
 			<td>{{item.building.name}} - {{item.name}}</td>
 			<td><a href class="pull-right remove" title="Remove Item" ng-click="remove(item)"><i class="icon-remove"></i></a></td>
 		</tr>
 	</tbody>
 </table>
-</div>

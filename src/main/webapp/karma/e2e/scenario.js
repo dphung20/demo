@@ -48,13 +48,15 @@ describe('Demo App', function() {
 			element('a>i.icon-plus').click();
 			input('new.department').enter(newDepartment);
 			element('a>i.icon-ok').click();
-			expect(element('tr td:first-child:contains("' + newDepartment + '")').count()).toEqual(1);
+			expect(element('tr td:first-child:contains("' + newDepartment + '")').count()).toEqual(2);
 		})	
 
-		iit('should remove existing department', function(){
-			var newDepartment = 'New Department' + Date();
+		it('should remove existing department', function(){
+			var person = 'P';
 
-			element('.treeview a:first').click();
+			element('.treeview label:first').click();
+			element('.treeview ul:first ul:first>li:first label').click();
+			element('.treeview ul:first ul:first>li:first ul a:first').click();
 			element('a>i.icon-plus').click();
 			input('new.department').enter(newDepartment);
 			element('a>i.icon-ok').click();
@@ -62,7 +64,30 @@ describe('Demo App', function() {
 			expect(element('tr td:first-child:contains("' + newDepartment + '")').count()).toEqual(1);
 			element('tr td:first-child:contains("' + newDepartment + '") + td .remove').click();
 			expect(element('tr td:first-child:contains("' + newDepartment + '")').count()).toEqual(0);
+		})
+
+		itt('should presist person', function(){
+			element('.treeview a:first').click();
+			element('.treeview ul:first ul>li:first a').click();
+			element('a>i.icon-plus').click();
+			input('new.person').enter('amin');
+			
+			sleep(.5);
+			element('.tt-suggestion:first').click();
+
+			expect(element('tr td:first-child:contains("Amin, Louella")').count()).toEqual(1);
 		})	
+
+		it('should remove existing person', function(){
+			element('.treeview a:first').click();
+			element('.treeview ul:first ul>li:first a').click();
+			
+			//element('a>i.icon-ok').click();
+			var name = 'Amin, Louella';
+			expect(element('tr td:first-child:contains("' + name + '")').count()).toEqual(1);
+			element('tr td:first-child:contains("' + name + '") + td .remove').click();
+			expect(element('tr td:first-child:contains("' + name + '")').count()).toEqual(0);
+		})			
 	});
 
 

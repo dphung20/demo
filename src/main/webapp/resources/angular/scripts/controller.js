@@ -1,118 +1,73 @@
 'use strict';
-
-angular.module('demoApp').controller('IndexCtrl', function ($scope, Campus, College, Department, Person) {
-
-	$scope.template = {treeView: '/demo/resources/angular/templates/treeView.html'};
-	$scope.campus = Campus.get({id: '1'});
+app.controller('TreeCtrl', function ($scope, $location, Organization) {
+	$scope.campus = Organization.get({orgType: 'campus', id: 1 });
 
 	$scope.expand = function (data) {
 		if (typeof data.childOrganization === 'undefined') {
-			if (data.clazz === '.College') {
-				College.get({id: data.id}, function (response) {
-					data.childOrganization = response.childOrganization;
-				});
-			} else if (data.clazz === '.Department') {
-				Department.get({id: data.id}, function (response) {
-					data.childOrganization = response.childOrganization;
-				});
-			}
+			Organization.get({id: data.id, orgType: $scope.orgType(data.clazz)}, function(org){
+				data.childOrganization = org.childOrganization;
+			});
 		}
 	};
-
-	$scope.edit = function (data) {
-		if (data.clazz === '.College') {
-			$scope.template.editView = '/demo/resources/angular/templates/editCollege.html';
-			if (typeof data.childOrganization === 'undefined') {
-				College.get({id: data.id}, function (response) {
-					data.childOrganization = response.childOrganization;
-				});
-			}
-		} else if (data.clazz === '.Department') {
-			$scope.template.editView = '/demo/resources/angular/templates/editDepartment.html';
-			if (typeof data.childOrganization === 'undefined') {
-				Department.get({id: data.id}, function (response) {
-					data.childOrganization = response.childOrganization;
-				});
-			}
-		} else if (data.clazz === '.Person') {
-			$scope.template.editView = '/demo/resources/angular/templates/editPerson.html';
-			if (typeof data.childOrganization === 'undefined') {
-				Person.get({id: data.id}, function (response) {
-					data.response = response;
-				});
-			}
-		}
-		$scope.editData = data;
+	$scope.orgType = function(value){
+		return value.toLowerCase().substr(1, value.length);
 	};
 });
 
-angular.module('demoApp').controller('CollegeEditCtrl', function ($scope, Department) {
-
-	$scope.remove = function (data) {
-		Department.delete({id: data.id}, function (response) {
-			var index = $scope.editData.childOrganization.indexOf(data);
-			$scope.editData.childOrganization.splice(index, 1);
-		});
-	};
+app.controller('CollegeEditCtrl', function ($scope, college, Organization) {
+	$scope.college = college;
 
 	$scope.save = function () {
-		var postData = {name: $scope.new.department, clazz: '.Department'};
-		Department.post({id: $scope.editData.id}, postData, function (response) {
-			$scope.editData.childOrganization.push(response);
+		Organization.addChild({id: $scope.college.id, orgType: 'college'}, {name: $scope.department.name, clazz: '.Department'}, function (college) {
+			$scope.college = college;
 			$scope.add.show = false;
-			$scope.new.department = '';
 		});
+	};
+	$scope.remove = function (data) {
+		$scope.college.$removeChild({id: $scope.college.id, orgType: 'college', childId: data.id});
 	};
 });
 
-angular.module('demoApp').controller('DepartmentEditCtrl', function ($scope, Department) {
+app.controller('DepartmentEditCtrl', function ($scope, department, Organization) {
+	$scope.department = department;
 
-	$scope.remove = function (data) {
-		Department.removeEmployee({id: $scope.editData.id, personId: data.id}, {}, function (repsonse) {
-			var index = $scope.editData.childOrganization.indexOf(data);
-			$scope.editData.childOrganization.splice(index, 1);
+	$scope.save = function (item) {
+		Organization.addChild({id: $scope.department.id, orgType: 'department', childId: item.id}, {}, function (department) {
+			$scope.department = department;
+			$scope.add.show = false;
 		});
 	};
-
-	$scope.save = function (data) {
-		$scope.editData.childOrganization = data.childOrganization;
-		$scope.add.show = false;
-		$scope.new.person = '';
+	$scope.remove = function (data) {
+		$scope.department.$removeChild({id: $scope.department.id, orgType: 'department', childId: data.id});
 	};
 });
 
-angular.module('demoApp').controller('PersonEditCtrl', function ($scope, Room, Person) {
+app.controller('PersonEditCtrl', function ($scope, model, Organization, Person) {
+	$scope.model = model;
 
-	$scope.remove = function (data) {
-		Room.removePerson({id: data.id, personId: $scope.editData.id}, {}, function (response) {
-			var index = $scope.editData.response.rooms.indexOf(data);
-			$scope.editData.response.rooms.splice(index, 1);
+	$scope.save = function (item) {
+		Organization.addChild({id: $scope.select.room, orgType: 'room', childType: 'person', childId: $scope.model.person.id}, {}, function (response) {
+			$scope.model.rooms.push(response);
+			$scope.add.show = false;
 		});
 	};
-
-	$scope.save = function () {
-		Room.addPerson({id: $scope.select.room, personId: $scope.editData.id}, {}, function (response) {
-			$scope.editData.response.rooms.push(response);
-			$scope.add.show = false;
+	$scope.remove = function (data) {
+		Organization.removeChild({id: data.id, orgType: 'room', childType: 'person', childId: $scope.model.person.id}, function (response) {
+			var index = $scope.model.rooms.indexOf(data);
+			$scope.model.rooms.splice(index, 1);
 		});
 	};
 
 	$scope.update = function () {
-		var data = $scope.editData.response.person;
-		data.firstName = $scope.editData.firstName;
-		data.lastName = $scope.editData.lastName;
-		Person.put({id: data.id}, data);
+		Person.put({id: $scope.model.person.id}, $scope.model.person);
 	};
 
 	$scope.editable = function () {
 		$scope.revertData = {};
-		angular.copy($scope.editData, $scope.revertData);
+		angular.copy($scope.model, $scope.revertData);
 	};
 
 	$scope.revert = function () {
-		angular.copy($scope.revertData, $scope.editData);
+		angular.copy($scope.revertData, $scope.model);
 	};
 });
-
-
-
