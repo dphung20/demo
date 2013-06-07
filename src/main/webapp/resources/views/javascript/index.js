@@ -243,7 +243,7 @@ $(function() {
 		var collegeId = target.parents('section').attr('data-college-id');
 		var departmentId = target.parents('tr').attr('data-id');
 
-		$.ajax({ type: 'DELETE', url: rootUrl + 'department/' + departmentId })
+		$.ajax({ type: 'DELETE', url: rootUrl + 'college/' + collegeId + '/childorganization/' + departmentId })
 			.done(function (data) {
 				target.parents('tr').remove();
 
@@ -261,7 +261,8 @@ $(function() {
 		var tr = target.parents('tr');
 
 		var data = {'clazz': '.Department', name: tr.find(':first-child input').val()};
-		$.ajax({ type: 'POST', url: rootUrl + 'college/' + collegeId + '/childorganization', data: JSON.stringify(data) })
+		var self = this;
+		$.ajax({ type: 'PUT', url: rootUrl + 'college/' + collegeId + '/childorganization', data: JSON.stringify(data) })
 			.done(function (response) {
 				tr.remove();
 				var ul = $('li[data-id=' + collegeId +'] ul');
@@ -269,7 +270,10 @@ $(function() {
 					loadDepartmentTreeData(collegeId);
 				}
 
-				addDepartmentItem(response, $('.college .table-container'));
+				var el = $('.college .table-container').empty();
+				_.each(response.childOrganization, function(item){
+					addDepartmentItem(item, el);
+				});
 			});
 	});
 
@@ -317,7 +321,7 @@ $(function() {
 		var departmentId = target.parents('section').attr('data-department-id');
 		var personId = target.parents('tr').attr('data-id');
 
-		$.ajax({ type: 'DELETE', url: rootUrl + 'department/' + departmentId + '/childorganization/' + personId + '/remove' })
+		$.ajax({ type: 'DELETE', url: rootUrl + 'department/' + departmentId + '/childorganization/' + personId  })
 			.done(function (data) {
 				target.parents('tr').remove();
 
@@ -351,7 +355,7 @@ $(function() {
 			var tr = $(html);
 			$('.person .table-container').prepend(tr);
 
-			$.getJSON(rootUrl + "campus/1/building", function (response) {
+			$.getJSON(rootUrl + "campus/1/childfacility", function (response) {
 				var el = $("#building").empty();
 				_.each(response.childFacility, function(item){
 					el.append($('<option value="' + item.id + '">' + item.name + '</option>'));
