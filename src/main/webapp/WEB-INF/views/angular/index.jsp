@@ -18,7 +18,7 @@
 	<div class="navbar navbar-fixed-top">
 		<div class="navbar-inner">
 			<div class="container-fluid">
-				<a href="<c:url value="/"/>" class="brand"><div>Demo</div></a>
+				<a href="../" class="brand"><div>Demo</div></a>
 			</div>
 		</div>
 	</div>
