@@ -124,7 +124,7 @@
             <img src="resources/slides/images/typeahead.png"/>
       </div>           
     </article>
-     <div class="source">Exampls of UIs that are easy with Ajax</div>
+     <div class="source">Examples of UIs that are easy with Ajax</div>
   </slide>
   
   <slide>
@@ -135,7 +135,6 @@
       <ul>
         <li>Ajax requests are not registered in a browser's history</li>
         <li>Dynamic updates make it difficult to bookmark and return to a particular state</li>
-        <li>Not supported by some browsers</li>
         <li>Crawlers don't excute javascript so they won't index the site</li>
         <li>Asynchronous callbacks can lead to complex code that is difficult to maintain, debug, and test</li> 
         <li>Potential for spaghetti code</li>
@@ -230,7 +229,7 @@ $.ajax({ type: 'PUT', url: 'api/person/' + $('#id').val(), data: JSON.stringify(
         <li>MVC is a well established design pattern</li>
         <li>Separation of concerns</li>
         <li>Leads to more testable code</li>
-        <li>Better code structure reduces spaghetti code.
+        <li>Better code structure reduces spaghetti code
         <li>Maintainable</li>
       </ul>
     </article>
@@ -318,7 +317,7 @@ $.ajax({ type: 'PUT', url: 'api/person/' + $('#id').val(), data: JSON.stringify(
 
   <slide>
     <hgroup>
-      <h2>Cost</h2>
+      <h2>Baseline Competencies</h2>
     </hgroup>
     <article>
       <ul>
@@ -345,6 +344,8 @@ $.ajax({ type: 'PUT', url: 'api/person/' + $('#id').val(), data: JSON.stringify(
         <li> Faster development time</li>
         <li> Testing solutions for Mobile platforms</li>
       </ul>
+
+      <footer class="source">source: http://www.openajax.org/whitepapers/When%20Does%20Ajax%20Make%20Business%20Sense.php</footer>
     </article>
   </slide>
 
