@@ -28,7 +28,7 @@ describe('Demo App', function() {
 		})	
 
 		it('should load panel for department', function(){
-			element('.treeview a:first').click(); 
+			element('.treeview label:first').click(); 
 			element('.treeview ul:first ul:first>li:first a').click();
 			expect(element('#edit-container h3').text()).toContain('Agricultural and Resource Economics');
 		})
@@ -36,7 +36,7 @@ describe('Demo App', function() {
 		it('should load panel for person', function(){
 			element('.treeview label:first').click();
 			element('.treeview ul:first ul:first>li:first label').click();
-			element('.treeview ul:first ul:first>li:first ul>li a').click();
+			element('.treeview ul:first ul:first>li:first ul>li a:first').click();
 
 			expect(element('#edit-container h3').text()).toContain('Noah Crain');
 		})	
@@ -46,28 +46,26 @@ describe('Demo App', function() {
 
 			element('.treeview a:first').click();
 			element('a>i.icon-plus').click();
-			input('new.department').enter(newDepartment);
+			input('department.name').enter(newDepartment);
 			element('a>i.icon-ok').click();
-			expect(element('tr td:first-child:contains("' + newDepartment + '")').count()).toEqual(2);
-		})	
-
-		it('should remove existing department', function(){
-			var person = 'P';
-
-			element('.treeview label:first').click();
-			element('.treeview ul:first ul:first>li:first label').click();
-			element('.treeview ul:first ul:first>li:first ul a:first').click();
-			element('a>i.icon-plus').click();
-			input('new.department').enter(newDepartment);
-			element('a>i.icon-ok').click();
-
 			expect(element('tr td:first-child:contains("' + newDepartment + '")').count()).toEqual(1);
+		})	
+ 
+		it('should remove existing department', function(){
+			var newDepartment = 'Remove Department' + Date();
+
+			element('.treeview a:first').click();
+			element('a>i.icon-plus').click();
+			input('department.name').enter(newDepartment);
+			element('a>i.icon-ok').click();
+			expect(element('tr td:first-child:contains("' + newDepartment + '")').count()).toEqual(1);
+
 			element('tr td:first-child:contains("' + newDepartment + '") + td .remove').click();
 			expect(element('tr td:first-child:contains("' + newDepartment + '")').count()).toEqual(0);
 		})
 
-		itt('should presist person', function(){
-			element('.treeview a:first').click();
+		it('should presist person', function(){
+			element('.treeview label:first').click();
 			element('.treeview ul:first ul>li:first a').click();
 			element('a>i.icon-plus').click();
 			input('new.person').enter('amin');
@@ -79,12 +77,17 @@ describe('Demo App', function() {
 		})	
 
 		it('should remove existing person', function(){
-			element('.treeview a:first').click();
+			var name = 'Phillippi, Louella';
+
+			element('.treeview label:first').click();
 			element('.treeview ul:first ul>li:first a').click();
+			element('a>i.icon-plus').click();
+			input('new.person').enter('Phillippi');
 			
-			//element('a>i.icon-ok').click();
-			var name = 'Amin, Louella';
-			expect(element('tr td:first-child:contains("' + name + '")').count()).toEqual(1);
+			sleep(.5);
+			element('.tt-suggestion:first').click();
+
+			var name = 'Lisandra Phillippi';
 			element('tr td:first-child:contains("' + name + '") + td .remove').click();
 			expect(element('tr td:first-child:contains("' + name + '")').count()).toEqual(0);
 		})			
