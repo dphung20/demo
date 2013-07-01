@@ -21,7 +21,7 @@ app.directive('demoAddroom', function (Organization) {
 
 			Organization.get({ id: 1, orgType: 'campus', childType: 'childfacility' }, function (buildings) {
 				scope.buildings = buildings.childFacility;
-				if (typeof scope.model.rooms !== 'undefinded') {
+				if (scope.model.rooms.length > 0) {
 					scope.select.building = scope.model.rooms[0].building.id;
 				} else {
 					scope.select.building = buildings.childFacility[0].id;

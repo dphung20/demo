@@ -59,7 +59,7 @@ app.controller('PersonEditCtrl', function ($scope, model, Organization, Person) 
 	};
 
 	$scope.update = function () {
-		Person.put({id: $scope.model.person.id}, $scope.model.person);
+		Person.update({id: $scope.model.person.id}, $scope.model.person);
 	};
 
 	$scope.editable = function () {

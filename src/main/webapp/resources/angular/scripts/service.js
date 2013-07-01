@@ -17,7 +17,8 @@ app.factory('OrganizationLoader', function($route, $q, Organization){
 
 app.factory('Person', function ($resource) {
     return $resource('../api/person/:id/:childType', {id: '@id', childType: 'childorganization'}, {
-        get: {method: 'GET', params: { childType: 'room'}}
+        get: {method: 'GET', params: { childType: 'room'}},
+        update: { method: 'PUT' }
     });
 });
 
